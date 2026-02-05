@@ -1,6 +1,50 @@
 // Optional custom styles for Doks.
 // See https://getdoks.org/docs/guides/styles/
 
+// --- Mobile: menus and sidebar work on touch ---
+@media (max-width: 991.98px) {
+  // Larger tap target for hamburger / sidebar toggle (Bootstrap breakpoint lg)
+  [data-bs-toggle="offcanvas"],
+  .navbar-toggler,
+  .btn-sidebar,
+  [aria-controls][data-bs-toggle] {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  // Ensure offcanvas sidebar is above content and scrollable
+  .offcanvas,
+  .sidebar,
+  [class*="offcanvas-"] {
+    z-index: 1045;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+  }
+  .offcanvas-body,
+  .sidebar-body,
+  [class*="sidebar"] .collapse {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  // Nav/sidebar links: minimum touch target
+  .sidebar .nav-link,
+  .offcanvas .nav-link,
+  .docs-sidebar .nav-link {
+    min-height: 44px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  // Backdrop should capture taps to close
+  .offcanvas-backdrop {
+    z-index: 1040;
+  }
+}
+
 // Landing page: hero code block and section hierarchy
 .gdql-landing {
   text-align: left;

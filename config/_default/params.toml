@@ -25,9 +25,10 @@ mainSections = ["docs"]
   sectionFooter = false
   editPage = true
   lastMod = false
-  docsRepo = "https://github.com/gdql/gdql-docs"
+  docsRepo = "https://github.com/gdql/docs"
   docsRepoBranch = "main"
   docsRepoSubPath = ""
+  docsEditablePath = "content/"
 
 [render_hooks.image]
   errorLevel = "ignore"
@@ -56,4 +57,4 @@ mainSections = ["docs"]
 [seo.schemas]
   type = "Organization"
   name = "GDQL"
-  sameAs = ["https://github.com/gdql/gdql-docs"]
+  sameAs = ["https://github.com/gdql/docs"]
