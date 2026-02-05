@@ -18,6 +18,11 @@
     justify-content: center;
     touch-action: manipulation;
   }
+  // Navbar must create stacking context above backdrop so offcanvas is on top (not under blur)
+  .navbar {
+    position: relative;
+    z-index: 1060;
+  }
   // Ensure offcanvas is above content and scrollable
   .offcanvas,
   .offcanvas-start,
@@ -45,8 +50,11 @@
     display: flex;
     align-items: center;
   }
+  // Backdrop behind navbar/offcanvas; no blur so menu stays sharp and background is just dimmed
   .offcanvas-backdrop {
-    z-index: 1050;
+    z-index: 1040;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 
