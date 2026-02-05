@@ -25,6 +25,7 @@ mainSections = ["docs"]
   sectionFooter = false
   editPage = true
   lastMod = false
+  repoHost = "GitHub"
   docsRepo = "https://github.com/gdql/docs"
   docsRepoBranch = "main"
   docsRepoSubPath = ""

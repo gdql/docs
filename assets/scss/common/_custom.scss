@@ -3,45 +3,50 @@
 
 // --- Mobile: menus and sidebar work on touch ---
 @media (max-width: 991.98px) {
-  // Larger tap target for hamburger / sidebar toggle (Bootstrap breakpoint lg)
-  [data-bs-toggle="offcanvas"],
+  // Larger tap target for hamburger and section menu (Doks uses btn + data-bs-toggle)
+  .navbar .btn[data-bs-toggle="offcanvas"],
+  .navbar [data-bs-toggle="offcanvas"],
   .navbar-toggler,
   .btn-sidebar,
-  [aria-controls][data-bs-toggle] {
-    min-width: 44px;
-    min-height: 44px;
+  button[aria-controls="offcanvasNavSection"],
+  button[aria-controls="offcanvasNavMain"] {
+    min-width: 48px;
+    min-height: 48px;
     padding: 0.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
   }
-  // Ensure offcanvas sidebar is above content and scrollable
+  // Ensure offcanvas is above content and scrollable
   .offcanvas,
-  .sidebar,
-  [class*="offcanvas-"] {
-    z-index: 1045;
+  .offcanvas-start,
+  .offcanvas-end,
+  #offcanvasNavSection,
+  #offcanvasNavMain {
+    z-index: 1055;
     touch-action: manipulation;
     -webkit-overflow-scrolling: touch;
   }
   .offcanvas-body,
-  .sidebar-body,
-  [class*="sidebar"] .collapse {
+  .doks-sidebar {
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
-  // Nav/sidebar links: minimum touch target
-  .sidebar .nav-link,
+  // Nav links in offcanvas: minimum touch target
   .offcanvas .nav-link,
-  .docs-sidebar .nav-link {
+  .offcanvas .dropdown-item,
+  .offcanvas .page-links a,
+  #doks-docs-nav .nav-link {
     min-height: 44px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
   }
-  // Backdrop should capture taps to close
   .offcanvas-backdrop {
-    z-index: 1040;
+    z-index: 1050;
   }
 }
 
