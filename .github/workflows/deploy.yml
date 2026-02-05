@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx hugo --minify --gc -b ${{ env.HUGO_BASEURL }}
+        run: hugo --minify --gc -b ${{ env.HUGO_BASEURL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
