@@ -18,9 +18,8 @@ jobs:
       group: pages
       cancel-in-progress: true
     env:
-      # Use GitHub Pages URL so assets and links work. For custom domain (e.g. docs.gdql.dev),
-      # set it in Settings > Pages and change baseURL in config/_default/hugo.toml to match.
-      HUGO_BASEURL: https://gdql.github.io/docs/
+      # Build for custom domain so docs.gdql.dev/ works (root and assets). Links will point to docs.gdql.dev.
+      HUGO_BASEURL: https://docs.gdql.dev/
     steps:
       - uses: actions/checkout@v4
 
