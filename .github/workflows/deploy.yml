@@ -1,4 +1,5 @@
-# Build and deploy to GitHub Pages (enable in repo Settings > Pages > Source: GitHub Actions)
+# Build and deploy to GitHub Pages
+# Enable in repo: Settings > Pages > Build and deployment > Source: GitHub Actions
 name: Deploy to GitHub Pages
 
 on:
@@ -16,6 +17,10 @@ jobs:
     concurrency:
       group: pages
       cancel-in-progress: true
+    env:
+      # Use GitHub Pages URL so assets and links work. For custom domain (e.g. docs.gdql.dev),
+      # set it in Settings > Pages and change baseURL in config/_default/hugo.toml to match.
+      HUGO_BASEURL: https://gdql.github.io/docs/
     steps:
       - uses: actions/checkout@v4
 
@@ -31,7 +36,8 @@ jobs:
           extended: true
 
       - run: npm install
-      - run: npm run build
+      - name: Build
+        run: npx hugo --minify --gc -b ${{ env.HUGO_BASEURL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@3

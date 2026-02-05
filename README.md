@@ -1,25 +1,25 @@
 # GDQL docs
 
-Documentation for [GDQL](https://github.com/gdql/gdql) (Grateful Dead Query Language), built with [Doks](https://themes.gohugo.io/themes/doks/). **Lives at [docs.gdql.dev](https://docs.gdql.dev)** (configure custom domain in repo Settings → Pages). The homepage and sandbox will be at gdql.dev; this repo is docs-only.
+Documentation for [GDQL](https://github.com/gdql/gdql) (Grateful Dead Query Language), built with [Doks](https://themes.gohugo.io/themes/doks/). Hosted on GitHub Pages at **https://gdql.github.io/docs/** (or [docs.gdql.dev](https://docs.gdql.dev) if you set a custom domain).
 
-## Run locally (minimal effort)
+## Run locally
 
 ```bash
-git clone https://github.com/gdql/gdql-docs
-cd gdql-docs
+git clone https://github.com/gdql/docs
+cd docs
 npm install
 npm run dev
 ```
 
 Open the URL shown (e.g. http://localhost:1313/). No Hugo install needed — Thulite (Doks) uses it via Node.
 
-## Deploy with GitHub Actions
+## GitHub Pages (build & deploy)
 
-1. **Enable GitHub Pages:** Repo **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions**.
-2. Push to `main` (or run the workflow manually from the Actions tab). The workflow builds the site and deploys to Pages.
-3. Site will be at `https://<owner>.github.io/gdql-docs/` (or your custom domain if set in Pages settings).
+1. **Enable Pages:** In this repo go to **Settings → Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+2. On each push to `main`, the **Deploy to GitHub Pages** workflow runs: it installs deps, builds the site with Hugo, and deploys the `public/` artifact to Pages.
+3. The site is available at **https://gdql.github.io/docs/**.
 
-To change the base URL (e.g. custom domain), edit `baseURL` in `config/_default/hugo.toml` and set your domain in repo Settings → Pages.
+**Custom domain:** To use e.g. docs.gdql.dev, set the custom domain in Settings → Pages, then set `baseURL = "https://docs.gdql.dev/"` in `config/_default/hugo.toml` and re-run the workflow (or add a workflow env override for `HUGO_BASEURL`).
 
 ## Build for production (manual)
 
