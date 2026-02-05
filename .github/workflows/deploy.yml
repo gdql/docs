@@ -55,4 +55,4 @@ jobs:
     environment: pages
     steps:
       - name: Deploy
-        uses: actions/deploy-pages@4
+        uses: actions/deploy-pages@v4
