@@ -1,0 +1,59 @@
+title = "GDQL Documentation"
+description = "Documentation for GDQL (Grateful Dead Query Language). Install, run queries, and use the language reference."
+mainSections = ["docs"]
+
+[doks]
+  colorMode = "auto"
+  colorModeToggler = true
+  navbarSticky = true
+  containerBreakpoint = "lg"
+  navBarButton = true
+  navBarButtonUrl = "/getting-started/"
+  navBarButtonText = "Get started"
+  flexSearch = false
+  searchLimit = 99
+  searchExclKinds = []
+  searchExclTypes = []
+  sectionNav = ["docs"]
+  toTopButton = true
+  headlineHash = true
+  scrollSpy = true
+  multilingualMode = false
+  docsVersioning = false
+  headerBar = false
+  backgroundDots = true
+  sectionFooter = false
+  editPage = true
+  lastMod = false
+  docsRepo = "https://github.com/gdql/gdql-docs"
+  docsRepoBranch = "main"
+  docsRepoSubPath = ""
+
+[render_hooks.image]
+  errorLevel = "ignore"
+[render_hooks.link]
+  errorLevel = "ignore"
+  highlightBroken = false
+
+[thulite_images]
+  [thulite_images.defaults]
+  decoding = "async"
+  fetchpriority = "auto"
+  loading = "lazy"
+  widths = [480, 576, 768, 1025, 1200, 1440]
+  sizes = "auto"
+  lqip = "16x webp q20"
+
+[inline_svg]
+  iconSetDir = "tabler-icons"
+
+[seo.title]
+  separator = "|"
+  suffix = ""
+[seo.favicons]
+  icon = "favicon.png"
+  svgIcon = "favicon.svg"
+[seo.schemas]
+  type = "Organization"
+  name = "GDQL"
+  sameAs = ["https://github.com/gdql/gdql-docs"]

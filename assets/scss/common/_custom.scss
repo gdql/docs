@@ -1,0 +1,43 @@
+// Optional custom styles for Doks.
+// See https://getdoks.org/docs/guides/styles/
+
+// Landing page: hero code block and section hierarchy
+.gdql-landing {
+  text-align: left;
+
+  // First code block = hero: accent border, extra padding, slight scale
+  .highlight:first-of-type,
+  pre:first-of-type {
+    border-left: 4px solid var(--bs-primary, #61afef);
+    border-radius: 0 0.375rem 0.375rem 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    background: rgba(97, 175, 239, 0.06);
+  }
+
+  // Section spacing and subtle separation
+  h2 {
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  hr {
+    margin: 2rem 0;
+    opacity: 0.2;
+  }
+
+  // Slightly larger body for lead-in
+  p:first-of-type {
+    font-size: 1.05rem;
+  }
+
+  // Table: card-like feel
+  table {
+    margin: 1.25rem 0;
+  }
+  tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}

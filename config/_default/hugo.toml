@@ -1,0 +1,84 @@
+title = "GDQL Documentation"
+baseURL = "https://docs.gdql.dev/"
+disableAliases = true
+disableHugoGeneratorInject = true
+enableEmoji = true
+enableGitInfo = false
+enableRobotsTXT = true
+languageCode = "en-US"
+rssLimit = 10
+summarylength = 20
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+copyRight = "GDQL"
+
+[build.buildStats]
+  enable = true
+
+[outputs]
+  home = ["HTML", "RSS", "searchIndex"]
+  section = ["HTML", "RSS", "SITEMAP"]
+
+[outputFormats.searchIndex]
+  mediaType = "application/json"
+  baseName = "search-index"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.SITEMAP]
+  mediaType = "application/xml"
+  baseName = "sitemap"
+  isHTML = false
+  isPlainText = true
+  noUgly = true
+  rel = "sitemap"
+
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[caches.getjson]
+  dir = ":cacheDir/:project"
+  maxAge = "8760h"
+
+[taxonomies]
+  contributor = "contributors"
+  category = "categories"
+  tag = "tags"
+
+[permalinks]
+  blog = "/blog/:slug/"
+  # Drop /docs/ prefix so on docs.gdql.dev we get /getting-started/ not /docs/getting-started/
+  docs = "/:sections[1:]/:slug/"
+
+# Sidebar: show all doc sections (Getting started, Examples, Language reference, Syntax highlighting)
+[menus]
+  [[menus.sidebar_docs]]
+  pageRef = "/docs/getting-started"
+  weight = 10
+  [[menus.sidebar_docs]]
+  pageRef = "/docs/examples"
+  weight = 12
+  [[menus.sidebar_docs]]
+  pageRef = "/docs/reference"
+  weight = 20
+  [[menus.sidebar_docs]]
+  pageRef = "/docs/syntax-highlighting"
+  weight = 30
+
+[minify.tdewolff.html]
+  keepComments = true
+  keepWhitespace = false
+
+[pagination]
+  pagerSize = 10
+
+[imaging]
+  anchor = "Center"
+  bgColor = "#ffffff"
+  hint = "photo"
+  quality = 85
+  resampleFilter = "Lanczos"
