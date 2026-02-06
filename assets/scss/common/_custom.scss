@@ -1,8 +1,34 @@
 // Optional custom styles for Doks.
 // See https://getdoks.org/docs/guides/styles/
 
-// --- Mobile: menus and sidebar work on touch ---
+// --- Mobile: menus and sidebar work on touch; no blur so menu stays usable ---
 @media (max-width: 991.98px) {
+  // Prevent any blur on the whole page when menu is open (theme may add backdrop-filter to body/main)
+  body.modal-open,
+  body.modal-open .offcanvas,
+  body.modal-open .offcanvas * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+  }
+  // Backdrop: dim only, no blur; keep behind offcanvas
+  .offcanvas-backdrop {
+    z-index: 1040;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+  }
+  // Offcanvas panel: solid background and on top of backdrop so menu is readable and tappable
+  .offcanvas,
+  .offcanvas-start,
+  .offcanvas-end,
+  #offcanvasNavSection,
+  #offcanvasNavMain {
+    z-index: 1055;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+    background: var(--bs-body-bg, #fff) !important;
+  }
   // Larger tap target for hamburger and section menu (Doks uses btn + data-bs-toggle)
   .navbar .btn[data-bs-toggle="offcanvas"],
   .navbar [data-bs-toggle="offcanvas"],
@@ -18,21 +44,12 @@
     justify-content: center;
     touch-action: manipulation;
   }
-  // Navbar must create stacking context above backdrop so offcanvas is on top (not under blur)
+  // Navbar above backdrop
   .navbar {
     position: relative;
     z-index: 1060;
   }
-  // Ensure offcanvas is above content and scrollable
-  .offcanvas,
-  .offcanvas-start,
-  .offcanvas-end,
-  #offcanvasNavSection,
-  #offcanvasNavMain {
-    z-index: 1055;
-    touch-action: manipulation;
-    -webkit-overflow-scrolling: touch;
-  }
+  // Offcanvas body scrollable
   .offcanvas-body,
   .doks-sidebar {
     overflow-y: auto;
@@ -49,12 +66,6 @@
     padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
-  }
-  // Backdrop behind navbar/offcanvas; no blur so menu stays sharp and background is just dimmed
-  .offcanvas-backdrop {
-    z-index: 1040;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
   }
 }
 
@@ -97,4 +108,11 @@
   tbody tr:hover {
     background: rgba(255, 255, 255, 0.03);
   }
+}
+
+// Sandbox link after code blocks
+.sandbox-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
 }

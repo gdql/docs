@@ -26,4 +26,4 @@ Full syntax for GDQL. For conventions (case, strings, comments), see [Convention
 - [WHERE conditions]({{< relref "where" >}}) — Segues (`>`, `>>`), set position (SET1 OPENED, ENCORE =), PLAYED, GUEST, LENGTH; AND/OR/NOT.
 - [Operators]({{< relref "operators" >}}) — Segue tokens, logical operators, comparisons, dates/eras, output formats.
 
-Use [Getting started]({{< relref "/docs/getting-started" >}}) for install and running queries.
+Use [Getting started]({{< relref "/docs/getting-started" >}}) for install and running queries. **{{< sandbox "" "Try in Sandbox" >}}**

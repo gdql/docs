@@ -76,3 +76,5 @@ SONGS WITH LYRICS("highway") WRITTEN 1969-1971 ORDER BY TITLE LIMIT 10;
 SONGS WITH LYRICS("water");
 SONGS WITH LYRICS("wheel");
 ```
+
+**{{< sandbox "songs" "Try in Sandbox" >}}** · **{{< sandbox "songs-lyrics" "LYRICS" >}}** · **{{< sandbox "songs-written" "WRITTEN" >}}** · **{{< sandbox "songs-lyrics-rose" "LYRICS+WRITTEN" >}}**

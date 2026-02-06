@@ -67,3 +67,5 @@ SETLIST FOR 72;
 SETLIST FOR 5/8/77;
 SETLIST FOR 5/9/77;
 ```
+
+**{{< sandbox "setlist-cornell" "5/8/77" >}}** · **{{< sandbox "setlist-cornell-name" "Cornell 1977" >}}**

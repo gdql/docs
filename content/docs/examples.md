@@ -23,6 +23,8 @@ SHOWS FROM BRENT_ERA;
 SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;
 ```
 
+**{{< sandbox "shows" "Try in Sandbox" >}}** · **{{< sandbox "shows-77" "FROM 1977" >}}** · **{{< sandbox "shows-range" "1977–1980" >}}** · **{{< sandbox "shows-primal" "PRIMAL" >}}** · **{{< sandbox "shows-77-80-limit" "LIMIT" >}}** · **{{< sandbox "shows-77-order" "ORDER BY" >}}**
+
 ---
 
 ## Shows with a specific segue
@@ -35,6 +37,8 @@ SHOWS FROM 77-80 WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
 SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
 SHOWS FROM 1974 WHERE "Weather Report Suite" > "Let It Grow";
 ```
+
+**{{< sandbox "scarlet-fire" "Scarlet→Fire" >}}** · **{{< sandbox "help-slip-frank" "Help→Slip→Franklin's" >}}**
 
 Followed by (with break):
 
@@ -92,6 +96,8 @@ SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 SHOWS FROM 72 WHERE PLAYED "Morning Dew";
 ```
 
+**{{< sandbox "played-st-stephen" "PLAYED St. Stephen" >}}**
+
 Shows with a guest:
 
 ```gdql
@@ -113,6 +119,8 @@ SETLIST FOR "Cornell 1977";
 SETLIST FOR 1977;
 ```
 
+**{{< sandbox "setlist-cornell" "5/8/77" >}}** · **{{< sandbox "setlist-cornell-name" "Cornell 1977" >}}**
+
 ---
 
 ## Song search
@@ -123,6 +131,8 @@ All songs:
 SONGS LIMIT 50;
 SONGS ORDER BY TITLE LIMIT 30;
 ```
+
+**{{< sandbox "songs" "Try in Sandbox" >}}**
 
 Songs whose lyrics contain words:
 
@@ -135,6 +145,8 @@ SONGS WITH LYRICS("water");
 SONGS WITH LYRICS("highway") WRITTEN 1969-1971 LIMIT 10;
 ```
 
+**{{< sandbox "songs-lyrics" "LYRICS" >}}** · **{{< sandbox "songs-lyrics-rose" "LYRICS+WRITTEN" >}}**
+
 Songs written in a range:
 
 ```gdql
@@ -142,6 +154,8 @@ SONGS WRITTEN 1968-1970;
 SONGS WRITTEN 1970;
 SONGS WRITTEN 1969 LIMIT 20;
 ```
+
+**{{< sandbox "songs-written" "WRITTEN" >}}**
 
 ---
 
@@ -154,6 +168,8 @@ PERFORMANCES OF "Dark Star";
 PERFORMANCES OF "Scarlet Begonias";
 PERFORMANCES OF "Eyes of the World";
 ```
+
+**{{< sandbox "dark-star" "Dark Star" >}}**
 
 By date range and length:
 
@@ -187,6 +203,8 @@ SHOWS FROM 1977 LIMIT 3 AS SETLIST;
 SHOWS FROM 1977 LIMIT 3 AS CALENDAR;
 ```
 
+**{{< sandbox "shows-77-json" "AS JSON" >}}**
+
 ---
 
 ## Combining conditions
@@ -213,4 +231,4 @@ SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower" AND PLAYED "Est
 | Long "Dark Star" | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` |
 | Opener / closer / encore | `SHOWS WHERE SET1 OPENED "Jack Straw"` |
 
-Use the [reference]({{< relref "reference" >}}) for full WHERE and operator details.
+**{{< sandbox "" "Open Sandbox" >}}** — Use the [reference]({{< relref "reference" >}}) for full WHERE and operator details.

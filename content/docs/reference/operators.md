@@ -103,3 +103,5 @@ SHOWS FROM 1977 LIMIT 3 AS JSON;
 SHOWS FROM 1977 LIMIT 3 AS CSV;
 SHOWS FROM 1977 LIMIT 3 AS SETLIST;
 ```
+
+**{{< sandbox "shows-77-json" "Try in Sandbox" >}}**

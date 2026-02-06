@@ -1,0 +1,7 @@
+{{- $slug := .Get 0 | default "" -}}
+{{- $label := .Get 1 | default "Try in Sandbox" -}}
+{{- $url := "https://sandbox.gdql.dev" -}}
+{{- if $slug -}}
+  {{- $url = printf "%s?example=%s&run=1" $url $slug -}}
+{{- end -}}
+<a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="sandbox-link">{{ $label }}</a>

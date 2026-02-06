@@ -19,7 +19,7 @@ SONGS WITH LYRICS("train", "road") WRITTEN 1968-1970;
 ```
 ````
 
-That produces GDQL-colored output (e.g. keywords, quoted strings, `--` comments, `>`, numbers). You can still use ` ```sql ` for a SQL-like fallback if you prefer.
+That produces GDQL-colored output (e.g. keywords, quoted strings, `--` comments, `>`, numbers). **{{< sandbox "scarlet-fire" "Try in Sandbox" >}}** · **{{< sandbox "songs-lyrics" "SONGS LYRICS" >}}** You can still use ` ```sql ` for a SQL-like fallback if you prefer.
 
 ## How it’s implemented
 

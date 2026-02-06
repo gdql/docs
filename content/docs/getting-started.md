@@ -63,3 +63,4 @@ echo 'SHOWS FROM 1977;' | gdql -
 
 - [Example queries]({{< relref "examples" >}}) — Ready-to-run GDQL.
 - [Language reference]({{< relref "reference" >}}) — Query types, WHERE, operators, formats.
+- **{{< sandbox "" "Try in Sandbox" >}}** — Run GDQL in the browser (no install).

@@ -76,3 +76,5 @@ PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 ```gdql
 PERFORMANCES OF "Dark Star" FROM 1973-1974 WITH LENGTH > 20min ORDER BY LENGTH DESC LIMIT 5;
 ```
+
+**{{< sandbox "dark-star" "Try in Sandbox" >}}**
