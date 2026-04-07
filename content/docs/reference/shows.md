@@ -13,7 +13,7 @@ List shows, optionally filtered by date range and conditions.
 ## Synopsis
 
 ```gdql
-SHOWS [ FROM date_or_era ] [ WHERE condition [ AND | OR condition ... ] ]
+SHOWS [ AT "venue" ] [ FROM date_or_era ] [ WHERE condition [ AND | OR condition ... ] ]
   [ ORDER BY sort_spec ] [ LIMIT n ] [ AS format ];
 ```
 
@@ -21,7 +21,7 @@ SHOWS [ FROM date_or_era ] [ WHERE condition [ AND | OR condition ... ] ]
 
 ## Description
 
-`SHOWS` returns one row per show (date, venue, and related info). Use `FROM` to restrict by year or era, and `WHERE` for segues, set position, played/guest/length, and combinations with `AND`/`OR`/`NOT`. Control order and size with `ORDER BY` and `LIMIT`, and output shape with `AS`.
+`SHOWS` returns one row per show (date, venue, and related info). Use `AT` to filter by venue or city, `FROM` to restrict by year or era, and `WHERE` for segues, set position, played/guest/length, and combinations with `AND`/`OR`/`NOT`. Control order and size with `ORDER BY` and `LIMIT`, and output shape with `AS`.
 
 ---
 
@@ -29,6 +29,7 @@ SHOWS [ FROM date_or_era ] [ WHERE condition [ AND | OR condition ... ] ]
 
 | Clause | Description |
 |--------|-------------|
+| `AT` | Venue or city filter (partial match, e.g. `AT "Fillmore"`, `AT "New York"`) |
 | `FROM` | Date range (e.g. `1977`, `77-80`) or era alias (`PRIMAL`, `EUROPE72`, `BRENT_ERA`, etc.) |
 | `WHERE` | Conditions: segue, set position, played, guest, length (see [WHERE]({{< relref "where" >}})) |
 | `ORDER BY` | `DATE` or other field, `ASC` or `DESC` |
@@ -61,6 +62,14 @@ SHOWS FROM 77-80 LIMIT 10;
 SHOWS FROM PRIMAL;
 SHOWS FROM EUROPE72;
 SHOWS FROM BRENT_ERA;
+```
+
+**By venue:**
+
+```gdql
+SHOWS AT "Fillmore West";
+SHOWS AT "Winterland" FROM 1977;
+SHOWS AT "New York" LIMIT 10;
 ```
 
 **With WHERE (segue, set position, played, guest):**

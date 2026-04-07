@@ -38,7 +38,7 @@ Reference for segue tokens, logical operators, comparisons, dates/eras, and outp
 
 ## Set position tokens
 
-In WHERE: `SET1`, `SET2`, `SET3`, `ENCORE` (with `OPENED`, `CLOSED`, or `=`). Many shows have **more than two sets** (Set 1, Set 2, encore); `SET3` and `ENCORE` both refer to the third set.
+In WHERE: `SET1`, `SET2`, `SET3`, `ENCORE` (with `OPENED`, `CLOSED`, or `=`). `SET3` refers to a third set; `ENCORE` is stored separately (set number 4).
 
 ---
 
@@ -49,13 +49,13 @@ In WHERE: `SET1`, `SET2`, `SET3`, `ENCORE` (with `OPENED`, `CLOSED`, or `=`). Ma
 | Year | `1977`, `77` | Two-digit → 19xx |
 | Range | `1977-1980` | Inclusive |
 | Specific date | `5/8/77` | M/D/YY |
-| Era aliases | `PRIMAL`, `EUROPE72`, `WALLOFOUND`, `HIATUS`, `BRENT_ERA`, `VINCE_ERA`, etc. | See data for definitions |
+| Era aliases | `PRIMAL`, `EUROPE72`, `WALLOFSOUND`, `HIATUS`, `BRENT_ERA`, `VINCE_ERA` | See data for definitions |
 
 ---
 
 ## Output formats
 
-After `AS` in `SHOWS`: `JSON`, `CSV`, `SETLIST`, `TABLE`, `CALENDAR`. Default is table-like.
+After `AS` in `SHOWS`: `JSON`, `CSV`, `SETLIST`, `TABLE`. Default is table.
 
 ---
 
