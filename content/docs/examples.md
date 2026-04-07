@@ -6,7 +6,7 @@ weight: 12
 
 # Example queries
 
-Ready-to-run GDQL for common tasks. See the [language reference]({{< relref "reference" >}}) for full syntax.
+Ready-to-run GDQL for common tasks. Click **Try it** to run any query in the [sandbox](https://sandbox.gdql.dev). See the [language reference]({{< relref "reference" >}}) for full syntax.
 
 ---
 
@@ -25,13 +25,15 @@ SHOWS FROM 77;
 SHOWS FROM 1977-1980 ORDER BY DATE;
 
 -- Named eras
-SHOWS FROM PRIMAL;       -- 1965–1969
+SHOWS FROM PRIMAL;       -- 1965-1969
 SHOWS FROM EUROPE72;     -- Spring 1972 Europe tour
-SHOWS FROM BRENT_ERA;    -- 1979–1990
+SHOWS FROM BRENT_ERA;    -- 1979-1990
 
 -- Most recent 1972 shows
 SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;
 ```
+
+[Try: 1977](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3Ow&run=1) | [Try: 1977-1980](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3LTE5ODAgT1JERVIgQlkgREFURTs&run=1) | [Try: PRIMAL](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSBQUklNQUw7&run=1)
 
 ---
 
@@ -40,25 +42,23 @@ SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;
 Use `AT` to search by venue name or city. Partial matches work.
 
 ```gdql
--- All Fillmore West shows
-SHOWS AT "Fillmore West";
+-- All Fillmore West shows in 1969
+SHOWS AT "Fillmore West" FROM 1969;
 
--- Fillmore West in 1969
-SHOWS AT "Fillmore" FROM 1969;
-
--- All Winterland shows
-SHOWS AT "Winterland";
+-- All Winterland shows in 1977
+SHOWS AT "Winterland" FROM 1977;
 
 -- Shows in New York
 SHOWS AT "New York" LIMIT 20;
 ```
 
+[Try: Fillmore West](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIkZpbGxtb3JlIFdlc3QiIEZST00gMTk2OTs&run=1) | [Try: Winterland](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIldpbnRlcmxhbmQiIEZST00gMTk3Nzs&run=1) | [Try: New York](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIk5ldyBZb3JrIiBMSU1JVCAyMDs&run=1)
+
 ---
 
 ## Shows with a specific segue
 
-Find shows where songs were played consecutively. The `>` operator means
-"followed by" — the songs appeared back-to-back in the same set.
+Find shows where songs were played consecutively. The `>` operator means "followed by" -- the songs appeared back-to-back in the same set.
 
 ```gdql
 -- The classic Scarlet > Fire
@@ -70,6 +70,8 @@ SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
 -- INTO is an alias for >
 SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
 ```
+
+[Try: Scarlet > Fire](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSA3Ny04MCBXSEVSRSAiU2NhcmxldCBCZWdvbmlhcyIgPiAiRmlyZSBvbiB0aGUgTW91bnRhaW4iOw&run=1) | [Try: Help > Slip > Frank](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkhlbHAgb24gdGhlIFdheSIgPiAiU2xpcGtub3QhIiA-ICJGcmFua2xpbidzIFRvd2VyIjs&run=1) | [Try: China > Rider](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkNoaW5hIENhdCBTdW5mbG93ZXIiIElOVE8gIkkgS25vdyBZb3UgUmlkZXIiOw&run=1)
 
 Other transition types:
 
@@ -83,6 +85,20 @@ SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 
 ---
 
+## How many times was it played?
+
+Use `COUNT` to get a quick tally.
+
+```gdql
+COUNT "Dark Star";
+COUNT "Scarlet Begonias";
+COUNT "Dark Star" FROM 1972-1974;
+```
+
+[Try: Dark Star](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciI7&run=1) | [Try: Scarlet](https://sandbox.gdql.dev?q=Q09VTlQgIlNjYXJsZXQgQmVnb25pYXMiOw&run=1) | [Try: Dark Star 72-74](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciIgRlJPTSAxOTcyLTE5NzQ7&run=1)
+
+---
+
 ## Set position
 
 Query by where a song appeared in the show structure.
@@ -90,7 +106,6 @@ Query by where a song appeared in the show structure.
 ```gdql
 -- First set openers
 SHOWS WHERE SET1 OPENED "Jack Straw";
-SHOWS WHERE SET1 OPENED "Bertha";
 
 -- Second set closers
 SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
@@ -99,6 +114,8 @@ SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
 SHOWS WHERE ENCORE = "U.S. Blues";
 SHOWS WHERE ENCORE = "One More Saturday Night";
 ```
+
+[Try: SET1 OPENED](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgU0VUMSBPUEVORUQgIkphY2sgU3RyYXciOw&run=1) | [Try: ENCORE](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgRU5DT1JFID0gIlUuUy4gQmx1ZXMiOw&run=1)
 
 ---
 
@@ -113,12 +130,11 @@ SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 -- Eyes of the World in 1977
 SHOWS FROM 1977 WHERE PLAYED "Eyes of the World";
 
--- Morning Dew in 1972
-SHOWS FROM 72 WHERE PLAYED "Morning Dew";
-
 -- Guest sit-ins
 SHOWS WHERE GUEST "Branford Marsalis";
 ```
+
+[Try: Dark Star AND St. Stephen](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgUExBWUVEICJEYXJrIFN0YXIiIEFORCBQTEFZRUQgIlNhaW50IFN0ZXBoZW4iOw&run=1) | [Try: Eyes 1977](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IFdIRVJFIFBMQVlFRCAiRXllcyBvZiB0aGUgV29ybGQiOw&run=1)
 
 ---
 
@@ -131,27 +147,14 @@ Use `AND` and `OR` to build complex queries.
 SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain"
   AND PLAYED "Estimated Prophet";
 
--- Shows opened by Jack Straw or Bertha
-SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-
--- Help > Slip > Frank AND Estimated Prophet
-SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower"
-  AND PLAYED "Estimated Prophet";
-```
-
----
-
-## Venue + date + segue
-
-Clauses compose freely:
-
-```gdql
 -- Scarlet > Fire at Winterland
 SHOWS AT "Winterland" WHERE "Scarlet Begonias" > "Fire on the Mountain";
 
--- 1977 Fillmore shows with Dark Star
-SHOWS AT "Fillmore" FROM 1977 WHERE PLAYED "Dark Star";
+-- Shows opened by Jack Straw or Bertha
+SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
 ```
+
+[Try: Scarlet + Estimated](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IFdIRVJFICJTY2FybGV0IEJlZ29uaWFzIiA-ICJGaXJlIG9uIHRoZSBNb3VudGFpbiIgQU5EIFBMQVlFRCAiRXN0aW1hdGVkIFByb3BoZXQiOw&run=1) | [Try: Winterland Scarlet > Fire](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIldpbnRlcmxhbmQiIFdIRVJFICJTY2FybGV0IEJlZ29uaWFzIiA-ICJGaXJlIG9uIHRoZSBNb3VudGFpbiI7&run=1)
 
 ---
 
@@ -163,15 +166,14 @@ Get the full setlist for a specific show.
 -- Cornell '77 (the famous one)
 SETLIST FOR 5/8/77;
 
--- Veneta '72
-SETLIST FOR 8/27/72;
-
 -- Closing of Winterland, New Year's '78
 SETLIST FOR 12/31/78;
 
--- Grateful Dead meet the Mets, 3/29/90
-SETLIST FOR 3/29/90;
+-- Veneta '72
+SETLIST FOR 8/27/72;
 ```
+
+[Try: Cornell '77](https://sandbox.gdql.dev?q=U0VUTElTVCBGT1IgNS84Lzc3Ow&run=1) | [Try: Winterland '78](https://sandbox.gdql.dev?q=U0VUTElTVCBGT1IgMTIvMzEvNzg7&run=1)
 
 ---
 
@@ -180,11 +182,8 @@ SETLIST FOR 3/29/90;
 Find songs by lyrics keywords.
 
 ```gdql
--- All songs (limited)
-SONGS LIMIT 50;
-
--- Songs with "train" in the lyrics
-SONGS WITH LYRICS("train");
+-- Songs with "sun" in the lyrics
+SONGS WITH LYRICS("sun");
 
 -- Multiple keywords (must contain all)
 SONGS WITH LYRICS("train", "road");
@@ -193,12 +192,7 @@ SONGS WITH LYRICS("train", "road");
 SONGS WITH LYRICS("sun", "shine") WRITTEN 1968-1972;
 ```
 
-Songs written in a range:
-
-```gdql
-SONGS WRITTEN 1968-1970;
-SONGS WRITTEN 1970;
-```
+[Try: "sun"](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInN1biIpOw&run=1) | [Try: WRITTEN 1968-1970](https://sandbox.gdql.dev?q=U09OR1MgV1JJVFRFTiAxOTY4LTE5NzA7&run=1)
 
 ---
 
@@ -213,12 +207,11 @@ PERFORMANCES OF "Dark Star";
 -- Dark Star in the early 70s
 PERFORMANCES OF "Dark Star" FROM 1972-1974;
 
--- Long Dark Stars (requires length data)
-PERFORMANCES OF "Dark Star" WITH LENGTH > 20min ORDER BY LENGTH DESC LIMIT 5;
-
 -- Scarlet Begonias in the late 70s
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 ```
+
+[Try: Dark Star](https://sandbox.gdql.dev?q=UEVSRk9STUFOQ0VTIE9GICJEYXJrIFN0YXIiOw&run=1) | [Try: Dark Star 72-74](https://sandbox.gdql.dev?q=UEVSRk9STUFOQ0VTIE9GICJEYXJrIFN0YXIiIEZST00gMTk3Mi0xOTc0Ow&run=1)
 
 ---
 
@@ -227,31 +220,25 @@ PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 Results default to a table. Use `AS` to change the format.
 
 ```gdql
--- Table (default)
 SHOWS FROM 1977 LIMIT 3 AS TABLE;
-
--- JSON
 SHOWS FROM 1977 LIMIT 3 AS JSON;
-
--- CSV (great for piping to other tools)
 SHOWS FROM 1977 LIMIT 3 AS CSV;
-
--- Setlist-style
-SHOWS FROM 1977 LIMIT 3 AS SETLIST;
 ```
+
+[Try: JSON](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IExJTUlUIDMgQVMgSlNPTjs&run=1) | [Try: CSV](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IExJTUlUIDMgQVMgQ1NWOw&run=1)
 
 ---
 
 ## Quick reference
 
-| Goal | Example |
-|------|---------|
-| Shows in a year | `SHOWS FROM 1977` |
-| Shows at a venue | `SHOWS AT "Fillmore West"` |
-| Famous segue | `SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"` |
-| Setlist for a date | `SETLIST FOR 5/8/77` |
-| Songs with lyrics | `SONGS WITH LYRICS("train", "road")` |
-| Long performances | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` |
-| Opener / closer | `SHOWS WHERE SET1 OPENED "Jack Straw"` |
-| Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` |
-| Combine filters | `SHOWS AT "Winterland" FROM 77 WHERE PLAYED "Dark Star"` |
+| Goal | Example | Try it |
+|------|---------|--------|
+| Shows in a year | `SHOWS FROM 1977` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3Ow&run=1) |
+| Shows at a venue | `SHOWS AT "Fillmore West"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIkZpbGxtb3JlIFdlc3QiIEZST00gMTk2OTs&run=1) |
+| Famous segue | `SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSA3Ny04MCBXSEVSRSAiU2NhcmxldCBCZWdvbmlhcyIgPiAiRmlyZSBvbiB0aGUgTW91bnRhaW4iOw&run=1) |
+| How many times? | `COUNT "Dark Star"` | [Try](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciI7&run=1) |
+| Setlist for a date | `SETLIST FOR 5/8/77` | [Try](https://sandbox.gdql.dev?q=U0VUTElTVCBGT1IgNS84Lzc3Ow&run=1) |
+| Songs with lyrics | `SONGS WITH LYRICS("train", "road")` | [Try](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInRyYWluIiwgInJvYWQiKTs&run=1) |
+| Long performances | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` | [Try](https://sandbox.gdql.dev?q=UEVSRk9STUFOQ0VTIE9GICJEYXJrIFN0YXIiIFdJVEggTEVOR1RIID4gMjBtaW4gT1JERVIgQlkgTEVOR1RIIERFU0MgTElNSVQgNTs&run=1) |
+| Opener / closer | `SHOWS WHERE SET1 OPENED "Jack Straw"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgU0VUMSBPUEVORUQgIkphY2sgU3RyYXciOw&run=1) |
+| Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgRU5DT1JFID0gIlUuUy4gQmx1ZXMiOw&run=1) |
