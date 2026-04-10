@@ -31,9 +31,8 @@ Segues are the heart of what makes a Grateful Dead show *that show*. GDQL matche
 
 The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence.
 
-{{< hint info >}}
-**Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
-{{< /hint >}}
+> **Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
+
 
 ### Arrow alias
 

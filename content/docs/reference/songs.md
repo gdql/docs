@@ -27,9 +27,8 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 
 `SONGS` returns one row per song with name and play counts. `WITH LYRICS(...)` requires that **every** word listed appears somewhere in the lyrics (it's an AND, not an OR). You can also combine multiple `WITH` conditions using `AND` or commas: `SONGS WITH LYRICS("sun") AND LYRICS("shine")`. `AS COUNT` collapses the result to a single number.
 
-{{< hint info >}}
-**Note:** `WRITTEN` filters by the year the song was written, but requires songwriting date data to be imported before it will return results.
-{{< /hint >}}
+> **Note:** `WRITTEN` filters by the year the song was written, but requires songwriting date data to be imported before it will return results.
+
 
 ---
 

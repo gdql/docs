@@ -27,9 +27,8 @@ PERFORMANCES OF "Song Name"
 
 `PERFORMANCES` joins the song catalog with the performance log to return one row per time the song was played. Each row carries the date, venue, set number, and position.
 
-{{< hint info >}}
-**Note:** `WITH LENGTH` filtering requires length data to be imported. Without it, length-based queries will return empty results.
-{{< /hint >}}
+> **Note:** `WITH LENGTH` filtering requires length data to be imported. Without it, length-based queries will return empty results.
+
 
 ---
 
