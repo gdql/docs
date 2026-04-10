@@ -1,11 +1,11 @@
 ---
 title: WHERE conditions
-description: "GDQL WHERE: segues, set position, PLAYED, GUEST, LENGTH, and AND/OR/NOT."
+description: "GDQL WHERE: build filters from segues, set positions, played, guests, length, and AND/OR/NOT."
 weight: 10
 ---
 
 
-Used in `SHOWS ... WHERE ...` to filter shows by segues, set position, who played, guests, and song length.
+`WHERE` is where the language stops being a list operation and starts being a question. Use it inside `SHOWS ... WHERE ...` to filter shows by what happened during them: which songs were played, in what order, in which set, with which guests, for how long.
 
 ---
 
@@ -15,32 +15,38 @@ Used in `SHOWS ... WHERE ...` to filter shows by segues, set position, who playe
 WHERE condition [ AND | OR condition ] ...
 ```
 
-Conditions can be combined with `AND`, `OR`, and `NOT`.
+Combine any number of conditions with `AND`, `OR`, and `NOT`. Parentheses are not yet supported — `AND` binds tighter than `OR`, so write the simpler form when in doubt.
 
 ---
 
-## Segue
+## Segues
 
-| Form | Meaning |
-|------|--------|
-| `"Song A" > "Song B"` or `"A" INTO "B"` | Direct segue (no break) |
-| `"A" >> "B"` or `"A" THEN "B"` | Followed by (with break) |
-| `"A" ~> "B"` or `"A" TEASE "B"` | Tease |
-| Chain | e.g. `"Help on the Way" > "Slipknot!" > "Franklin's Tower"` |
+Segues are the heart of what makes a Grateful Dead show *that show*. GDQL has three segue types and reads them like sentences.
+
+| Form | Alt syntax | Meaning |
+|------|------------|--------|
+| `"A" > "B"` | `"A" INTO "B"` | Direct segue — A flows into B with no break |
+| `"A" >> "B"` | `"A" THEN "B"` | A is followed by B, with a pause or applause break between |
+| `"A" ~> "B"` | `"A" TEASE "B"` | B is teased during A — partial quote, not a full performance |
+| Chains | — | Any number: `"Help on the Way" > "Slipknot!" > "Franklin's Tower"` |
+
+The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence with direct segues.
 
 ---
 
 ## Set position
 
-Shows can have **more than two sets**: Set 1, Set 2, and often an **encore** (stored as set 3). GDQL supports `SET1`, `SET2`, `SET3`, and `ENCORE`; `SET3` and `ENCORE` both refer to the third set (the encore).
+Most Dead shows have **two sets and an encore**, but some have three sets, and the encore is stored as set 3 in the database. GDQL gives you `SET1`, `SET2`, `SET3`, and `ENCORE` as first-class concepts. `SET3` and `ENCORE` are aliases — both refer to the third set.
 
 | Form | Meaning |
 |------|--------|
 | `SET1 OPENED "Jack Straw"` | First set opened with this song |
 | `SET2 CLOSED "Sugar Magnolia"` | Second set closed with this song |
-| `SET3 OPENED "U.S. Blues"` | Third set (encore) opened with this song |
+| `SET3 OPENED "U.S. Blues"` | Third set (the encore) opened with this song |
 | `SET3 CLOSED "Brokedown Palace"` | Third set closed with this song |
-| `ENCORE = "U.S. Blues"` | Encore was this song (same as third set) |
+| `ENCORE = "U.S. Blues"` | Encore was this song (alias for `SET3`) |
+| `OPENER "Bertha"` | Opened the entire show — short for `SET1 OPENED` |
+| `CLOSER "Morning Dew"` | Closed the entire show — last song of the last set |
 
 ---
 
@@ -48,23 +54,29 @@ Shows can have **more than two sets**: Set 1, Set 2, and often an **encore** (st
 
 | Form | Meaning |
 |------|--------|
-| `PLAYED "Scarlet Begonias"` | Show included this song |
-| `GUEST "Branford Marsalis"` | Guest appeared |
-| `LENGTH("Dark Star") > 20min` | Song length condition (when supported in WHERE) |
+| `PLAYED "Scarlet Begonias"` | The show included this song, anywhere in any set |
+| `NOT PLAYED "Fire on the Mountain"` | The show did **not** include this song |
+| `NOT "Drums"` | Short form of `NOT PLAYED` |
+| `GUEST "Branford Marsalis"` | A guest musician sat in |
+| `LENGTH("Dark Star") > 20min` | Song length condition (when length data is available) |
 
 ---
 
 ## Combining
 
-- `condition1 AND condition2`
-- `condition1 OR condition2`
-- `NOT "Song"` to negate
+```gdql
+condition1 AND condition2
+condition1 OR  condition2
+NOT "Song"
+```
+
+`AND` binds tighter than `OR` — `A AND B OR C` is `(A AND B) OR C`.
 
 ---
 
 ## Examples
 
-**Segue (direct, no break):**
+### Direct segue (no break)
 
 ```gdql
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
@@ -72,21 +84,21 @@ SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
 SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
 ```
 
-**Followed by (with break):**
+### Followed by (with break)
 
 ```gdql
 SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
 SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
 ```
 
-**Tease:**
+### Tease
 
 ```gdql
 SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 SHOWS WHERE "Uncle John's Band" TEASE "St. Stephen";
 ```
 
-**Set position (shows can have 3+ sets: Set 1, Set 2, encore):**
+### Set position
 
 ```gdql
 SHOWS WHERE SET1 OPENED "Jack Straw";
@@ -95,33 +107,48 @@ SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
 SHOWS WHERE SET3 OPENED "U.S. Blues";
 SHOWS WHERE SET3 CLOSED "Brokedown Palace";
 SHOWS WHERE ENCORE = "U.S. Blues";
-SHOWS WHERE ENCORE = "Brokedown Palace";
+SHOWS WHERE OPENER "Bertha";
+SHOWS WHERE CLOSER "Morning Dew";
 ```
 
-**Played and guest:**
+### Played, not played, guest
 
 ```gdql
 SHOWS WHERE PLAYED "Dark Star";
 SHOWS WHERE PLAYED "Scarlet Begonias" AND PLAYED "Fire on the Mountain";
+SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
 SHOWS WHERE GUEST "Branford Marsalis";
 SHOWS WHERE GUEST "Clarence Clemons";
 ```
 
-**Length (when supported):**
+### Length (when supported)
 
 ```gdql
 SHOWS WHERE LENGTH("Dark Star") > 20min;
 SHOWS WHERE LENGTH("Eyes of the World") > 15min;
 ```
 
-**Combining with AND / OR / NOT:**
+### Combining with AND, OR, NOT
 
 ```gdql
-SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet";
-SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
+SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"
+  AND PLAYED "Estimated Prophet";
+
+SHOWS WHERE SET1 OPENED "Jack Straw"
+  OR SET1 OPENED "Bertha";
+
+SHOWS WHERE PLAYED "Dark Star"
+  AND NOT PLAYED "Saint Stephen";
 ```
+
+---
+
+## Tips
+
+- **Start broad, then narrow.** A bare `SHOWS WHERE PLAYED "X"` tells you the universe of shows; add `FROM`, `AT`, or another condition to zoom in.
+- **Use `NOT PLAYED` for negative space questions** — "Scarlet without Fire", "Dark Star without Saint Stephen", "Help/Slip/Frank without the encore segue".
+- **Set position queries are exact.** `SET1 OPENED "Jack Straw"` only matches shows where Jack Straw was the literal first song of set 1, not just an early one.
 
 **{{< sandbox "scarlet-fire" "Scarlet→Fire" >}}** · **{{< sandbox "help-slip-frank" "Help→Slip→Franklin's" >}}** · **{{< sandbox "played-st-stephen" "PLAYED St. Stephen" >}}** · **{{< sandbox "st-stephen-eleven" "St. Stephen > The Eleven" >}}**
 
-See [Operators]({{< relref "operators" >}}) for tokens and comparisons.
+For the underlying tokens and comparisons, see [Operators]({{< relref "operators" >}}).

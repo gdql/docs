@@ -1,66 +1,122 @@
 ---
 title: Operators
-description: "GDQL operators: segues, logical (AND/OR/NOT), comparisons, dates/eras, output formats."
+description: "GDQL operators: segue tokens, logical operators, comparisons, dates, eras, and output formats."
 weight: 11
 ---
 
 
-Reference for segue tokens, logical operators, comparisons, dates/eras, and output formats.
+This page lists every operator and reserved token in GDQL — segues, logical connectors, comparisons, date forms, era aliases, and output formats. Use it as a lookup table when you're not sure which token to reach for.
 
 ---
 
 ## Segue / sequence
 
-| Token | Meaning |
-|-------|--------|
-| `>` / `INTO` | Segued into (no break) |
-| `>>` / `THEN` | Followed by (with break) |
-| `~>` / `TEASE` | Teased into |
+Connects two song names inside a `WHERE` clause.
+
+| Token | Alt | Meaning |
+|-------|-----|---------|
+| `>` | `INTO` | Direct segue (no break) |
+| `>>` | `THEN` | Followed by (with a break or applause) |
+| `~>` | `TEASE` | Teased — partial quote, not a full performance |
+
+Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order with direct segues.
 
 ---
 
 ## Logical
 
+Combine conditions inside a `WHERE` clause.
+
 | Token | Meaning |
-|-------|--------|
-| `AND` | Both conditions |
-| `OR` | Either condition |
-| `NOT` | Negate (e.g. `NOT "Song"`) |
+|-------|---------|
+| `AND` | Both conditions must hold |
+| `OR` | Either condition holds |
+| `NOT` | Negate the next condition (e.g. `NOT "Song"`, `NOT PLAYED "Song"`) |
+
+`AND` binds tighter than `OR`. There is no parenthesization yet — keep complex queries simple, or break them into separate statements.
 
 ---
 
 ## Comparisons
 
-`>`, `<`, `=`, `>=`, `<=`, `!=` — e.g. for `LENGTH > 20min`.
+Used in `WITH LENGTH` and `LENGTH(...)` conditions.
+
+| Token | Meaning |
+|-------|---------|
+| `>` | Greater than |
+| `<` | Less than |
+| `>=` | Greater than or equal |
+| `<=` | Less than or equal |
+| `=` | Equal |
+| `!=` | Not equal |
+
+Example: `WITH LENGTH > 20min`, `WITH LENGTH >= 15min`, `WITH LENGTH < 10min`.
 
 ---
 
 ## Set position tokens
 
-In WHERE: `SET1`, `SET2`, `SET3`, `ENCORE` (with `OPENED`, `CLOSED`, or `=`). `SET3` refers to a third set; `ENCORE` is stored separately (set number 4).
+Used inside `WHERE` to filter by where a song appeared.
+
+| Token | Meaning |
+|-------|---------|
+| `SET1`, `SET2`, `SET3` | Refer to the first, second, or third set |
+| `ENCORE` | Alias for `SET3` |
+| `OPENED` | First song of the named set: `SET1 OPENED "..."` |
+| `CLOSED` | Last song of the named set: `SET2 CLOSED "..."` |
+| `OPENER` | First song of the show overall (shorthand for `SET1 OPENED`) |
+| `CLOSER` | Last song of the show overall |
+| `=` | Equality form for `ENCORE`: `ENCORE = "..."` |
 
 ---
 
-## Dates and eras
+## Dates and date ranges
 
 | Form | Example | Notes |
-|------|---------|--------|
-| Year | `1977`, `77` | Two-digit → 19xx |
-| Range | `1977-1980` | Inclusive |
+|------|---------|-------|
+| Four-digit year | `1977` | Exact year |
+| Two-digit year | `77` | Always 19xx — the Dead were active 1965–1995 |
+| Year range | `1977-1980` | Inclusive |
+| Two-digit range | `77-80` | Same as above |
 | Specific date | `5/8/77` | M/D/YY |
-| Era aliases | `PRIMAL`, `EUROPE72`, `WALLOFSOUND`, `HIATUS`, `BRENT_ERA`, `VINCE_ERA` | See data for definitions |
+| Specific date (full) | `5/8/1977` | Same |
+| `BEFORE 1976` | — | Strictly before that year |
+| `AFTER 1985` | — | Strictly after |
+
+---
+
+## Era aliases
+
+Named eras the Dead community uses. Spelled exactly as shown (case-insensitive).
+
+| Era | Years | What it covers |
+|-----|-------|----------------|
+| `PRIMAL` | 1965–1969 | Pigpen-era, Dark Star, Saint Stephen, the Eleven |
+| `EUROPE72` | 1972 | The legendary spring '72 Europe tour |
+| `WALLOFSOUND` | 1973–1974 | The Wall of Sound PA era |
+| `HIATUS` | 1975 | The year off (very few shows) |
+| `BRENT_ERA` | 1979–1990 | Brent Mydland on keys |
+| `VINCE_ERA` | 1990–1995 | Vince Welnick on keys, ending with Jerry's death |
 
 ---
 
 ## Output formats
 
-After `AS` in `SHOWS`: `JSON`, `CSV`, `SETLIST`, `TABLE`. Default is table.
+After `AS` in `SHOWS`, `SETLIST`, and `PERFORMANCES`:
+
+| Format | Output |
+|--------|--------|
+| `TABLE` | Aligned text table (default) |
+| `JSON` | One JSON object per row, suitable for piping into `jq` |
+| `CSV` | Comma-separated values |
+| `SETLIST` | (SHOWS only) Each row expanded with its full setlist inline |
+| `COUNT` | (SONGS only) Collapse to a single count |
 
 ---
 
-## Examples (in context)
+## Examples in context
 
-**Segue tokens in WHERE:**
+### Segue tokens in WHERE
 
 ```gdql
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
@@ -68,15 +124,15 @@ SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
 SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 ```
 
-**Logical in WHERE:**
+### Logical in WHERE
 
 ```gdql
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-SHOWS WHERE PLAYED "Dark Star" OR PLAYED "Saint Stephen";
+SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
 ```
 
-**Comparisons (e.g. in WITH LENGTH):**
+### Comparisons in WITH LENGTH
 
 ```gdql
 PERFORMANCES OF "Dark Star" WITH LENGTH > 20min;
@@ -84,23 +140,26 @@ PERFORMANCES OF "Playing in the Band" WITH LENGTH >= 15min;
 PERFORMANCES OF "Eyes of the World" WITH LENGTH < 12min;
 ```
 
-**Dates in FROM / WRITTEN:**
+### Dates and eras
 
 ```gdql
 SHOWS FROM 1977;
 SHOWS FROM 77-80;
 SETLIST FOR 5/8/77;
 SHOWS FROM PRIMAL;
+SHOWS BEFORE 1976;
+SHOWS AFTER 1985;
 SONGS WRITTEN 1968-1970;
 ```
 
-**Output format in SHOWS:**
+### Output formats
 
 ```gdql
 SHOWS FROM 1977 LIMIT 3 AS TABLE;
 SHOWS FROM 1977 LIMIT 3 AS JSON;
 SHOWS FROM 1977 LIMIT 3 AS CSV;
 SHOWS FROM 1977 LIMIT 3 AS SETLIST;
+SONGS WITH LYRICS("rose") AS COUNT;
 ```
 
 **{{< sandbox "shows-77-json" "Try in Sandbox" >}}**

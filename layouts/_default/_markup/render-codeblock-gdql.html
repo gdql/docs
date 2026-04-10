@@ -1,18 +1,19 @@
 {{- /*
   Markdown render hook for ```gdql code blocks.
 
-  Wraps every gdql code fence in a .gdql-block with mac-style window dots,
-  syntax-highlighted code, and a Try-it sandbox link generated from the
-  query text via base64url encoding.
+  Renders a mac-window-styled code block followed by a small "Try in sandbox"
+  link positioned BELOW the block (not inside it). The link encodes the first
+  query as base64url for the sandbox URL.
 */ -}}
 {{- $raw := trim .Inner "\n " -}}
-{{- /* For the sandbox link, take the first complete query (terminated by ;) */ -}}
 {{- $first := index (split $raw ";") 0 -}}
 {{- $first = printf "%s;" (trim $first " \n") -}}
 {{- $b64 := $first | base64Encode -}}
 {{- $b64url := replace (replace (replace $b64 "+" "-") "/" "_") "=" "" -}}
 {{- $url := printf "https://sandbox.gdql.dev?q=%s&run=1" $b64url -}}
+<div class="gdql-wrap">
 <div class="gdql-block">
 <div class="gdql-bar"><span class="gdql-dot gdql-dot-red"></span><span class="gdql-dot gdql-dot-yellow"></span><span class="gdql-dot gdql-dot-green"></span></div><pre><code class="language-gdql">{{- $raw -}}</code></pre>
-<div class="gdql-try-bar"><a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="gdql-try" title="Run in sandbox">▶ Try it in sandbox</a></div>
+</div>
+<a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="gdql-try-link" title="Run in sandbox">▶ Try it in sandbox →</a>
 </div>

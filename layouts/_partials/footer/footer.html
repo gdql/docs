@@ -1,0 +1,32 @@
+{{- $year := now.Format "2006" -}}
+<footer class="gdql-footer">
+  <div class="gdql-footer-grid">
+    <div>
+      <h5><span class="gdql-footer-bolt">&#9889;</span> GDQL</h5>
+      <p>A query language for the Grateful Dead — ask the catalog about shows, songs, segues, set positions, and the strange in-between places only Deadheads care about.</p>
+      <p class="gdql-footer-tagline">Built by Deadheads, for Deadheads.</p>
+    </div>
+    <div>
+      <h5>Docs</h5>
+      <ul>
+        <li><a href="/getting-started/">Getting started</a></li>
+        <li><a href="/examples/">Examples</a></li>
+        <li><a href="/advanced/">Advanced queries</a></li>
+        <li><a href="/reference/">Language reference</a></li>
+        <li><a href="/syntax-highlighting/">Editor support</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Project</h5>
+      <ul>
+        <li><a href="https://sandbox.gdql.dev" target="_blank" rel="noopener">Sandbox</a></li>
+        <li><a href="https://github.com/gdql/gdql" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/gdql/gdql/issues" target="_blank" rel="noopener">Report a bug</a></li>
+        <li><a href="https://sandbox.gdql.dev/health" target="_blank" rel="noopener">Status</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gdql-footer-bottom">
+    &copy; {{ $year }} GDQL &middot; Not affiliated with the Grateful Dead, Rhino, or Ice Nine Publishing &middot; Show data sourced from public archives
+  </div>
+</footer>

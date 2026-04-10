@@ -4,7 +4,9 @@
 {{- $b64 := $first | base64Encode -}}
 {{- $b64url := replace (replace (replace $b64 "+" "-") "/" "_") "=" "" -}}
 {{- $url := printf "https://sandbox.gdql.dev?q=%s&run=1" $b64url -}}
+<div class="gdql-wrap">
 <div class="gdql-block">
 <div class="gdql-bar"><span class="gdql-dot gdql-dot-red"></span><span class="gdql-dot gdql-dot-yellow"></span><span class="gdql-dot gdql-dot-green"></span></div><pre><code class="language-gdql">{{- $raw -}}</code></pre>
-<div class="gdql-try-bar"><a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="gdql-try" title="Run in sandbox">▶ Try it in sandbox</a></div>
+</div>
+<a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="gdql-try-link" title="Run in sandbox">▶ Try it in sandbox →</a>
 </div>

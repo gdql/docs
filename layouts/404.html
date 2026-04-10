@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- $suggestions := slice
+  (dict "q" "SHOWS WHERE \"Scarlet Begonias\" > \"Fire on the Mountain\";" "label" "Scarlet → Fire")
+  (dict "q" "SETLIST FOR 5/8/77;" "label" "Cornell '77")
+  (dict "q" "SHOWS WHERE \"Help on the Way\" > \"Slipknot!\" > \"Franklin's Tower\";" "label" "Help → Slip → Franklin's")
+  (dict "q" "SONGS WITH LYRICS(\"rose\");" "label" "Songs about roses")
+  (dict "q" "PERFORMANCES OF \"Dark Star\" WITH LENGTH > 20min;" "label" "Long Dark Stars")
+  (dict "q" "SHOWS WHERE ENCORE = \"U.S. Blues\";" "label" "U.S. Blues encores")
+-}}
+{{- $pick := index $suggestions (mod (now.Unix | int) (len $suggestions)) -}}
+{{- $b64 := $pick.q | base64Encode -}}
+{{- $b64url := replace (replace (replace $b64 "+" "-") "/" "_") "=" "" -}}
+{{- $sandboxURL := printf "https://sandbox.gdql.dev?q=%s&run=1" $b64url -}}
+<section class="gdql-404">
+  <div class="gdql-404-bolt">&#9889;</div>
+  <h1>404 &mdash; The song is over</h1>
+  <p class="gdql-404-tagline">but the melody lingers on.</p>
+
+  <p>This page isn't in the catalog. Maybe try:</p>
+
+  <div class="gdql-404-suggest">
+    <div class="gdql-wrap">
+      <div class="gdql-block">
+        <div class="gdql-bar">
+          <span class="gdql-dot gdql-dot-red"></span>
+          <span class="gdql-dot gdql-dot-yellow"></span>
+          <span class="gdql-dot gdql-dot-green"></span>
+        </div>
+        <pre><code class="language-gdql">{{ $pick.q }}</code></pre>
+      </div>
+      <a href="{{ $sandboxURL }}" rel="noopener noreferrer" target="_blank" class="gdql-try-link">&#9654; Try "{{ $pick.label }}" in sandbox &rarr;</a>
+    </div>
+  </div>
+
+  <div class="gdql-404-cta">
+    <a href="/" class="gdql-btn gdql-btn-primary">Back to home</a>
+    <a href="/reference/" class="gdql-btn gdql-btn-ghost">Browse reference</a>
+  </div>
+</section>
+{{ end }}

@@ -1,29 +1,31 @@
 ---
 title: Advanced queries
-description: "Complex multi-clause GDQL queries showing what the language can do."
+description: "Multi-clause GDQL queries — exclusion, three-song chains, era comparisons, COUNT shortcuts, and more."
 weight: 14
 ---
 
 
-Real Deadhead questions answered with chained, multi-clause GDQL. Every example below was verified to return real results against the live dataset. Click **▶ Try it** to run any query in the [sandbox](https://sandbox.gdql.dev).
+This page is where GDQL stops being a list filter and starts answering the questions Deadheads actually argue about. Every query below was verified against the live dataset and returns real results — click **▶ Try it** under any block to run it in the [sandbox](https://sandbox.gdql.dev).
+
+If you're new to GDQL, start with [Getting started]({{< relref "getting-started" >}}) and [Example queries]({{< relref "examples" >}}) first.
 
 ---
 
-## NOT PLAYED — exclusion queries
+## Exclusion: NOT PLAYED
 
-Find shows that included one song but excluded another. Great for catching unusual omissions or finding the post-Pigpen / post-Brent eras.
+`NOT PLAYED` is the negative-space tool. Use it to find shows that included one song but explicitly *didn't* include another — perfect for spotting unusual omissions or hunting the post-Pigpen and post-Brent eras.
 
 {{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen" LIMIT 10;
 {{< /gdql >}}
 
-Scarlet Begonias played without Fire on the Mountain (rare after Fire's 1977 debut):
+Scarlet Begonias played without Fire on the Mountain after Fire's 1977 debut — vanishingly rare:
 
 {{< gdql >}}
 SHOWS AFTER 1980 WHERE PLAYED "Scarlet Begonias" AND NOT PLAYED "Fire on the Mountain" LIMIT 10;
 {{< /gdql >}}
 
-Short form — `NOT "X"` works without the `PLAYED` keyword:
+The short form drops the `PLAYED` keyword:
 
 {{< gdql >}}
 SHOWS WHERE PLAYED "Truckin'" AND NOT "Drums" LIMIT 10;
@@ -33,19 +35,21 @@ SHOWS WHERE PLAYED "Truckin'" AND NOT "Drums" LIMIT 10;
 
 ## Multi-clause filtering
 
-Compose venue, era, segue, and additional conditions:
+Stack venue, era, segue, and additional conditions to ask very specific questions.
+
+The Winterland '77–'78 Scarlet → Fire shows that *also* played Estimated Prophet:
 
 {{< gdql >}}
 SHOWS AT "Winterland" FROM 1977-1978 WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet" ORDER BY DATE LIMIT 10;
 {{< /gdql >}}
 
-Fillmore '69 shows that opened with Dark Star and also played Saint Stephen:
+Fillmore '69 shows that opened with Dark Star and brought back Saint Stephen:
 
 {{< gdql >}}
 SHOWS AT "Fillmore" FROM 1969 WHERE OPENER "Dark Star" AND PLAYED "Saint Stephen";
 {{< /gdql >}}
 
-Eyes of the World performances in 1974 (the song's first full year):
+How many times they played Eyes of the World in 1974, the song's first full year:
 
 {{< gdql >}}
 COUNT "Eyes of the World" FROM 1974;
@@ -55,7 +59,7 @@ COUNT "Eyes of the World" FROM 1974;
 
 ## Three-song segues with extra conditions
 
-The legendary Help > Slip > Frank that *also* featured Dark Star — turns out it only ever happened once: 9/10/91 at Madison Square Garden.
+Help → Slip → Frank that *also* featured Dark Star turns out to have happened exactly once: 9/10/91 at Madison Square Garden.
 
 {{< gdql >}}
 SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower" AND PLAYED "Dark Star";
@@ -67,7 +71,7 @@ The classic primal trio at the Fillmore West:
 SHOWS AT "Fillmore West" WHERE "Dark Star" > "Saint Stephen" > "The Eleven" ORDER BY DATE;
 {{< /gdql >}}
 
-China > Rider at the Spectrum in Philly:
+China → Rider at the Spectrum in Philly:
 
 {{< gdql >}}
 SHOWS AT "Spectrum" WHERE "China Cat Sunflower" > "I Know You Rider";
@@ -77,13 +81,13 @@ SHOWS AT "Spectrum" WHERE "China Cat Sunflower" > "I Know You Rider";
 
 ## Set position with date filters
 
-Shows opened with Bertha during the early Brent era:
+Bertha openers in the early Brent era:
 
 {{< gdql >}}
 SHOWS FROM 1979-1981 WHERE OPENER "Bertha" ORDER BY DATE;
 {{< /gdql >}}
 
-Late-era Morning Dew closers (a rare and meaningful combo):
+Late-era Morning Dew closers — a rare and emotionally loaded combo:
 
 {{< gdql >}}
 SHOWS AFTER 1985 WHERE CLOSER "Morning Dew" ORDER BY DATE;
@@ -93,7 +97,9 @@ SHOWS AFTER 1985 WHERE CLOSER "Morning Dew" ORDER BY DATE;
 
 ## COUNT with all the trimmings
 
-How many times did they play Dark Star during the Brent era?
+`COUNT` answers "how many?" for songs and shows alike. Combine it with date ranges and eras for instant trivia.
+
+How many Dark Stars during the Brent era?
 
 {{< gdql >}}
 COUNT "Dark Star" FROM BRENT_ERA;
@@ -111,7 +117,7 @@ How many Scarlet Begonias performances after 1977?
 COUNT "Scarlet Begonias" AFTER 1977;
 {{< /gdql >}}
 
-How many songs in the catalog mention both "sun" and "shine"?
+How many songs in the catalog mention both *sun* and *shine*?
 
 {{< gdql >}}
 SONGS WITH LYRICS("sun", "shine") AS COUNT;
@@ -121,19 +127,21 @@ SONGS WITH LYRICS("sun", "shine") AS COUNT;
 
 ## FIRST and LAST
 
-The very first time Help on the Way was played:
+`FIRST` and `LAST` are shortcuts for "the very first / very last time this song was played".
+
+The first Help on the Way:
 
 {{< gdql >}}
 FIRST "Help on the Way";
 {{< /gdql >}}
 
-The last time the band ever played Saint Stephen:
+The last Saint Stephen the band ever played:
 
 {{< gdql >}}
 LAST "Saint Stephen";
 {{< /gdql >}}
 
-The last Dark Star (a famous bookend, March 30, 1994):
+The last Dark Star — a famous bookend, March 30, 1994:
 
 {{< gdql >}}
 LAST "Dark Star";
@@ -143,7 +151,7 @@ LAST "Dark Star";
 
 ## Comparing eras
 
-How many shows in each era?
+How many shows in each era? Run them side-by-side and see how the band's intensity rose and fell.
 
 {{< gdql >}}
 COUNT SHOWS FROM PRIMAL;
@@ -163,7 +171,9 @@ COUNT SHOWS FROM VINCE_ERA;
 
 ---
 
-## Discovery: random show from a specific era
+## Discovery: random show from an era
+
+`RANDOM SHOW` is the "I want to listen to something new tonight" command. Pair it with an era to scope the wandering.
 
 {{< gdql >}}
 RANDOM SHOW FROM PRIMAL;
@@ -180,6 +190,8 @@ RANDOM SHOW FROM BRENT_ERA;
 ---
 
 ## Lyric search
+
+Find songs by what they say, not what they're called.
 
 Songs that mention both the sun and shine:
 
@@ -203,7 +215,7 @@ SONGS WITH LYRICS("rose") AS COUNT;
 
 ## Output format showcase
 
-Same data, different shapes:
+Same data, different shapes. Pipe JSON into `jq` for ad-hoc analysis, or grab CSV for a spreadsheet.
 
 {{< gdql >}}
 SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS JSON;
@@ -217,7 +229,7 @@ SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS CSV;
 
 ## The Cornell '77 question
 
-Three different ways to ask about the most famous show:
+Three different ways to ask about the most famous show in the band's history:
 
 {{< gdql >}}
 SETLIST FOR 5/8/77;
@@ -238,9 +250,10 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew"
 | Pattern | Example |
 |---------|---------|
 | Venue + era + segue + condition | `SHOWS AT "X" FROM era WHERE "A" > "B" AND PLAYED "C"` |
-| Three-song chain + AND | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
+| Three-song chain + extra condition | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
 | Exclusion | `SHOWS WHERE PLAYED "X" AND NOT PLAYED "Y"` |
 | Count over a date range | `COUNT "song" AFTER year` (or `BEFORE`/`FROM`) |
-| Songs as count with filter | `SONGS WITH LYRICS("x", "y") AS COUNT` |
-| Random within era | `RANDOM SHOW FROM era` |
-| Open-set position | `SHOWS FROM year WHERE OPENER "X"` |
+| Songs as a count with filter | `SONGS WITH LYRICS("x", "y") AS COUNT` |
+| Random within an era | `RANDOM SHOW FROM era` |
+| Set-position filter | `SHOWS FROM year WHERE OPENER "X"` |
+| First / last performance | `FIRST "song"`, `LAST "song"` |

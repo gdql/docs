@@ -321,6 +321,43 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
   font-size: 0.9rem;
 }
 
+// Wrapper around a gdql code block + its companion Try link
+.gdql-wrap {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .gdql-block {
+    margin: 0;
+  }
+}
+
+.gdql-try-link {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #ff6b6b;
+  text-decoration: none !important;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif !important;
+  opacity: 0.75;
+
+  &:hover {
+    opacity: 1;
+    color: #fff !important;
+    background: rgba(230, 57, 70, 0.85);
+    text-decoration: none !important;
+  }
+}
+
 // gdql code block: mac-window-style, dark, colored dots
 .gdql-block {
   margin: 1.5rem 0;
@@ -374,43 +411,6 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
     color: #e8e4d6 !important;
   }
 
-  // Footer bar with the Try button
-  .gdql-try-bar {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.4rem 0.85rem;
-    background: rgba(0, 0, 0, 0.35);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .gdql-try {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 0.04em;
-    background: rgba(230, 57, 70, 0.15);
-    color: #ff6b6b;
-    border: 1px solid rgba(230, 57, 70, 0.4);
-    border-radius: 999px;
-    text-decoration: none !important;
-    transition: all 0.15s ease;
-    white-space: nowrap;
-    text-transform: uppercase;
-    font-family: 'Inter', sans-serif !important;
-
-    &:hover {
-      background: #e63946;
-      color: #fff !important;
-      border-color: #e63946;
-      text-decoration: none !important;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(230, 57, 70, 0.4);
-    }
-  }
 }
 
 // === LANDING HERO ===
@@ -543,4 +543,252 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
 // Section after hero
 .gdql-section {
   padding: 2rem 0 4rem;
+}
+
+// === GDQL syntax highlighting (applied client-side by custom.js) ===
+.gdql-block pre code {
+  .gd-kw  { color: #ff7b72; font-weight: 600; }
+  .gd-str { color: #f4a900; }
+  .gd-num { color: #79c0ff; }
+  .gd-op  { color: #ff9f43; font-weight: 600; }
+  .gd-cmt { color: #6e7681; font-style: italic; }
+}
+
+// === Heading anchor links (Doks injects <a class="anchor">#) ===
+.docs-content h2,
+.docs-content h3,
+.docs-content h4 {
+  position: relative;
+  scroll-margin-top: 5rem;
+
+  > a.anchor {
+    margin-left: 0.4rem;
+    color: rgba(230, 57, 70, 0.0) !important;
+    text-decoration: none !important;
+    font-weight: 500;
+    transition: color 0.15s ease;
+    font-size: 0.8em;
+    vertical-align: 0.1em;
+  }
+  &:hover > a.anchor {
+    color: var(--syf-red) !important;
+  }
+}
+
+// === Bolt glyph on h2 ===
+.docs-content h2[id]::before {
+  content: '\26A1';
+  display: inline-block;
+  margin-right: 0.55rem;
+  color: var(--syf-red);
+  opacity: 0.7;
+  font-size: 0.85em;
+  vertical-align: 0.05em;
+  filter: drop-shadow(0 0 4px rgba(230, 57, 70, 0.3));
+}
+
+// === Run-all-examples bar (injected by custom.js) ===
+.gdql-runall-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.75rem;
+  padding: 0.65rem 1rem;
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.08), rgba(0, 119, 182, 0.08));
+  border: 1px solid rgba(230, 57, 70, 0.18);
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+.gdql-runall {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--syf-red-light) !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+  &:hover { color: #fff !important; }
+}
+.gdql-runall-count {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: rgba(232, 228, 214, 0.55);
+  margin-left: auto;
+}
+
+// === Sidebar: collapsible groups + warmer active state ===
+.docs-links details {
+  margin-bottom: 0.25rem;
+}
+.docs-links details > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.4rem 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  color: rgba(232, 228, 214, 0.55);
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  &::-webkit-details-marker { display: none; }
+  &:hover {
+    color: var(--syf-red-light);
+    background: rgba(230, 57, 70, 0.05);
+  }
+  &::after {
+    content: '\25BE';
+    float: right;
+    font-size: 0.7em;
+    transition: transform 0.15s;
+    opacity: 0.5;
+  }
+}
+.docs-links details[open] > summary::after {
+  transform: rotate(180deg);
+}
+.docs-links a[aria-current="page"] {
+  color: var(--syf-red-light) !important;
+  font-weight: 600;
+  background: linear-gradient(90deg, rgba(230, 57, 70, 0.12), transparent);
+  border-left: 3px solid var(--syf-red);
+  padding-left: calc(0.5rem - 3px);
+}
+.docs-links a[aria-current="true"] {
+  color: rgba(232, 228, 214, 0.95) !important;
+}
+
+// === Mobile: tables become stacked cards on narrow widths ===
+@media (max-width: 640px) {
+  main table,
+  .docs-content table {
+    display: block;
+    border: 0 !important;
+    background: transparent !important;
+
+    thead { display: none; }
+    tbody { display: block; }
+    tr {
+      display: block;
+      margin: 0 0 0.85rem;
+      padding: 0.75rem 0.9rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 3px solid var(--syf-red);
+      border-radius: 8px;
+    }
+    td {
+      display: block;
+      border: 0 !important;
+      padding: 0.15rem 0 !important;
+      &:first-child {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.85rem;
+        color: var(--syf-red-light);
+        margin-bottom: 0.25rem;
+      }
+      &:not(:first-child) {
+        font-size: 0.88rem;
+        color: rgba(232, 228, 214, 0.85);
+      }
+    }
+  }
+}
+
+// === Footer override (three columns) ===
+.gdql-footer {
+  background: #0a0907;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
+  color: rgba(232, 228, 214, 0.7);
+  font-size: 0.9rem;
+
+  .gdql-footer-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem;
+    @media (max-width: 720px) {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+  h5 {
+    font-size: 0.72rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--syf-red-light) !important;
+    margin: 0 0 0.85rem !important;
+    font-weight: 700 !important;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li { margin-bottom: 0.45rem; }
+  }
+  a {
+    color: rgba(232, 228, 214, 0.7) !important;
+    &:hover { color: var(--syf-red-light) !important; }
+  }
+  .gdql-footer-tagline {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: rgba(232, 228, 214, 0.4);
+    margin-top: 1rem;
+  }
+  .gdql-footer-bolt {
+    color: var(--syf-red);
+    font-size: 1.2em;
+    filter: drop-shadow(0 0 6px rgba(230, 57, 70, 0.4));
+  }
+  .gdql-footer-bottom {
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    padding: 1.25rem 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.78rem;
+    color: rgba(232, 228, 214, 0.4);
+    text-align: center;
+  }
+}
+
+// === 404 page ===
+.gdql-404 {
+  text-align: center;
+  padding: 5rem 1.5rem 4rem;
+  max-width: 640px;
+  margin: 0 auto;
+
+  .gdql-404-bolt {
+    font-size: 5rem;
+    color: var(--syf-red);
+    filter: drop-shadow(0 0 24px rgba(230, 57, 70, 0.5));
+    line-height: 1;
+    animation: bolt-pulse 4s ease-in-out infinite;
+  }
+  h1 {
+    font-size: 2.5rem !important;
+    margin: 1rem 0 0.5rem !important;
+  }
+  .gdql-404-tagline {
+    font-style: italic;
+    color: rgba(232, 228, 214, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .gdql-404-suggest {
+    margin: 0 auto 1.5rem;
+    text-align: left;
+  }
+  .gdql-404-cta {
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

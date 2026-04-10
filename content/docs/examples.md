@@ -1,84 +1,81 @@
 ---
 title: Example queries
-description: "Ready-to-run GDQL examples: shows by year, venue, and segue, setlists, song search, performances, and output formats."
+description: "Ready-to-run GDQL: shows by year and venue, segues, setlists, song search, performances, output formats."
 weight: 12
 ---
 
 
-Ready-to-run GDQL for common tasks. Click **Try it** to run any query in the [sandbox](https://sandbox.gdql.dev). See the [language reference]({{< relref "reference" >}}) for full syntax.
+This page is the cookbook. Every query below is verified against the live database and ready to run — click **Try it** under any block to open it in the [sandbox](https://sandbox.gdql.dev). For multi-clause questions, jump to [Advanced queries]({{< relref "advanced" >}}). For the full grammar, see the [language reference]({{< relref "reference" >}}).
 
 ---
 
 ## Shows by year and era
 
-Use `FROM` with a year, a range, or a named era.
+Use `FROM` with a year, a range, or a named era. Two-digit shorthand always means 19xx.
 
 ```gdql
--- All shows in 1977
+-- Every show in 1977
 SHOWS FROM 1977;
 
--- Two-digit years work (77 = 1977)
+-- Two-digit years (77 = 1977)
 SHOWS FROM 77;
 
--- Year range, sorted by date
+-- Year range, sorted oldest first
 SHOWS FROM 1977-1980 ORDER BY DATE;
 
 -- Named eras
 SHOWS FROM PRIMAL;       -- 1965-1969
-SHOWS FROM EUROPE72;     -- Spring 1972 Europe tour
+SHOWS FROM EUROPE72;     -- The legendary spring '72 tour
 SHOWS FROM BRENT_ERA;    -- 1979-1990
 
--- Most recent 1972 shows
+-- Most recent 1972 shows, newest first
 SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;
 ```
 
-[Try: 1977](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3Ow&run=1) | [Try: 1977-1980](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3LTE5ODAgT1JERVIgQlkgREFURTs&run=1) | [Try: PRIMAL](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSBQUklNQUw7&run=1)
-
 ---
 
-## Shows at a venue
+## Shows at a venue or city
 
-Use `AT` to search by venue name or city. Partial matches work.
+`AT` does a partial-match lookup against venues and cities. `AT "Fillmore"` matches both Fillmore West and Fillmore East; `AT "New York"` matches every NYC venue.
 
 ```gdql
--- All Fillmore West shows in 1969
+-- Fillmore West shows in 1969
 SHOWS AT "Fillmore West" FROM 1969;
 
--- All Winterland shows in 1977
+-- Winterland in 1977
 SHOWS AT "Winterland" FROM 1977;
 
--- Shows in New York
+-- Anywhere in New York
 SHOWS AT "New York" LIMIT 20;
-```
 
-[Try: Fillmore West](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIkZpbGxtb3JlIFdlc3QiIEZST00gMTk2OTs&run=1) | [Try: Winterland](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIldpbnRlcmxhbmQiIEZST00gMTk3Nzs&run=1) | [Try: New York](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIk5ldyBZb3JrIiBMSU1JVCAyMDs&run=1)
+-- The big rooms
+SHOWS AT "Madison Square Garden" LIMIT 10;
+```
 
 ---
 
-## Shows with a specific segue
+## Segue queries
 
-Find shows where songs were played consecutively. The `>` operator means "followed by" -- the songs appeared back-to-back in the same set.
+Find shows where one song flowed into another. `>` means *direct segue, no break*. `>>` means *followed by, with a pause*. `~>` means *teased*.
 
 ```gdql
 -- The classic Scarlet > Fire
 SHOWS FROM 77-80 WHERE "Scarlet Begonias" > "Fire on the Mountain";
 
--- Three-song chain
+-- Three-song chain (only matches when all three transitions are exact)
 SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
 
 -- INTO is an alias for >
 SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
 ```
 
-[Try: Scarlet > Fire](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSA3Ny04MCBXSEVSRSAiU2NhcmxldCBCZWdvbmlhcyIgPiAiRmlyZSBvbiB0aGUgTW91bnRhaW4iOw&run=1) | [Try: Help > Slip > Frank](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkhlbHAgb24gdGhlIFdheSIgPiAiU2xpcGtub3QhIiA-ICJGcmFua2xpbidzIFRvd2VyIjs&run=1) | [Try: China > Rider](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkNoaW5hIENhdCBTdW5mbG93ZXIiIElOVE8gIkkgS25vdyBZb3UgUmlkZXIiOw&run=1)
-
 Other transition types:
 
 ```gdql
--- >> or THEN: played in sequence (with a break between)
+-- Followed by, with a break
 SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
 
--- ~> or TEASE: one song teased during another
+-- Teased — partial quote, not a full performance
 SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 ```
 
@@ -86,83 +83,87 @@ SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 
 ## How many times was it played?
 
-Use `COUNT` to get a quick tally.
+`COUNT` is the fast answer for "how many?" questions.
 
 ```gdql
 COUNT "Dark Star";
 COUNT "Scarlet Begonias";
-COUNT "Dark Star" FROM 1972-1974;
-```
 
-[Try: Dark Star](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciI7&run=1) | [Try: Scarlet](https://sandbox.gdql.dev?q=Q09VTlQgIlNjYXJsZXQgQmVnb25pYXMiOw&run=1) | [Try: Dark Star 72-74](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciIgRlJPTSAxOTcyLTE5NzQ7&run=1)
+-- Constrain to a date range
+COUNT "Dark Star" FROM 1972-1974;
+
+-- Or to a single side of a year
+COUNT "Scarlet Begonias" AFTER 1977;
+COUNT "Saint Stephen" BEFORE 1972;
+```
 
 ---
 
 ## Set position
 
-Query by where a song appeared in the show structure.
+Filter by where a song appeared in the show structure: opener, set 1 closer, encore, etc.
 
 ```gdql
--- First set openers
+-- First-set openers
 SHOWS WHERE SET1 OPENED "Jack Straw";
+SHOWS WHERE OPENER "Bertha";
 
--- Second set closers
+-- Second-set closers
 SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
 
 -- Encore
 SHOWS WHERE ENCORE = "U.S. Blues";
 SHOWS WHERE ENCORE = "One More Saturday Night";
-```
 
-[Try: SET1 OPENED](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgU0VUMSBPUEVORUQgIkphY2sgU3RyYXciOw&run=1) | [Try: ENCORE](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgRU5DT1JFID0gIlUuUy4gQmx1ZXMiOw&run=1)
+-- Show closer (last song of the night)
+SHOWS WHERE CLOSER "Morning Dew";
+```
 
 ---
 
-## Played / guest
+## Played and guest
 
-Find shows that included a specific song, or featured a guest musician.
+`PLAYED` is the simple "this song appeared somewhere in the show" filter. `GUEST` finds shows where a guest musician sat in.
 
 ```gdql
--- Shows with both Dark Star and Saint Stephen
+-- Shows that played both Dark Star and Saint Stephen
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 
 -- Eyes of the World in 1977
 SHOWS FROM 1977 WHERE PLAYED "Eyes of the World";
 
--- Guest sit-ins
+-- Branford Marsalis sit-ins
 SHOWS WHERE GUEST "Branford Marsalis";
 ```
-
-[Try: Dark Star AND St. Stephen](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgUExBWUVEICJEYXJrIFN0YXIiIEFORCBQTEFZRUQgIlNhaW50IFN0ZXBoZW4iOw&run=1) | [Try: Eyes 1977](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IFdIRVJFIFBMQVlFRCAiRXllcyBvZiB0aGUgV29ybGQiOw&run=1)
 
 ---
 
 ## Combining conditions
 
-Use `AND` and `OR` to build complex queries.
+Stack `AND` and `OR` to build sharper questions.
 
 ```gdql
--- Scarlet > Fire AND Estimated Prophet in the same show
-SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain"
-  AND PLAYED "Estimated Prophet";
+-- Scarlet > Fire AND Estimated Prophet, all in '77
+SHOWS FROM 1977
+  WHERE "Scarlet Begonias" > "Fire on the Mountain"
+    AND PLAYED "Estimated Prophet";
 
--- Scarlet > Fire at Winterland
-SHOWS AT "Winterland" WHERE "Scarlet Begonias" > "Fire on the Mountain";
+-- Same segue, only at Winterland
+SHOWS AT "Winterland"
+  WHERE "Scarlet Begonias" > "Fire on the Mountain";
 
--- Shows opened by Jack Straw or Bertha
+-- Shows opened by either Jack Straw or Bertha
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
 ```
-
-[Try: Scarlet + Estimated](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IFdIRVJFICJTY2FybGV0IEJlZ29uaWFzIiA-ICJGaXJlIG9uIHRoZSBNb3VudGFpbiIgQU5EIFBMQVlFRCAiRXN0aW1hdGVkIFByb3BoZXQiOw&run=1) | [Try: Winterland Scarlet > Fire](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIldpbnRlcmxhbmQiIFdIRVJFICJTY2FybGV0IEJlZ29uaWFzIiA-ICJGaXJlIG9uIHRoZSBNb3VudGFpbiI7&run=1)
 
 ---
 
 ## Setlist for a date
 
-Get the full setlist for a specific show.
+Pull the full setlist for one show.
 
 ```gdql
--- Cornell '77 (the famous one)
+-- Cornell '77 — the famous one
 SETLIST FOR 5/8/77;
 
 -- Closing of Winterland, New Year's '78
@@ -172,72 +173,81 @@ SETLIST FOR 12/31/78;
 SETLIST FOR 8/27/72;
 ```
 
-[Try: Cornell '77](https://sandbox.gdql.dev?q=U0VUTElTVCBGT1IgNS84Lzc3Ow&run=1) | [Try: Winterland '78](https://sandbox.gdql.dev?q=U0VUTElTVCBGT1IgMTIvMzEvNzg7&run=1)
-
 ---
 
-## Song search
+## Song search by lyrics
 
-Find songs by lyrics keywords.
+Search the lyric database. Multiple words are AND-ed together — every word must appear.
 
 ```gdql
 -- Songs with "sun" in the lyrics
 SONGS WITH LYRICS("sun");
 
--- Multiple keywords (must contain all)
+-- Multiple keywords
 SONGS WITH LYRICS("train", "road");
 
--- Lyrics + date range
+-- Lyrics + written date
 SONGS WITH LYRICS("sun", "shine") WRITTEN 1968-1972;
-```
 
-[Try: "sun"](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInN1biIpOw&run=1) | [Try: WRITTEN 1968-1970](https://sandbox.gdql.dev?q=U09OR1MgV1JJVFRFTiAxOTY4LTE5NzA7&run=1)
+-- Just give me the count
+SONGS WITH LYRICS("rose") AS COUNT;
+```
 
 ---
 
 ## Performances of a song
 
-Find every time a song was played, with optional filters.
+`PERFORMANCES OF` returns one row per time a song was played, with date and length.
 
 ```gdql
--- All Dark Star performances
+-- Every Dark Star performance
 PERFORMANCES OF "Dark Star";
 
--- Dark Star in the early 70s
+-- Constrain to the early 70s
 PERFORMANCES OF "Dark Star" FROM 1972-1974;
 
--- Scarlet Begonias in the late 70s
+-- Sort by length, find the giants
+PERFORMANCES OF "Dark Star" WITH LENGTH > 20min ORDER BY LENGTH DESC LIMIT 10;
+
+-- Late-70s Scarlet, newest first
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 ```
-
-[Try: Dark Star](https://sandbox.gdql.dev?q=UEVSRk9STUFOQ0VTIE9GICJEYXJrIFN0YXIiOw&run=1) | [Try: Dark Star 72-74](https://sandbox.gdql.dev?q=UEVSRk9STUFOQ0VTIE9GICJEYXJrIFN0YXIiIEZST00gMTk3Mi0xOTc0Ow&run=1)
 
 ---
 
 ## Output formats
 
-Results default to a table. Use `AS` to change the format.
+Default output is an aligned table. Use `AS` to switch to JSON, CSV, or an inline-setlist view.
 
 ```gdql
 SHOWS FROM 1977 LIMIT 3 AS TABLE;
 SHOWS FROM 1977 LIMIT 3 AS JSON;
 SHOWS FROM 1977 LIMIT 3 AS CSV;
+SHOWS FROM 1977 LIMIT 3 AS SETLIST;   -- expands each show with its setlist
 ```
 
-[Try: JSON](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IExJTUlUIDMgQVMgSlNPTjs&run=1) | [Try: CSV](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3IExJTUlUIDMgQVMgQ1NWOw&run=1)
+Pipe JSON output into `jq` to slice and dice in the shell:
+
+```bash
+gdql "SHOWS FROM 1977 AS JSON" | jq '.[].venue' | sort -u
+```
 
 ---
 
 ## Quick reference
 
-| Goal | Example | Try it |
-|------|---------|--------|
-| Shows in a year | `SHOWS FROM 1977` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSAxOTc3Ow&run=1) |
-| Shows at a venue | `SHOWS AT "Fillmore West"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIkZpbGxtb3JlIFdlc3QiIEZST00gMTk2OTs&run=1) |
-| Famous segue | `SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSA3Ny04MCBXSEVSRSAiU2NhcmxldCBCZWdvbmlhcyIgPiAiRmlyZSBvbiB0aGUgTW91bnRhaW4iOw&run=1) |
-| How many times? | `COUNT "Dark Star"` | [Try](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciI7&run=1) |
-| Setlist for a date | `SETLIST FOR 5/8/77` | [Try](https://sandbox.gdql.dev?q=U0VUTElTVCBGT1IgNS84Lzc3Ow&run=1) |
-| Songs with lyrics | `SONGS WITH LYRICS("train", "road")` | [Try](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInRyYWluIiwgInJvYWQiKTs&run=1) |
-| Long performances | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` | [Try](https://sandbox.gdql.dev?q=UEVSRk9STUFOQ0VTIE9GICJEYXJrIFN0YXIiIFdJVEggTEVOR1RIID4gMjBtaW4gT1JERVIgQlkgTEVOR1RIIERFU0MgTElNSVQgNTs&run=1) |
-| Opener / closer | `SHOWS WHERE SET1 OPENED "Jack Straw"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgU0VUMSBPUEVORUQgIkphY2sgU3RyYXciOw&run=1) |
-| Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` | [Try](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgRU5DT1JFID0gIlUuUy4gQmx1ZXMiOw&run=1) |
+| Goal | Example |
+|------|---------|
+| Shows in a year | `SHOWS FROM 1977` |
+| Shows at a venue | `SHOWS AT "Fillmore West"` |
+| Famous segue | `SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"` |
+| How many times? | `COUNT "Dark Star"` |
+| Setlist for a date | `SETLIST FOR 5/8/77` |
+| Songs with lyrics | `SONGS WITH LYRICS("train", "road")` |
+| Long performances | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` |
+| Opener / closer | `SHOWS WHERE OPENER "Jack Straw"` |
+| Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` |
+| Random show in an era | `RANDOM SHOW FROM EUROPE72` |
+| First / last performance | `FIRST "Help on the Way"`, `LAST "Saint Stephen"` |
+
+Want more complex examples? See [Advanced queries]({{< relref "advanced" >}}).

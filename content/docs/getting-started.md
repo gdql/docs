@@ -1,65 +1,99 @@
 ---
 title: Getting started
-description: "Install the GDQL CLI, get or create the database, and run your first query."
+description: "Install the GDQL CLI, get the database, and run your first query in under a minute."
 weight: 10
 ---
 
 
-Install the CLI, create or download the database, and run a query.
+This page gets you from zero to running queries. Pick the path that fits — pre-built binary or build from source — then point GDQL at a database and ask it something.
 
 ---
 
 ## Option A: Download a release (recommended)
 
-Pre-built binaries and a ready-to-use database are published on GitHub Releases. No build or import step required.
+Grab a pre-built binary and the ready-to-use database from GitHub Releases. No Go toolchain, no import step.
 
 1. Open **[Releases](https://github.com/gdql/gdql/releases)** and download the latest:
    - **gdql** (or **gdql.exe** on Windows) — the CLI binary
-   - **shows.db** — SQLite database with show/song data (optional; you can use `gdql init` for a minimal DB instead)
-2. Put the binary on your PATH (e.g. `~/bin` or `/usr/local/bin`). Place `shows.db` in the same directory as the binary, or set `GDQL_DB` / use `-db path/to/shows.db`.
-3. Run: `gdql "SHOWS FROM 1977 LIMIT 5"`
+   - **shows.db** — SQLite database with show, song, performance, and lyric data
+2. Move the binary somewhere on your `PATH`, like `~/bin` or `/usr/local/bin`, and make it executable:
+   ```bash
+   chmod +x ~/bin/gdql
+   ```
+3. Drop `shows.db` next to the binary, or point at it explicitly:
+   ```bash
+   export GDQL_DB="$HOME/data/shows.db"
+   # or pass -db on every invocation
+   gdql -db ~/data/shows.db "SHOWS FROM 1977 LIMIT 5"
+   ```
+4. Run your first query:
+   ```bash
+   gdql "SHOWS FROM 1977 LIMIT 5"
+   ```
+
+If you only want a quick taste with no install at all, jump to the **[sandbox](https://sandbox.gdql.dev)** instead.
+
+---
 
 ## Option B: Build from source
 
-Requires [Go 1.21+](https://go.dev/dl/).
+You'll need [Go 1.21 or newer](https://go.dev/dl/).
 
 ```bash
 git clone https://github.com/gdql/gdql
 cd gdql
 go mod tidy
-go build -o gdql ./cmd/gdql   # or: go install ./cmd/...
+go build -o gdql ./cmd/gdql
 ```
 
-On Windows, build `gdql.exe` and run as `.\gdql.exe`.
+`go install ./cmd/...` works too if you'd rather drop the binary straight into `$GOPATH/bin`. On Windows, build `gdql.exe` and run it as `.\gdql.exe`.
 
-## Create or get the database
+---
 
-- **From a release:** Download **shows.db** from [Releases](https://github.com/gdql/gdql/releases) and use it with `-db shows.db` or `GDQL_DB=shows.db`.
-- **Minimal (no data):** Run `gdql init` to create `shows.db` with schema and sample data.
-- **Full import (setlist.fm):** Use your own API key and run the importer (rate limits apply; see [setlist.fm import](https://github.com/gdql/gdql/blob/main/docs/SETLISTFM_IMPORT.md)):
+## Get a database
 
-```bash
-export SETLISTFM_API_KEY="your-key"   # bash/zsh
-# or PowerShell: $env:SETLISTFM_API_KEY = "your-key"
-gdql import setlistfm
-```
+GDQL needs a SQLite database to query. Pick one:
+
+- **Pre-built (easiest):** Download `shows.db` from [Releases](https://github.com/gdql/gdql/releases). It includes shows, venues, songs, performances, segues, and lyrics — everything the language can query.
+- **Empty schema:** Run `gdql init` to create a fresh `shows.db` with the schema and a few sample rows. Useful for development or testing.
+- **Full import from setlist.fm:** Bring your own [setlist.fm API key](https://www.setlist.fm/settings/api) and run the importer. Note that setlist.fm rate-limits aggressively, so a full import takes several hours:
+  ```bash
+  export SETLISTFM_API_KEY="your-key"          # bash/zsh
+  # PowerShell: $env:SETLISTFM_API_KEY = "your-key"
+  gdql import setlistfm
+  ```
+  See [setlist.fm import notes](https://github.com/gdql/gdql/blob/main/docs/SETLISTFM_IMPORT.md) for details.
+
+---
 
 ## Run a query
 
+Pass a query directly:
+
 ```bash
 gdql "SHOWS FROM 1977 LIMIT 5"
-gdql -db shows.db "SHOWS FROM 77-79 WHERE \"Scarlet Begonias\" > \"Fire on the Mountain\""
+gdql "SETLIST FOR 5/8/77"
+gdql "COUNT \"Dark Star\""
 ```
 
-For complex or quoted queries, use a file or stdin:
+For long, multi-line, or shell-unfriendly queries, read from a file or stdin:
 
 ```bash
 gdql -f query.gdql
 echo 'SHOWS FROM 1977;' | gdql -
 ```
 
-## Next
+Want JSON instead of a table? Add `AS JSON`:
 
-- [Example queries]({{< relref "examples" >}}) — Ready-to-run GDQL.
-- [Language reference]({{< relref "reference" >}}) — Query types, WHERE, operators, formats.
-- **{{< sandbox "" "Try in Sandbox" >}}** — Run GDQL in the browser (no install).
+```bash
+gdql "SHOWS FROM 1977 LIMIT 5 AS JSON"
+```
+
+---
+
+## Where to next
+
+- **[Example queries]({{< relref "examples" >}})** — Copy-paste recipes for common questions.
+- **[Advanced queries]({{< relref "advanced" >}})** — Multi-clause queries that show off the language.
+- **[Language reference]({{< relref "reference" >}})** — Every query type and clause documented.
+- **[Sandbox](https://sandbox.gdql.dev)** — Run GDQL in the browser; share queries via URL.
