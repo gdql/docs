@@ -63,17 +63,22 @@ h1 {
 }
 h2 {
   font-size: 1.6rem !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.25rem !important;
   padding-bottom: 0;
   border-bottom: none;
   color: #f0ede4 !important;
 }
 h3 {
   font-size: 1.2rem !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.4rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.2rem !important;
   color: #f0ede4 !important;
+}
+
+// Tighten paragraph spacing after headings
+h2 + p, h3 + p, h4 + p {
+  margin-top: 0.15rem !important;
 }
 
 // Anchor link icons next to headings (Doks adds # marks)
@@ -163,7 +168,7 @@ hr {
   border: 0 !important;
   height: 1px !important;
   background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.2), transparent) !important;
-  margin: 0.75rem 0 0 !important;
+  margin: 0.5rem 0 0 !important;
   opacity: 1 !important;
 }
 
@@ -173,7 +178,7 @@ pre:not(.gdql-block pre) {
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 8px !important;
   padding: 1rem 1.25rem !important;
-  margin: 1.5rem 0 !important;
+  margin: 0.75rem 0 !important;
 
   code {
     background: transparent !important;
@@ -251,6 +256,8 @@ pre:not(.gdql-block pre) {
     -webkit-overflow-scrolling: touch;
     background: #14120e !important;
     color: #e8e4d6 !important;
+    height: 100% !important;
+    max-height: 100dvh !important;
 
     .offcanvas-header {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -398,7 +405,7 @@ pre:not(.gdql-block pre) {
 
 // gdql code block: mac-window-style, dark, colored dots
 .gdql-block {
-  margin: 1.5rem 0;
+  margin: 0.75rem 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   overflow: hidden;
