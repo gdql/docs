@@ -1,2 +1,15 @@
-// Optional overrides for Doks theme variables.
-// See https://getdoks.org/docs/guides/styles/
+// === GDQL: Steal Your Face theme overrides for Doks/Bootstrap ===
+
+// Brand colors
+$syf-red: #e63946;
+$syf-red-dark: #c4332e;
+$syf-red-light: #ff6b6b;
+$syf-blue: #0077b6;
+$syf-blue-dark: #005f8a;
+$syf-blue-light: #5fb3e8;
+$syf-gold: #f4a900;
+$syf-cream: #f7f5f0;
+$syf-charcoal: #1a1815;
+
+// Override Bootstrap primary
+$primary: $syf-blue;

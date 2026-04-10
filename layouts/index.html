@@ -1,10 +1,43 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-10 col-xl-8">
-      <article class="gdql-landing">
-        {{ .Content }}
-      </article>
+<section class="gdql-hero">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="gdql-hero-inner">
+          <svg class="gdql-bolt" viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 0 L4 26 L14 26 L8 48 L28 18 L18 18 Z"
+                  stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor"/>
+          </svg>
+          <h1 class="gdql-hero-title">GDQL</h1>
+          <p class="gdql-hero-tagline">Query the Grateful Dead.</p>
+          <p class="gdql-hero-stats">
+            <span><strong>2,061</strong> shows</span>
+            <span class="dot">·</span>
+            <span><strong>3,258</strong> songs</span>
+            <span class="dot">·</span>
+            <span><strong>41,351</strong> performances</span>
+          </p>
+          <div class="gdql-hero-cta">
+            <a href="https://sandbox.gdql.dev" class="gdql-btn gdql-btn-primary">Open the sandbox</a>
+            <a href="{{ "/docs/getting-started" | relURL }}" class="gdql-btn gdql-btn-ghost">Get the CLI</a>
+          </div>
+          <pre class="gdql-hero-code"><code class="language-gdql">SHOWS FROM 1977 WHERE "Scarlet Begonias" &gt; "Fire on the Mountain";
+SETLIST FOR 5/8/77;
+COUNT "Dark Star" FROM BRENT_ERA;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gdql-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <article class="gdql-landing">
+          {{ .Content }}
+        </article>
+      </div>
     </div>
   </div>
 </section>

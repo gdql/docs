@@ -1,57 +1,46 @@
 ---
 title: GDQL Documentation
-description: "Documentation for GDQL (Grateful Dead Query Language). Install the CLI, run queries, and use the full language reference."
+description: "GDQL is a query language for the Grateful Dead discography. Find segues, setlists, lyrics, and 30 years of live history with one CLI."
 ---
 
-**GDQL** (Grateful Dead Query Language) is a SQL-inspired language for querying Grateful Dead shows, setlists, and songs. This site is the **documentation** — for the main site and sandbox, see [gdql.dev](https://gdql.dev).
+## What is it
 
----
+**GDQL** is a SQL-flavored query language for the Grateful Dead discography. Ask questions like *"every show where Scarlet went into Fire,"* *"the last time they played St. Stephen,"* or *"random show from the Brent era"* — get answers in milliseconds.
 
-## See it in action
-
-Run this in your terminal (after [getting set up]({{< relref "/docs/getting-started" >}})):
-
-```gdql
-SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain" LIMIT 10;
-SETLIST FOR 5/8/77;
-PERFORMANCES OF "Dark Star" WITH LENGTH > 20min ORDER BY LENGTH DESC LIMIT 5;
-```
-
-Segues, setlists, and long jams — in one place.
+It ships as a single binary with the dataset baked in. Run it from the terminal, embed it in your app, or use it in the browser.
 
 ---
 
-## Quick start
+## Three things to try
 
-Get the CLI and run your first query in under a minute.
+{{< gdql >}}
+SHOWS FROM 77-79 WHERE "Scarlet Begonias" > "Fire on the Mountain";
+{{< /gdql >}}
 
-**[→ Getting started]({{< relref "/docs/getting-started" >}})** — Install (or download a release), set up the database, run a query from the shell or a file.
+{{< gdql >}}
+COUNT "Dark Star" FROM BRENT_ERA;
+{{< /gdql >}}
 
----
-
-## Language reference
-
-The full syntax: query types, clauses, conditions, and operators.
-
-| Section | What you'll find |
-|--------|-------------------|
-| [Conventions]({{< relref "/docs/reference/conventions" >}}) | Case, strings, comments, and statement rules |
-| [Query types]({{< relref "/docs/reference" >}}) | SHOWS, SONGS, PERFORMANCES, SETLIST — with synopsis and examples |
-| [WHERE conditions]({{< relref "/docs/reference/where" >}}) | Segues, set position, PLAYED, GUEST, AND/OR/NOT |
-| [Operators & formats]({{< relref "/docs/reference/operators" >}}) | `>`, `>>`, dates, eras, output formats |
+{{< gdql >}}
+RANDOM SHOW FROM EUROPE72;
+{{< /gdql >}}
 
 ---
 
-## Example queries
+## Where to go next
 
-Copy-paste ready examples for common tasks.
-
-**[→ Example queries]({{< relref "/docs/examples" >}})** — Scarlet > Fire, setlist for a date, longest jams, SET1 opener / encore, and more.
+- **[Getting started]({{< relref "/docs/getting-started" >}})** — install the CLI in under a minute
+- **[Example queries]({{< relref "/docs/examples" >}})** — copy-paste recipes for common questions
+- **[Advanced queries]({{< relref "/docs/advanced" >}})** — multi-clause chained queries showing what GDQL can do
+- **[Language reference]({{< relref "/docs/reference" >}})** — every keyword, clause, and operator
+- **[Sandbox](https://sandbox.gdql.dev)** — run queries in your browser, no install required
 
 ---
 
-## Other
+## At a glance
 
-- **[Syntax highlighting]({{< relref "/docs/syntax-highlighting" >}})** — Use ` ```gdql ` in docs; how custom highlighting is implemented.
-
-**In short:** Keywords are **case-insensitive**. Song names and strings use **double quotes**. Statements can end with **`;`**. Comments start with **`--`**.
+- Keywords are **case-insensitive** (`SHOWS` = `shows`)
+- Song names use **double quotes** (`"Dark Star"`)
+- Comments start with `--`
+- Statements end with `;` (optional, required between multiple)
+- Fuzzy matching forgives spelling and punctuation (`Truckin` finds `Truckin'`)
