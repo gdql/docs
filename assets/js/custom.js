@@ -110,7 +110,8 @@
     var placeholders = [];
     function stash(html) {
       placeholders.push(html);
-      return '\x00' + (placeholders.length - 1) + '\x00';
+      // Use \x01PH_n\x01 — non-word chars prevent number/keyword regexes from matching inside
+      return '\x01PH_' + (placeholders.length - 1) + '\x01';
     }
 
     // Strings (double quoted)
@@ -135,7 +136,7 @@
     code = code.replace(/(&gt;&gt;|~&gt;|&gt;=|&lt;=|!=|&gt;|&lt;)/g, '<span class="gd-op">$1</span>');
 
     // Restore placeholders
-    code = code.replace(/\x00(\d+)\x00/g, function (_, i) { return placeholders[+i]; });
+    code = code.replace(/\x01PH_(\d+)\x01/g, function (_, i) { return placeholders[+i]; });
     return code;
   }
 
