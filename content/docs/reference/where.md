@@ -117,7 +117,7 @@ SHOWS WHERE CLOSER "Morning Dew";
 
 ```gdql
 SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!");
-SHOWS WHERE CLOSER ("Sugar Magnolia" > "Sunshine Daydream");
+SHOWS WHERE CLOSER ("Throwin' Stones" > "Not Fade Away");
 SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
 ```
 
@@ -136,7 +136,7 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"
   AND PLAYED "Estimated Prophet";
 
 SHOWS WHERE SET1 OPENED "Jack Straw"
-  OR SET1 OPENED "Bertha";
+  AND PLAYED "Deal";
 
 SHOWS WHERE PLAYED "Dark Star"
   AND NOT PLAYED "Saint Stephen";

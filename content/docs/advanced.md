@@ -95,10 +95,10 @@ Shows that opened with Help > Slip and closed with Brokedown Palace:
 SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
 {{< /gdql >}}
 
-Shows that closed with Sugar Magnolia > Sunshine Daydream:
+Shows that closed with Throwin' Stones > Not Fade Away:
 
 {{< gdql >}}
-SHOWS WHERE CLOSER ("Sugar Magnolia" > "Sunshine Daydream");
+SHOWS WHERE CLOSER ("Throwin' Stones" > "Not Fade Away");
 {{< /gdql >}}
 
 ---

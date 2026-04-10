@@ -125,7 +125,7 @@ SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
 
 ```gdql
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
-SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
+SHOWS WHERE SET1 OPENED "Jack Straw" AND PLAYED "Deal";
 SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
 ```
 

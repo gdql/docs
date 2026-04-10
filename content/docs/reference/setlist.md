@@ -47,12 +47,12 @@ SETLIST FOR 3/29/90;
 SETLIST FOR 12/31/78;
 ```
 
-### Famous shows by name
+### Famous shows by date
 
 ```gdql
-SETLIST FOR "Cornell 1977";
-SETLIST FOR "Winterland 1978";
-SETLIST FOR "Veneta 1972";
+SETLIST FOR 5/8/77;
+SETLIST FOR 12/31/78;
+SETLIST FOR 8/27/72;
 ```
 
 ### Compare two consecutive nights

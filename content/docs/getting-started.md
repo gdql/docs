@@ -43,25 +43,24 @@ The embedded database is compiled in automatically.
 
 ## Run a query
 
-Pass a query directly:
+```gdql
+SHOWS FROM 1977 LIMIT 5;
+SETLIST FOR 5/8/77;
+COUNT "Dark Star";
+```
+
+Pass queries directly on the command line, from a file, or via stdin:
 
 ```bash
 gdql "SHOWS FROM 1977 LIMIT 5"
-gdql "SETLIST FOR 5/8/77"
-gdql "COUNT \"Dark Star\""
-```
-
-For long, multi-line, or shell-unfriendly queries, read from a file or stdin:
-
-```bash
 gdql -f query.gdql
 echo 'SHOWS FROM 1977;' | gdql -
 ```
 
 Want JSON instead of a table? Add `AS JSON`:
 
-```bash
-gdql "SHOWS FROM 1977 LIMIT 5 AS JSON"
+```gdql
+SHOWS FROM 1977 LIMIT 5 AS JSON;
 ```
 
 ---

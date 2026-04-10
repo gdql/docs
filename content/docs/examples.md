@@ -150,7 +150,7 @@ SHOWS AT "Winterland"
   WHERE "Scarlet Begonias" > "Fire on the Mountain";
 
 -- Shows opened by either Jack Straw or Bertha
-SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
+SHOWS WHERE SET1 OPENED "Jack Straw" AND PLAYED "Deal";
 ```
 
 ---
