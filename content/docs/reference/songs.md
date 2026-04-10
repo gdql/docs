@@ -25,7 +25,11 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 
 ## How it works
 
-`SONGS` returns one row per song with name, writers, and play counts. `WITH LYRICS(...)` requires that **every** word listed appears somewhere in the lyrics (it's an AND, not an OR). You can also combine multiple `WITH` conditions using `AND`, `OR`, or commas: `SONGS WITH LYRICS("sun") AND LYRICS("bus")`. `WRITTEN` filters by the year the song was written, not the year it was first performed. `AS COUNT` collapses the result to a single number.
+`SONGS` returns one row per song with name and play counts. `WITH LYRICS(...)` requires that **every** word listed appears somewhere in the lyrics (it's an AND, not an OR). You can also combine multiple `WITH` conditions using `AND` or commas: `SONGS WITH LYRICS("sun") AND LYRICS("shine")`. `AS COUNT` collapses the result to a single number.
+
+{{< hint info >}}
+**Note:** `WRITTEN` filters by the year the song was written, but requires songwriting date data to be imported before it will return results.
+{{< /hint >}}
 
 ---
 
@@ -34,8 +38,8 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 | Clause | What it does |
 |--------|--------------|
 | `WITH LYRICS("word", ...)` | Lyrics must contain **all** listed words. Single word? `WITH LYRICS("rose")`. |
-| `WRITTEN 1968` | Written in that year. |
-| `WRITTEN 1968-1970` | Written in that range. |
+| `WRITTEN 1968` | Written in that year (requires songwriting date data). |
+| `WRITTEN 1968-1970` | Written in that range (requires songwriting date data). |
 | `ORDER BY NAME` | Sort by song name. Add `DESC` to reverse. |
 | `LIMIT 20` | Cap the number of results. |
 | `AS COUNT` | Return just a count, not the rows. |
@@ -72,23 +76,8 @@ SONGS WITH LYRICS("river", "deep");
 ### Separate LYRICS conditions with AND
 
 ```gdql
-SONGS WITH LYRICS("sun") AND LYRICS("bus");
-SONGS WITH LYRICS("train") AND LYRICS("mountain");
-```
-
-### Filter by when the song was written
-
-```gdql
-SONGS WRITTEN 1968;
-SONGS WRITTEN 1968-1970;
-SONGS WRITTEN 1970;
-```
-
-### Combine lyrics, date, and limit
-
-```gdql
-SONGS WITH LYRICS("rose") WRITTEN 1970 LIMIT 20;
-SONGS WITH LYRICS("highway") WRITTEN 1969-1971 ORDER BY NAME LIMIT 10;
+SONGS WITH LYRICS("sun") AND LYRICS("shine");
+SONGS WITH LYRICS("train") AND LYRICS("road");
 ```
 
 ### Just give me the count
@@ -106,4 +95,4 @@ SONGS WITH LYRICS("sun", "shine") AS COUNT;
 - **Not every song has lyrics in the database.** Instrumentals (Drums, Space) and rare songs may return zero matches even when you expect them.
 - **`AS COUNT` is great for quick "how many?" questions** — pair it with `WITH LYRICS` for instant lyric trivia.
 
-**{{< sandbox "songs" "Try in Sandbox" >}}** · **{{< sandbox "songs-lyrics" "LYRICS" >}}** · **{{< sandbox "songs-written" "WRITTEN" >}}** · **{{< sandbox "songs-lyrics-rose" "LYRICS+WRITTEN" >}}**
+**{{< sandbox "songs" "Try in Sandbox" >}}** · **{{< sandbox "songs-lyrics" "LYRICS" >}}**

@@ -31,7 +31,6 @@ String literals (song names, venue names) keep whatever case you typed inside th
 PERFORMANCES OF "Eyes of the World";
 SHOWS AT "Winterland";
 SHOWS WHERE PLAYED "Scarlet Begonias";
-SHOWS WHERE GUEST "Branford Marsalis";
 ```
 
 Single quotes work too. They're handy when shell escaping gets ugly:

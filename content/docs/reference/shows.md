@@ -38,7 +38,7 @@ Every clause is optional — `SHOWS;` on its own returns every show in the datab
 | `FROM 1977` | Single year. Two-digit shorthand works: `FROM 77`. |
 | `FROM 1977-1980` | Inclusive year range. |
 | `FROM PRIMAL` | Named era. See [Operators → Eras]({{< relref "operators#dates-and-eras" >}}) for the full list. |
-| `WHERE ...` | Any condition: segue, set position, played, guest, length. See [WHERE conditions]({{< relref "where" >}}). |
+| `WHERE ...` | Any condition: segue, set position, played. See [WHERE conditions]({{< relref "where" >}}). |
 | `ORDER BY DATE` | Sort by date. Add `DESC` for newest first. |
 | `LIMIT 10` | Cap the number of rows returned. |
 | `AS json` | Output format: `TABLE` (default), `JSON`, `CSV`, or `SETLIST`. |
@@ -83,7 +83,6 @@ Filter by segue, set position, played songs, or guests. See [WHERE]({{< relref "
 SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain";
 SHOWS WHERE SET1 OPENED "Jack Straw";
 SHOWS FROM 1990 WHERE PLAYED "Eyes of the World";
-SHOWS WHERE GUEST "Branford Marsalis";
 SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
 ```
 

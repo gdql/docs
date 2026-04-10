@@ -79,30 +79,6 @@ SHOWS AT "Spectrum" WHERE "China Cat Sunflower" > "I Know You Rider";
 
 ---
 
-## Segue-into: "was this song segued into?"
-
-The standalone segue operators let you ask whether a song was *arrived at* via a specific transition — without specifying which song preceded it.
-
-Shows where Dark Star was teased into (any song tease → Dark Star):
-
-{{< gdql >}}
-SHOWS WHERE ~>"Dark Star";
-{{< /gdql >}}
-
-Shows where Fire on the Mountain was segued into directly:
-
-{{< gdql >}}
-SHOWS WHERE >"Fire on the Mountain";
-{{< /gdql >}}
-
-Combine with other conditions — shows where something segued into Dark Star and they also played Saint Stephen:
-
-{{< gdql >}}
-SHOWS WHERE ~>"Dark Star" AND PLAYED "Saint Stephen";
-{{< /gdql >}}
-
----
-
 ## OPENER / CLOSER with segue chains
 
 `OPENER` and `CLOSER` accept parenthesized segue chains, so you can ask about shows that opened or closed with a specific multi-song sequence.
@@ -318,7 +294,6 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew"
 | Venue + era + segue + condition | `SHOWS AT "X" FROM era WHERE "A" > "B" AND PLAYED "C"` |
 | Three-song chain + extra condition | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
 | Exclusion | `SHOWS WHERE PLAYED "X" AND NOT PLAYED "Y"` |
-| Segued into (standalone) | `SHOWS WHERE >"Song"`, `~>"Song"`, `>>"Song"` |
 | Opener segue chain | `SHOWS WHERE OPENER ("A" > "B")` |
 | Opener + closer combo | `SHOWS WHERE OPENER ("A" > "B") AND CLOSER "C"` |
 | Separate LYRICS with AND | `SONGS WITH LYRICS("x") AND LYRICS("y")` |

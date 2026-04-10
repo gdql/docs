@@ -56,7 +56,7 @@ SHOWS AT "Madison Square Garden" LIMIT 10;
 
 ## Segue queries
 
-Find shows where one song flowed into another. `>` means *direct segue, no break*. `>>` means *followed by, with a pause*. `~>` means *teased*.
+Find shows where one song flowed into another. The `>` operator matches songs that are adjacent in the setlist (position-based). `>>` (or `THEN`) means *followed by, with a pause*. Chain multiple songs to match multi-song sequences.
 
 ```gdql
 -- The classic Scarlet > Fire
@@ -75,21 +75,8 @@ Other transition types:
 -- Followed by, with a break
 SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
 
--- Teased — partial quote, not a full performance
-SHOWS WHERE "Dark Star" ~> "Saint Stephen";
-
 -- Arrow alias: -> is the same as >
 SHOWS WHERE "Dark Star" -> "Saint Stephen";
-```
-
-Standalone segue-into — find shows where a song was *arrived at* via a transition:
-
-```gdql
--- Shows where Dark Star was teased into
-SHOWS WHERE ~>"Dark Star";
-
--- Shows where Fire on the Mountain was segued into directly
-SHOWS WHERE >"Fire on the Mountain";
 ```
 
 ---
@@ -134,9 +121,9 @@ SHOWS WHERE CLOSER "Morning Dew";
 
 ---
 
-## Played and guest
+## Played
 
-`PLAYED` is the simple "this song appeared somewhere in the show" filter. `GUEST` finds shows where a guest musician sat in.
+`PLAYED` is the simple "this song appeared somewhere in the show" filter.
 
 ```gdql
 -- Shows that played both Dark Star and Saint Stephen
@@ -144,9 +131,6 @@ SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 
 -- Eyes of the World in 1977
 SHOWS FROM 1977 WHERE PLAYED "Eyes of the World";
-
--- Branford Marsalis sit-ins
-SHOWS WHERE GUEST "Branford Marsalis";
 ```
 
 ---
@@ -199,9 +183,6 @@ SONGS WITH LYRICS("sun");
 -- Multiple keywords
 SONGS WITH LYRICS("train", "road");
 
--- Lyrics + written date
-SONGS WITH LYRICS("sun", "shine") WRITTEN 1968-1972;
-
 -- Just give me the count
 SONGS WITH LYRICS("rose") AS COUNT;
 ```
@@ -210,7 +191,7 @@ SONGS WITH LYRICS("rose") AS COUNT;
 
 ## Performances of a song
 
-`PERFORMANCES OF` returns one row per time a song was played, with date and length.
+`PERFORMANCES OF` returns one row per time a song was played, with date and venue.
 
 ```gdql
 -- Every Dark Star performance
@@ -218,9 +199,6 @@ PERFORMANCES OF "Dark Star";
 
 -- Constrain to the early 70s
 PERFORMANCES OF "Dark Star" FROM 1972-1974;
-
--- Sort by length, find the giants
-PERFORMANCES OF "Dark Star" WITH LENGTH > 20min ORDER BY LENGTH DESC LIMIT 10;
 
 -- Late-70s Scarlet, newest first
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
@@ -257,10 +235,9 @@ gdql "SHOWS FROM 1977 AS JSON" | jq '.[].venue' | sort -u
 | How many times? | `COUNT "Dark Star"` |
 | Setlist for a date | `SETLIST FOR 5/8/77` |
 | Songs with lyrics | `SONGS WITH LYRICS("train", "road")` |
-| Long performances | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` |
+| Performances in a range | `PERFORMANCES OF "Dark Star" FROM 1972-1974` |
 | Opener / closer | `SHOWS WHERE OPENER "Jack Straw"` |
 | Opener segue chain | `SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!")` |
-| Segued into | `SHOWS WHERE >"Fire on the Mountain"` |
 | Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` |
 | Random show in an era | `RANDOM SHOW FROM EUROPE72` |
 | First / last performance | `FIRST "Help on the Way"`, `LAST "Saint Stephen"` |

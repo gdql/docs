@@ -15,21 +15,11 @@ Connects two song names inside a `WHERE` clause.
 
 | Token | Alt | Meaning |
 |-------|-----|---------|
-| `>` | `INTO`, `->` | Direct segue (no break) |
+| `>` | `INTO`, `->` | Adjacent in setlist (position-based) |
 | `>>` | `THEN` | Followed by (with a break or applause) |
-| `~>` | `TEASE` | Teased — partial quote, not a full performance |
+| `~>` | `TEASE` | Teased — partial quote, not a full performance (requires tease data import) |
 
-Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order with direct segues.
-
-### Standalone form
-
-Segue operators can appear without a preceding song to filter by transition type:
-
-| Form | Meaning |
-|------|---------|
-| `>"Song"` | Song was directly segued into |
-| `>>"Song"` | Song followed another song with a break |
-| `~>"Song"` | Song was teased into |
+Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order, adjacent in the setlist.
 
 ---
 
@@ -49,7 +39,7 @@ Combine conditions inside a `WHERE` clause.
 
 ## Comparisons
 
-Used in `WITH LENGTH` and `LENGTH(...)` conditions.
+Used in `WITH LENGTH` and `LENGTH(...)` conditions. These require length data to be imported.
 
 | Token | Meaning |
 |-------|---------|
@@ -59,8 +49,6 @@ Used in `WITH LENGTH` and `LENGTH(...)` conditions.
 | `<=` | Less than or equal |
 | `=` | Equal |
 | `!=` | Not equal |
-
-Example: `WITH LENGTH > 20min`, `WITH LENGTH >= 15min`, `WITH LENGTH < 10min`.
 
 ---
 
@@ -131,7 +119,6 @@ After `AS` in `SHOWS`, `SETLIST`, and `PERFORMANCES`:
 ```gdql
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
 SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
-SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 ```
 
 ### Logical in WHERE
@@ -140,14 +127,6 @@ SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
 SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
-```
-
-### Comparisons in WITH LENGTH
-
-```gdql
-PERFORMANCES OF "Dark Star" WITH LENGTH > 20min;
-PERFORMANCES OF "Playing in the Band" WITH LENGTH >= 15min;
-PERFORMANCES OF "Eyes of the World" WITH LENGTH < 12min;
 ```
 
 ### Dates and eras
@@ -159,7 +138,6 @@ SETLIST FOR 5/8/77;
 SHOWS FROM PRIMAL;
 SHOWS BEFORE 1976;
 SHOWS AFTER 1985;
-SONGS WRITTEN 1968-1970;
 ```
 
 ### Output formats

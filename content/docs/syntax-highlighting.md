@@ -26,7 +26,7 @@ Then write GDQL inside `gdql` code fences:
 ````markdown
 ```gdql
 SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain";
-SONGS WITH LYRICS("train", "road") WRITTEN 1968-1970;
+SONGS WITH LYRICS("train", "road");
 COUNT "Dark Star" AFTER 1988;
 ```
 ````

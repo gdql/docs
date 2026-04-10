@@ -87,7 +87,7 @@ Set 1:
   ...
 
 Set 2:
-  1. Scarlet Begonias →
+  1. Scarlet Begonias
   2. Fire on the Mountain
   ...
 
@@ -95,7 +95,7 @@ Encore:
   1. One More Saturday Night
 ```
 
-The `→` arrow marks a direct segue (no break). `⇢` marks a "followed by" with a brief pause. JSON output exposes those as the `segue` field on each performance.
+Each song is listed in order within its set. JSON output exposes set number and position for each performance.
 
 ---
 

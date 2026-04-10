@@ -21,31 +21,19 @@ Combine any number of conditions with `AND`, `OR`, and `NOT`. Parentheses are no
 
 ## Segues
 
-Segues are the heart of what makes a Grateful Dead show *that show*. GDQL has three segue types and reads them like sentences.
+Segues are the heart of what makes a Grateful Dead show *that show*. GDQL matches segue chains by position adjacency in the setlist.
 
 | Form | Alt syntax | Meaning |
 |------|------------|--------|
-| `"A" > "B"` | `"A" INTO "B"` | Direct segue — A flows into B with no break |
+| `"A" > "B"` | `"A" INTO "B"` | A is followed by B (adjacent in setlist) |
 | `"A" >> "B"` | `"A" THEN "B"` | A is followed by B, with a pause or applause break between |
-| `"A" ~> "B"` | `"A" TEASE "B"` | B is teased during A — partial quote, not a full performance |
 | Chains | — | Any number: `"Help on the Way" > "Slipknot!" > "Franklin's Tower"` |
 
-The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence with direct segues.
+The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence.
 
-### Standalone segue-into
-
-You can also use segue operators without a preceding song to ask "was this song segued/teased into?"
-
-| Form | Meaning |
-|------|--------|
-| `>"Song"` | Song was directly segued into (previous song had `>` transition) |
-| `>>"Song"` | Song followed another song with a break |
-| `~>"Song"` | Song was teased into (previous song had a tease transition) |
-
-```gdql
-SHOWS WHERE ~>"Dark Star";
-SHOWS WHERE >"Fire on the Mountain";
-```
+{{< hint info >}}
+**Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
+{{< /hint >}}
 
 ### Arrow alias
 
@@ -78,8 +66,8 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `PLAYED "Scarlet Begonias"` | The show included this song, anywhere in any set |
 | `NOT PLAYED "Fire on the Mountain"` | The show did **not** include this song |
 | `NOT "Drums"` | Short form of `NOT PLAYED` |
-| `GUEST "Branford Marsalis"` | A guest musician sat in |
-| `LENGTH("Dark Star") > 20min` | Song length condition (when length data is available) |
+| `GUEST "name"` | A guest musician sat in (requires guest data import) |
+| `LENGTH("Song") > 20min` | Song length condition (requires length data import) |
 
 ---
 
@@ -97,7 +85,7 @@ NOT "Song"
 
 ## Examples
 
-### Direct segue (no break)
+### Segue chains (position adjacency)
 
 ```gdql
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
@@ -110,13 +98,6 @@ SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
 ```gdql
 SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
 SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
-```
-
-### Tease
-
-```gdql
-SHOWS WHERE "Dark Star" ~> "Saint Stephen";
-SHOWS WHERE "Uncle John's Band" TEASE "St. Stephen";
 ```
 
 ### Set position
@@ -140,29 +121,12 @@ SHOWS WHERE CLOSER ("Sugar Magnolia" > "Sunshine Daydream");
 SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
 ```
 
-### Standalone segue-into
-
-```gdql
-SHOWS WHERE ~>"Dark Star";
-SHOWS WHERE >"Fire on the Mountain";
-SHOWS WHERE >>"Morning Dew";
-```
-
-### Played, not played, guest
+### Played and not played
 
 ```gdql
 SHOWS WHERE PLAYED "Dark Star";
 SHOWS WHERE PLAYED "Scarlet Begonias" AND PLAYED "Fire on the Mountain";
 SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
-SHOWS WHERE GUEST "Branford Marsalis";
-SHOWS WHERE GUEST "Clarence Clemons";
-```
-
-### Length (when supported)
-
-```gdql
-SHOWS WHERE LENGTH("Dark Star") > 20min;
-SHOWS WHERE LENGTH("Eyes of the World") > 15min;
 ```
 
 ### Combining with AND, OR, NOT
