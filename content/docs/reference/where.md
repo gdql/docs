@@ -86,60 +86,103 @@ NOT "Song"
 
 ### Segue chains (position adjacency)
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
-```
+{{< /gdql >}}
 
 ### Followed by (with break)
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
-```
+{{< /gdql >}}
 
 ### Set position
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE SET1 OPENED "Jack Straw";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE SET1 OPENED "Bertha";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE SET3 OPENED "U.S. Blues";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE SET3 CLOSED "Brokedown Palace";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE ENCORE = "U.S. Blues";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE OPENER "Bertha";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE CLOSER "Morning Dew";
-```
+{{< /gdql >}}
 
 ### OPENER / CLOSER with segue chains
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!");
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE CLOSER ("Throwin' Stones" > "Not Fade Away");
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
-```
+{{< /gdql >}}
 
 ### Played and not played
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE PLAYED "Scarlet Begonias" AND PLAYED "Fire on the Mountain";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
-```
+{{< /gdql >}}
 
 ### Combining with AND, OR, NOT
 
-```gdql
-SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"
-  AND PLAYED "Estimated Prophet";
+{{< gdql >}}
+SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet";
+{{< /gdql >}}
 
-SHOWS WHERE SET1 OPENED "Jack Straw"
-  OR SET1 OPENED "Bertha";
+{{< gdql >}}
+SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
+{{< /gdql >}}
 
-SHOWS WHERE PLAYED "Dark Star"
-  AND NOT PLAYED "Saint Stephen";
-```
+{{< gdql >}}
+SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
+{{< /gdql >}}
 
 ---
 

@@ -13,11 +13,17 @@ A handful of small rules apply across every GDQL statement. Learn them once and 
 
 **Keywords and identifiers are case-insensitive.** Write whichever style you find readable — `SHOWS`, `shows`, and `Shows` all parse identically. The convention in these docs is uppercase keywords because they stand out from song names, but the parser doesn't care.
 
-```gdql
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 setlist for 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 Shows From 1977 Limit 5;
-```
+{{< /gdql >}}
 
 String literals (song names, venue names) keep whatever case you typed inside the quotes — but the lookup itself is also case-insensitive, so `"dark star"` and `"DARK STAR"` find the same song.
 
@@ -27,11 +33,17 @@ String literals (song names, venue names) keep whatever case you typed inside th
 
 **Wrap string literals in double quotes.** Use them for song titles, venue names, city names, guest musicians — anything that isn't a number, date, or keyword.
 
-```gdql
+{{< gdql >}}
 PERFORMANCES OF "Eyes of the World";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS AT "Winterland";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE PLAYED "Scarlet Begonias";
-```
+{{< /gdql >}}
 
 Single quotes work too. They're handy when shell escaping gets ugly:
 
@@ -47,17 +59,15 @@ GDQL is forgiving about punctuation and exact spelling — `"Help on the Way!"` 
 
 **Line comments start with `--`** and run to the end of the line. Use them to label queries you're sharing or to leave notes in saved files.
 
-```gdql
--- Cornell '77 setlist
+{{< gdql >}}
 SETLIST FOR 5/8/77;
-```
+{{< /gdql >}}
 
 Trailing comments work too:
 
-```gdql
-SHOWS FROM 1977;             -- Europe '77 + Cornell year
-SONGS WITH LYRICS("rose");   -- the rose songs
-```
+{{< gdql >}}
+SHOWS FROM 1977;             -- Europe '77 + Cornell year SONGS WITH LYRICS("rose");   -- the rose songs
+{{< /gdql >}}
 
 There is no block comment syntax. If you need to comment out several lines, prefix each one with `--`.
 
@@ -67,17 +77,23 @@ There is no block comment syntax. If you need to comment out several lines, pref
 
 **Semicolons end statements but are optional for a single query.** Use them whenever you want to chain multiple queries into one input.
 
-```gdql
+{{< gdql >}}
 SETLIST FOR 5/8/77
-```
+{{< /gdql >}}
 
 When you have more than one query, separate them with `;`:
 
-```gdql
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 5;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("train");
-```
+{{< /gdql >}}
 
 The CLI runs each statement in order and prints the results back-to-back.
 
@@ -91,14 +107,9 @@ Whitespace exists for readability. Spaces, tabs, and newlines are interchangeabl
 
 Indent and break long queries however you like:
 
-```gdql
-SHOWS AT "Winterland"
-  FROM 1977-1978
-  WHERE "Scarlet Begonias" > "Fire on the Mountain"
-    AND PLAYED "Estimated Prophet"
-  ORDER BY DATE
-  LIMIT 10;
-```
+{{< gdql >}}
+SHOWS AT "Winterland" FROM 1977-1978 WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet" ORDER BY DATE LIMIT 10;
+{{< /gdql >}}
 
 ---
 

@@ -116,38 +116,74 @@ After `AS` in `SHOWS`, `SETLIST`, and `PERFORMANCES`:
 
 ### Segue tokens in WHERE
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
-```
+{{< /gdql >}}
 
 ### Logical in WHERE
 
-```gdql
+{{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
-```
+{{< /gdql >}}
 
 ### Dates and eras
 
-```gdql
+{{< gdql >}}
 SHOWS FROM 1977;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM 77-80;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM PRIMAL;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS BEFORE 1976;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS AFTER 1985;
-```
+{{< /gdql >}}
 
 ### Output formats
 
-```gdql
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS TABLE;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS JSON;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS CSV;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS SETLIST;
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("rose") AS COUNT;
-```
+{{< /gdql >}}
 
 **{{< sandbox "shows-77-json" "Try in Sandbox" >}}**

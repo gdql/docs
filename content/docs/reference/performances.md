@@ -12,11 +12,7 @@ weight: 3
 ## Synopsis
 
 ```gdql
-PERFORMANCES OF "Song Name"
-  [ FROM date_or_range ]
-  [ WITH LENGTH length_condition ]
-  [ ORDER BY sort_spec ]
-  [ LIMIT n ];
+PERFORMANCES OF "Song Name" [ FROM date_or_range ] [ WITH LENGTH length_condition ] [ ORDER BY sort_spec ] [ LIMIT n ];
 ```
 
 `OF "Song Name"` is required. Everything else is optional.
@@ -49,32 +45,47 @@ PERFORMANCES OF "Song Name"
 
 ### Every performance of a song
 
-```gdql
+{{< gdql >}}
 PERFORMANCES OF "Dark Star";
+{{< /gdql >}}
+
+{{< gdql >}}
 PERFORMANCES OF "Scarlet Begonias";
+{{< /gdql >}}
+
+{{< gdql >}}
 PERFORMANCES OF "Eyes of the World";
-```
+{{< /gdql >}}
 
 ### Constrain to a date range
 
-```gdql
+{{< gdql >}}
 PERFORMANCES OF "Dark Star" FROM 1972;
+{{< /gdql >}}
+
+{{< gdql >}}
 PERFORMANCES OF "Dark Star" FROM 1972-1974;
+{{< /gdql >}}
+
+{{< gdql >}}
 PERFORMANCES OF "Eyes of the World" FROM 1974-1977;
-```
+{{< /gdql >}}
 
 ### Sort and limit
 
-```gdql
+{{< gdql >}}
 PERFORMANCES OF "Dark Star" ORDER BY DATE LIMIT 10;
+{{< /gdql >}}
+
+{{< gdql >}}
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
-```
+{{< /gdql >}}
 
 ### Find the oldest
 
-```gdql
+{{< gdql >}}
 PERFORMANCES OF "Help on the Way" ORDER BY DATE LIMIT 1;
-```
+{{< /gdql >}}
 
 (For oldest/newest there's also the simpler [`FIRST` and `LAST`]({{< relref "../advanced#first-and-last" >}}) shortcuts.)
 

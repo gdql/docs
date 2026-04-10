@@ -5,7 +5,7 @@ weight: 12
 ---
 
 
-This page is the cookbook. Every query below is verified against the live database and ready to run — click **Try it** under any block to open it in the [sandbox](https://sandbox.gdql.dev). For multi-clause questions, jump to [Advanced queries]({{< relref "advanced" >}}). For the full grammar, see the [language reference]({{< relref "reference" >}}).
+This page is the cookbook. Every query below is verified against the live database and ready to run — click **▶ Try it in sandbox** under any block to open it in the [sandbox](https://sandbox.gdql.dev). For multi-clause questions, jump to [Advanced queries]({{< relref "advanced" >}}). For the full grammar, see the [language reference]({{< relref "reference" >}}).
 
 ---
 
@@ -13,24 +13,29 @@ This page is the cookbook. Every query below is verified against the live databa
 
 Use `FROM` with a year, a range, or a named era. Two-digit shorthand always means 19xx.
 
-```gdql
--- Every show in 1977
+{{< gdql >}}
 SHOWS FROM 1977;
+{{< /gdql >}}
 
--- Two-digit years (77 = 1977)
-SHOWS FROM 77;
-
--- Year range, sorted oldest first
+{{< gdql >}}
 SHOWS FROM 1977-1980 ORDER BY DATE;
+{{< /gdql >}}
 
--- Named eras
-SHOWS FROM PRIMAL;       -- 1965-1969
-SHOWS FROM EUROPE72;     -- The legendary spring '72 tour
-SHOWS FROM BRENT_ERA;    -- 1979-1990
+{{< gdql >}}
+SHOWS FROM PRIMAL;
+{{< /gdql >}}
 
--- Most recent 1972 shows, newest first
+{{< gdql >}}
+SHOWS FROM EUROPE72;
+{{< /gdql >}}
+
+{{< gdql >}}
+SHOWS FROM BRENT_ERA;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;
-```
+{{< /gdql >}}
 
 ---
 
@@ -38,46 +43,47 @@ SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;
 
 `AT` does a partial-match lookup against venues and cities. `AT "Fillmore"` matches both Fillmore West and Fillmore East; `AT "New York"` matches every NYC venue.
 
-```gdql
--- Fillmore West shows in 1969
+{{< gdql >}}
 SHOWS AT "Fillmore West" FROM 1969;
+{{< /gdql >}}
 
--- Winterland in 1977
+{{< gdql >}}
 SHOWS AT "Winterland" FROM 1977;
+{{< /gdql >}}
 
--- Anywhere in New York
+{{< gdql >}}
 SHOWS AT "New York" LIMIT 20;
+{{< /gdql >}}
 
--- The big rooms
+{{< gdql >}}
 SHOWS AT "Madison Square Garden" LIMIT 10;
-```
+{{< /gdql >}}
 
 ---
 
 ## Segue queries
 
-Find shows where one song flowed into another. The `>` operator matches songs that are adjacent in the setlist (position-based). `>>` (or `THEN`) means *followed by, with a pause*. Chain multiple songs to match multi-song sequences.
+Find shows where one song flowed into another. The `>` operator matches songs that are adjacent in the setlist (position-based). `>>` (or `THEN`) means *followed by, with a pause*. `->` is an alias for `>`. Chain multiple songs to match multi-song sequences.
 
-```gdql
--- The classic Scarlet > Fire
+{{< gdql >}}
 SHOWS FROM 77-80 WHERE "Scarlet Begonias" > "Fire on the Mountain";
+{{< /gdql >}}
 
--- Three-song chain (only matches when all three transitions are exact)
+{{< gdql >}}
 SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
+{{< /gdql >}}
 
--- INTO is an alias for >
+{{< gdql >}}
 SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
-```
+{{< /gdql >}}
 
-Other transition types:
-
-```gdql
--- Followed by, with a break
+{{< gdql >}}
 SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
+{{< /gdql >}}
 
--- Arrow alias: -> is the same as >
+{{< gdql >}}
 SHOWS WHERE "Dark Star" -> "Saint Stephen";
-```
+{{< /gdql >}}
 
 ---
 
@@ -85,17 +91,25 @@ SHOWS WHERE "Dark Star" -> "Saint Stephen";
 
 `COUNT` is the fast answer for "how many?" questions.
 
-```gdql
+{{< gdql >}}
 COUNT "Dark Star";
+{{< /gdql >}}
+
+{{< gdql >}}
 COUNT "Scarlet Begonias";
+{{< /gdql >}}
 
--- Constrain to a date range
+{{< gdql >}}
 COUNT "Dark Star" FROM 1972-1974;
+{{< /gdql >}}
 
--- Or to a single side of a year
+{{< gdql >}}
 COUNT "Scarlet Begonias" AFTER 1977;
+{{< /gdql >}}
+
+{{< gdql >}}
 COUNT "Saint Stephen" BEFORE 1972;
-```
+{{< /gdql >}}
 
 ---
 
@@ -103,21 +117,25 @@ COUNT "Saint Stephen" BEFORE 1972;
 
 Filter by where a song appeared in the show structure: opener, set 1 closer, encore, etc.
 
-```gdql
--- First-set openers
+{{< gdql >}}
 SHOWS WHERE SET1 OPENED "Jack Straw";
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS WHERE OPENER "Bertha";
+{{< /gdql >}}
 
--- Second-set closers
+{{< gdql >}}
 SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
+{{< /gdql >}}
 
--- Encore
+{{< gdql >}}
 SHOWS WHERE ENCORE = "U.S. Blues";
-SHOWS WHERE ENCORE = "One More Saturday Night";
+{{< /gdql >}}
 
--- Show closer (last song of the night)
+{{< gdql >}}
 SHOWS WHERE CLOSER "Morning Dew";
-```
+{{< /gdql >}}
 
 ---
 
@@ -125,13 +143,13 @@ SHOWS WHERE CLOSER "Morning Dew";
 
 `PLAYED` is the simple "this song appeared somewhere in the show" filter.
 
-```gdql
--- Shows that played both Dark Star and Saint Stephen
+{{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
+{{< /gdql >}}
 
--- Eyes of the World in 1977
+{{< gdql >}}
 SHOWS FROM 1977 WHERE PLAYED "Eyes of the World";
-```
+{{< /gdql >}}
 
 ---
 
@@ -139,19 +157,17 @@ SHOWS FROM 1977 WHERE PLAYED "Eyes of the World";
 
 Stack `AND` and `OR` to build sharper questions.
 
-```gdql
--- Scarlet > Fire AND Estimated Prophet, all in '77
-SHOWS FROM 1977
-  WHERE "Scarlet Begonias" > "Fire on the Mountain"
-    AND PLAYED "Estimated Prophet";
+{{< gdql >}}
+SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet";
+{{< /gdql >}}
 
--- Same segue, only at Winterland
-SHOWS AT "Winterland"
-  WHERE "Scarlet Begonias" > "Fire on the Mountain";
+{{< gdql >}}
+SHOWS AT "Winterland" WHERE "Scarlet Begonias" > "Fire on the Mountain";
+{{< /gdql >}}
 
--- Shows opened by either Jack Straw or Bertha
+{{< gdql >}}
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-```
+{{< /gdql >}}
 
 ---
 
@@ -159,16 +175,17 @@ SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
 
 Pull the full setlist for one show.
 
-```gdql
--- Cornell '77 — the famous one
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
 
--- Closing of Winterland, New Year's '78
+{{< gdql >}}
 SETLIST FOR 12/31/78;
+{{< /gdql >}}
 
--- Veneta '72
+{{< gdql >}}
 SETLIST FOR 8/27/72;
-```
+{{< /gdql >}}
 
 ---
 
@@ -176,16 +193,17 @@ SETLIST FOR 8/27/72;
 
 Search the lyric database. Words are matched as whole words (not substrings), and multiple words are AND-ed together — every word must appear.
 
-```gdql
--- Songs with "sun" in the lyrics
+{{< gdql >}}
 SONGS WITH LYRICS("sun");
+{{< /gdql >}}
 
--- Multiple keywords
+{{< gdql >}}
 SONGS WITH LYRICS("train", "road");
+{{< /gdql >}}
 
--- Just give me the count
+{{< gdql >}}
 SONGS WITH LYRICS("rose") AS COUNT;
-```
+{{< /gdql >}}
 
 ---
 
@@ -193,16 +211,17 @@ SONGS WITH LYRICS("rose") AS COUNT;
 
 `PERFORMANCES OF` returns one row per time a song was played, with date and venue.
 
-```gdql
--- Every Dark Star performance
+{{< gdql >}}
 PERFORMANCES OF "Dark Star";
+{{< /gdql >}}
 
--- Constrain to the early 70s
+{{< gdql >}}
 PERFORMANCES OF "Dark Star" FROM 1972-1974;
+{{< /gdql >}}
 
--- Late-70s Scarlet, newest first
+{{< gdql >}}
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
-```
+{{< /gdql >}}
 
 ---
 
@@ -210,12 +229,13 @@ PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 
 Default output is an aligned table. Use `AS` to switch to JSON, CSV, or an inline-setlist view.
 
-```gdql
-SHOWS FROM 1977 LIMIT 3 AS TABLE;
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS JSON;
+{{< /gdql >}}
+
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS CSV;
-SHOWS FROM 1977 LIMIT 3 AS SETLIST;   -- expands each show with its setlist
-```
+{{< /gdql >}}
 
 Pipe JSON output into `jq` to slice and dice in the shell:
 

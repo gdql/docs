@@ -11,9 +11,9 @@ weight: 4
 
 ## Synopsis
 
-```gdql
+{{< gdql >}}
 SETLIST FOR date_spec;
-```
+{{< /gdql >}}
 
 `date_spec` is a specific date (`5/8/77`), a year (`1977`), or a named show (`"Cornell 1977"`).
 
@@ -40,37 +40,61 @@ SETLIST FOR date_spec;
 
 ### Specific dates
 
-```gdql
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 8/27/72;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 3/29/90;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 12/31/78;
-```
+{{< /gdql >}}
 
 ### Famous shows by date
 
-```gdql
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 12/31/78;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 8/27/72;
-```
+{{< /gdql >}}
 
 ### Compare two consecutive nights
 
-```gdql
+{{< gdql >}}
 SETLIST FOR 5/7/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 5/9/77;
-```
+{{< /gdql >}}
 
 The CLI runs each statement in order and prints the results back-to-back — perfect for diffing nights of a run.
 
 ### Get the data, not the rendering
 
-```gdql
+{{< gdql >}}
 SETLIST FOR 5/8/77 AS JSON;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 5/8/77 AS CSV;
-```
+{{< /gdql >}}
 
 ---
 

@@ -38,14 +38,9 @@ There's also `COUNT` (for `COUNT "Song"` or `COUNT SHOWS`), `FIRST`, `LAST`, and
 
 A typical query reads like a sentence: a query type, optional filters, and an output shape.
 
-```gdql
-SHOWS AT "Winterland" FROM 1977-1978
-  WHERE "Scarlet Begonias" > "Fire on the Mountain"
-    AND PLAYED "Estimated Prophet"
-  ORDER BY DATE
-  LIMIT 10
-  AS JSON;
-```
+{{< gdql >}}
+SHOWS AT "Winterland" FROM 1977-1978 WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet" ORDER BY DATE LIMIT 10 AS JSON;
+{{< /gdql >}}
 
 That single statement asks: *"Give me the first 10 Winterland shows from 1977 or 1978 where Scarlet went into Fire and they also played Estimated Prophet, oldest first, as JSON."*
 

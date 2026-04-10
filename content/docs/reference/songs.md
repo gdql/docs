@@ -12,11 +12,7 @@ weight: 2
 ## Synopsis
 
 ```gdql
-SONGS [ WITH condition [AND | OR | , condition ...] ]
-      [ WRITTEN date_or_range ]
-      [ ORDER BY sort_spec ]
-      [ LIMIT n ]
-      [ AS COUNT ];
+SONGS [ WITH condition [AND | OR | , condition ...] ] [ WRITTEN date_or_range ] [ ORDER BY sort_spec ] [ LIMIT n ] [ AS COUNT ];
 ```
 
 Every clause is optional — `SONGS;` lists every song the database knows about.
@@ -49,42 +45,69 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 
 ### Browse the catalog
 
-```gdql
+{{< gdql >}}
 SONGS;
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS LIMIT 50;
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS ORDER BY NAME LIMIT 30;
-```
+{{< /gdql >}}
 
 ### Lyric search (single word)
 
-```gdql
+{{< gdql >}}
 SONGS WITH LYRICS("train");
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("rose") LIMIT 20;
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("water");
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("wheel");
-```
+{{< /gdql >}}
 
 ### Lyric search (multiple words — all must match)
 
-```gdql
+{{< gdql >}}
 SONGS WITH LYRICS("train", "road");
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("sun", "shine");
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("river", "deep");
-```
+{{< /gdql >}}
 
 ### Separate LYRICS conditions with AND
 
-```gdql
+{{< gdql >}}
 SONGS WITH LYRICS("sun") AND LYRICS("shine");
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("train") AND LYRICS("road");
-```
+{{< /gdql >}}
 
 ### Just give me the count
 
-```gdql
+{{< gdql >}}
 SONGS WITH LYRICS("sun") AS COUNT;
+{{< /gdql >}}
+
+{{< gdql >}}
 SONGS WITH LYRICS("sun", "shine") AS COUNT;
-```
+{{< /gdql >}}
 
 ---
 

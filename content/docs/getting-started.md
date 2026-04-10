@@ -43,11 +43,17 @@ The embedded database is compiled in automatically.
 
 ## Run a query
 
-```gdql
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 5;
+{{< /gdql >}}
+
+{{< gdql >}}
 SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
 COUNT "Dark Star";
-```
+{{< /gdql >}}
 
 Pass queries directly on the command line, from a file, or via stdin:
 
@@ -59,9 +65,9 @@ echo 'SHOWS FROM 1977;' | gdql -
 
 Want JSON instead of a table? Add `AS JSON`:
 
-```gdql
+{{< gdql >}}
 SHOWS FROM 1977 LIMIT 5 AS JSON;
-```
+{{< /gdql >}}
 
 ---
 
