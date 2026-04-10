@@ -5,22 +5,16 @@
     {{< gdql >}}
     SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain";
     {{< /gdql >}}
-
-  The inner block is rendered as a `gdql` code block (highlighted by Prism)
-  and a "▶ Try it" button is added that opens the query in the sandbox via
-  ?q=<base64url> URL parameter.
-
-  If the block contains multiple semicolon-terminated queries, only the first
-  is linked (intentional — keeps the UI clean for multi-example blocks).
 */ -}}
 {{- $raw := trim .Inner "\n " -}}
 {{- $first := index (split $raw ";") 0 -}}
 {{- $first = printf "%s;" (trim $first " \n") -}}
 {{- $b64 := $first | base64Encode -}}
-{{- /* Convert standard base64 to base64url: + → -, / → _, strip = */ -}}
 {{- $b64url := replace (replace (replace $b64 "+" "-") "/" "_") "=" "" -}}
 {{- $url := printf "https://sandbox.gdql.dev?q=%s&run=1" $b64url -}}
 <div class="gdql-block">
 <pre><code class="language-gdql">{{ $raw }}</code></pre>
-<a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="gdql-try" title="Run in sandbox">▶ Try it</a>
+<div class="gdql-try-bar">
+<a href="{{ $url }}" rel="noopener noreferrer" target="_blank" class="gdql-try" title="Run in sandbox">▶ Try it in sandbox</a>
+</div>
 </div>
