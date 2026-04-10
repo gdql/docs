@@ -170,7 +170,7 @@ hr {
 }
 
 // Plain code blocks (non-gdql, e.g. shell snippets in getting-started)
-pre:not(.gdql-block pre):not(.gdql-hero-code) {
+pre:not(.gdql-block pre) {
   background: #16140f !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 8px !important;
@@ -495,9 +495,10 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
   font-weight: 800 !important;
   margin: 0 !important;
   letter-spacing: -0.04em !important;
-  background: linear-gradient(135deg, var(--syf-red) 0%, var(--syf-blue) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
+  background: linear-gradient(135deg, #fff 0%, var(--syf-red) 50%, var(--syf-blue-light) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   color: transparent !important;
   line-height: 1;
 }
@@ -554,30 +555,17 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
   border-color: rgba(255, 255, 255, 0.2);
   color: rgba(232, 228, 214, 0.9) !important;
   &:hover {
-    border-color: var(--syf-blue-light);
-    color: var(--syf-blue-light) !important;
+    border-color: var(--syf-red-light);
+    color: var(--syf-red-light) !important;
     transform: translateY(-2px);
   }
 }
-.gdql-hero-code {
-  display: inline-block;
+// Hero code block: centered mac-window inside the hero section
+.gdql-hero-block {
+  display: inline-block !important;
   text-align: left;
   margin: 0 auto !important;
-  padding: 1.25rem 1.75rem !important;
-  background: rgba(0, 0, 0, 0.4) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-left: 3px solid var(--syf-red) !important;
-  border-radius: 8px !important;
-  font-family: 'JetBrains Mono', ui-monospace, monospace !important;
-  font-size: 0.85rem !important;
-  line-height: 1.7;
-  max-width: 100%;
-  overflow-x: auto;
-  code {
-    background: transparent !important;
-    color: rgba(232, 228, 214, 0.95) !important;
-    font-size: inherit !important;
-  }
+  max-width: 90%;
 }
 
 // Section after hero
