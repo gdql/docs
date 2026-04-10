@@ -98,34 +98,27 @@ h1 a, h2 a, h3 a, h4 a {
   }
 }
 
-// Links
+// Links — warm tones on dark background
 a {
-  color: var(--syf-blue) !important;
+  color: var(--syf-blue-light) !important;
   text-decoration: none;
   transition: color 0.15s;
   &:hover {
-    color: var(--syf-red) !important;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  a {
-    color: var(--syf-blue-light) !important;
-    &:hover {
-      color: var(--syf-red-light) !important;
-    }
+    color: var(--syf-red-light) !important;
   }
 }
 
 // Buttons (Get started)
 .btn-primary {
-  background: linear-gradient(135deg, var(--syf-blue) 0%, var(--syf-blue-dark) 100%) !important;
+  background: linear-gradient(135deg, var(--syf-red) 0%, var(--syf-red-dark) 100%) !important;
   border: 0 !important;
   font-weight: 600 !important;
   padding: 0.5rem 1.25rem !important;
-  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.3);
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(230, 57, 70, 0.35);
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(0, 119, 182, 0.4);
+    box-shadow: 0 4px 14px rgba(230, 57, 70, 0.5);
   }
 }
 
@@ -186,6 +179,28 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
     font-size: 0.85rem !important;
     border: 0 !important;
     padding: 0 !important;
+  }
+}
+
+// Expressive-code (Doks terminal blocks): merge header+code, no gap
+.expressive-code figure.frame {
+  margin: 1.5rem 0 !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+
+  figcaption.header {
+    background: linear-gradient(180deg, #2a2620 0%, #1f1c17 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 0.55rem 0.85rem !important;
+    margin: 0 !important;
+  }
+  .highlight pre {
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #16140f !important;
   }
 }
 

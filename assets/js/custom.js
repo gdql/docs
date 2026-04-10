@@ -131,8 +131,8 @@
     // Keywords
     code = code.replace(KW_RE, '<span class="gd-kw">$1</span>');
 
-    // Operators: > >> ~> = != < > <= >=
-    code = code.replace(/(&gt;&gt;|~&gt;|&gt;|&lt;|=|!=)/g, '<span class="gd-op">$1</span>');
+    // Operators: >> ~> > >= <= != (no standalone = to avoid matching inside HTML attrs)
+    code = code.replace(/(&gt;&gt;|~&gt;|&gt;=|&lt;=|!=|&gt;|&lt;)/g, '<span class="gd-op">$1</span>');
 
     // Restore placeholders
     code = code.replace(/\x00(\d+)\x00/g, function (_, i) { return placeholders[+i]; });
