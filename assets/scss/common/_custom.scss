@@ -242,7 +242,7 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
     backdrop-filter: none !important;
     background: rgba(0, 0, 0, 0.4) !important;
   }
-  // Offcanvas panel: solid background and on top of backdrop so menu is readable and tappable
+  // Offcanvas panel: solid dark background, light text, on top of backdrop
   .offcanvas,
   .offcanvas-start,
   .offcanvas-end,
@@ -251,7 +251,27 @@ pre:not(.gdql-block pre):not(.gdql-hero-code) {
     z-index: 1055;
     touch-action: manipulation;
     -webkit-overflow-scrolling: touch;
-    background: var(--bs-body-bg, #fff) !important;
+    background: #14120e !important;
+    color: #e8e4d6 !important;
+
+    .offcanvas-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      .offcanvas-title { color: #e8e4d6 !important; }
+      .btn-close { filter: invert(1) brightness(0.8); }
+    }
+    .nav-link,
+    a {
+      color: rgba(232, 228, 214, 0.8) !important;
+      &:hover { color: var(--syf-red-light) !important; }
+    }
+    .nav-link.active,
+    a[aria-current="page"] {
+      color: var(--syf-red-light) !important;
+      font-weight: 600;
+    }
+    summary {
+      color: rgba(232, 228, 214, 0.6) !important;
+    }
   }
   // Larger tap target for hamburger and section menu (Doks uses btn + data-bs-toggle)
   .navbar .btn[data-bs-toggle="offcanvas"],
