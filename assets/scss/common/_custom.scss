@@ -80,23 +80,35 @@ h3, .docs-content h3 {
 }
 
 // Tighten all spacing inside docs content
-.docs-content {
-  p {
-    margin-top: 0.25rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  h2 + p, h3 + p, h4 + p {
-    margin-top: 0.1rem !important;
-  }
-  h2 + table, h3 + table,
-  h2 + .gdql-block, h3 + .gdql-block,
-  h2 + pre, h3 + pre {
-    margin-top: 0.35rem !important;
-  }
-  table {
-    margin-top: 0.35rem !important;
-    margin-bottom: 0.5rem !important;
-  }
+.docs-content p {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+.docs-content h2 + p,
+.docs-content h3 + p,
+.docs-content h4 + p {
+  margin-top: 0.1rem !important;
+}
+.docs-content h2 + table,
+.docs-content h3 + table,
+.docs-content h2 + .gdql-block,
+.docs-content h3 + .gdql-block,
+.docs-content h2 + pre,
+.docs-content h3 + pre {
+  margin-top: 0.35rem !important;
+}
+.docs-content table {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+// Kill the 6rem invisible anchor spacer that Doks adds before headings
+.docs-content > h2[id]::before,
+.docs-content > h3[id]::before,
+.docs-content > h4[id]::before {
+  height: 0 !important;
+  margin-top: 0 !important;
+  display: none !important;
 }
 
 // Anchor link icons next to headings (Doks adds # marks)
