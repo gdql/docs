@@ -59,7 +59,7 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 0.75rem !important;
+  margin-bottom: 0.4rem !important;
 }
 h2, .docs-content h2 {
   font-size: 1.6rem !important;
@@ -79,17 +79,24 @@ h3, .docs-content h3 {
   color: #f0ede4 !important;
 }
 
-// Tighten paragraph spacing after headings
-h2 + p, h3 + p, h4 + p,
-.docs-content h2 + p, .docs-content h3 + p {
-  margin-top: 0.1rem !important;
-}
-
-// Tighten spacing between headings and following elements
-h2 + table, h3 + table,
-h2 + .gdql-block, h3 + .gdql-block,
-h2 + pre, h3 + pre {
-  margin-top: 0.4rem !important;
+// Tighten all spacing inside docs content
+.docs-content {
+  p {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  h2 + p, h3 + p, h4 + p {
+    margin-top: 0.1rem !important;
+  }
+  h2 + table, h3 + table,
+  h2 + .gdql-block, h3 + .gdql-block,
+  h2 + pre, h3 + pre {
+    margin-top: 0.35rem !important;
+  }
+  table {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.5rem !important;
+  }
 }
 
 // Anchor link icons next to headings (Doks adds # marks)
@@ -636,7 +643,7 @@ pre:not(.gdql-block pre) {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin: 0 0 1.75rem;
+  margin: 0 0 0.5rem;
   padding: 0.65rem 1rem;
   background: linear-gradient(135deg, rgba(230, 57, 70, 0.08), rgba(0, 119, 182, 0.08));
   border: 1px solid rgba(230, 57, 70, 0.18);
