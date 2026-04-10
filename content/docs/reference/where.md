@@ -4,7 +4,6 @@ description: "GDQL WHERE: segues, set position, PLAYED, GUEST, LENGTH, and AND/O
 weight: 10
 ---
 
-# WHERE conditions
 
 Used in `SHOWS ... WHERE ...` to filter shows by segues, set position, who played, guests, and song length.
 

@@ -4,7 +4,6 @@ description: "GDQL conventions: case, strings, comments, and statement rules."
 weight: 0
 ---
 
-# Conventions
 
 These rules apply across all GDQL statements.
 

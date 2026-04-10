@@ -4,7 +4,6 @@ description: "Add GDQL syntax highlighting to your docs site, blog, or editor."
 weight: 15
 ---
 
-# Syntax highlighting
 
 A Prism.js language definition for GDQL is published with the docs site. Drop it into any page that uses Prism, or use it as a starting point for an editor grammar.
 

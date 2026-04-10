@@ -4,7 +4,6 @@ description: "GDQL SETLIST: get the setlist for a single date (e.g. SETLIST FOR 
 weight: 4
 ---
 
-# SETLIST
 
 Get the setlist for a single date.
 

@@ -4,7 +4,6 @@ description: "GDQL SHOWS: list shows with FROM, WHERE, ORDER BY, LIMIT, and AS f
 weight: 1
 ---
 
-# SHOWS
 
 List shows, optionally filtered by date range and conditions.
 

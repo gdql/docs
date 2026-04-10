@@ -4,7 +4,6 @@ description: "Ready-to-run GDQL examples: shows by year, venue, and segue, setli
 weight: 12
 ---
 
-# Example queries
 
 Ready-to-run GDQL for common tasks. Click **Try it** to run any query in the [sandbox](https://sandbox.gdql.dev). See the [language reference]({{< relref "reference" >}}) for full syntax.
 

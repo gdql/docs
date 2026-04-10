@@ -4,7 +4,6 @@ description: "GDQL SONGS: list songs with WITH LYRICS, WRITTEN, ORDER BY, LIMIT.
 weight: 2
 ---
 
-# SONGS
 
 List songs in the catalog, optionally filtered by lyrics and written date.
 

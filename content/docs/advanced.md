@@ -4,7 +4,6 @@ description: "Complex multi-clause GDQL queries showing what the language can do
 weight: 14
 ---
 
-# Advanced queries
 
 Real Deadhead questions answered with chained, multi-clause GDQL. Every example below was verified to return real results against the live dataset. Click **▶ Try it** to run any query in the [sandbox](https://sandbox.gdql.dev).
 

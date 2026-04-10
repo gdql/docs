@@ -4,7 +4,6 @@ description: "GDQL PERFORMANCES: list performances of a song with FROM, WITH LEN
 weight: 3
 ---
 
-# PERFORMANCES
 
 List performances of a specific song across shows.
 

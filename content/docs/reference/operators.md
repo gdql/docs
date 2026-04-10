@@ -4,7 +4,6 @@ description: "GDQL operators: segues, logical (AND/OR/NOT), comparisons, dates/e
 weight: 11
 ---
 
-# Operators
 
 Reference for segue tokens, logical operators, comparisons, dates/eras, and output formats.
 

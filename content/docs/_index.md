@@ -4,7 +4,6 @@ description: "GDQL docs: getting started, language reference, conventions, opera
 url: "/guide/"
 ---
 
-# Documentation
 
 ## Start here
 

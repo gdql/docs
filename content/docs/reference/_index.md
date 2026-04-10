@@ -4,7 +4,6 @@ description: "GDQL language reference: query types (SHOWS, SONGS, PERFORMANCES, 
 weight: 20
 ---
 
-# Language reference
 
 Full syntax for GDQL. For conventions (case, strings, comments), see [Conventions]({{< relref "conventions" >}}).
 

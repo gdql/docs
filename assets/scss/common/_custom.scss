@@ -1,9 +1,9 @@
 // Optional custom styles for Doks.
 // See https://getdoks.org/docs/guides/styles/
 
-// === GDQL Steal Your Face theme ===
+// === GDQL Steal Your Face theme — DARK MODE ONLY ===
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --syf-red: #e63946;
@@ -13,28 +13,37 @@
   --syf-blue-dark: #005f8a;
   --syf-blue-light: #5fb3e8;
   --syf-gold: #f4a900;
-  --syf-cream: #f7f5f0;
   --syf-charcoal: #1a1815;
 }
 
-// Body & typography
+// Force dark mode site-wide. Hide the theme toggle entirely.
+html,
+html[data-bs-theme="light"],
+html[data-bs-theme="dark"] {
+  color-scheme: dark !important;
+  --bs-body-bg: #0f0e0c !important;
+  --bs-body-color: #e8e4d6 !important;
+}
+
+// Hide theme switcher (Doks puts it in the navbar)
+.color-mode-toggler,
+[data-bs-toggle="color-mode"],
+.theme-toggle,
+button[aria-label*="dark" i],
+button[aria-label*="light" i],
+button[aria-label*="theme" i] {
+  display: none !important;
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
   background:
-    radial-gradient(ellipse at top left, rgba(230, 57, 70, 0.04), transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(0, 119, 182, 0.04), transparent 50%) !important;
+    radial-gradient(ellipse at top left, rgba(255, 90, 71, 0.06), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(95, 179, 232, 0.06), transparent 50%),
+    #0f0e0c !important;
   background-attachment: fixed !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background:
-      radial-gradient(ellipse at top left, rgba(255, 90, 71, 0.06), transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(95, 179, 232, 0.06), transparent 50%),
-      #0f0e0c !important;
-    background-attachment: fixed !important;
-    color: #e8e4d6 !important;
-  }
+  color: #e8e4d6 !important;
+  -webkit-font-smoothing: antialiased;
 }
 
 // Headings
@@ -44,14 +53,32 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.015em !important;
 }
 
-h1 { font-size: 2.5rem !important; }
+h1 {
+  font-size: 2.5rem !important;
+  background: linear-gradient(135deg, #fff 0%, #d4cfc0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem !important;
+}
 h2 {
-  font-size: 1.75rem !important;
+  font-size: 1.6rem !important;
   margin-top: 2.5rem !important;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(230, 57, 70, 0.15);
+  color: #f0ede4 !important;
 }
-h3 { font-size: 1.3rem !important; }
+h3 {
+  font-size: 1.2rem !important;
+  color: #f0ede4 !important;
+}
+
+// Anchor link icons next to headings (Doks adds # marks)
+h1 a, h2 a, h3 a, h4 a {
+  color: rgba(230, 57, 70, 0.5) !important;
+  text-decoration: none !important;
+  &:hover { color: var(--syf-red) !important; }
+}
 
 // Brand: navbar wordmark with bolt
 .navbar-brand {
@@ -126,19 +153,13 @@ thead th {
 
 // Inline code
 :not(pre) > code {
-  background: rgba(230, 57, 70, 0.08) !important;
-  color: var(--syf-red-dark) !important;
+  background: rgba(255, 90, 71, 0.1) !important;
+  color: var(--syf-red-light) !important;
   padding: 0.1em 0.4em !important;
   border-radius: 4px !important;
   font-family: 'JetBrains Mono', ui-monospace, monospace !important;
   font-size: 0.85em !important;
-  border: 1px solid rgba(230, 57, 70, 0.15) !important;
-}
-@media (prefers-color-scheme: dark) {
-  :not(pre) > code {
-    color: var(--syf-red-light) !important;
-    background: rgba(255, 90, 71, 0.1) !important;
-  }
+  border: 1px solid rgba(230, 57, 70, 0.2) !important;
 }
 
 // HR with accent
@@ -148,6 +169,40 @@ hr {
   background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.3), transparent) !important;
   margin: 2rem 0 !important;
   opacity: 1 !important;
+}
+
+// Plain code blocks (non-gdql, e.g. shell snippets in getting-started)
+pre:not(.gdql-block pre):not(.gdql-hero-code) {
+  background: #16140f !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  padding: 1rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+
+  code {
+    background: transparent !important;
+    color: #e8e4d6 !important;
+    font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+    font-size: 0.85rem !important;
+    border: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+// Sidebar
+.docs-links, .doks-sidebar {
+  background: transparent !important;
+}
+.docs-links .nav-link {
+  color: rgba(232, 228, 214, 0.7) !important;
+  &:hover { color: var(--syf-red-light) !important; }
+}
+
+// "On this page" right sidebar
+.page-links a {
+  color: rgba(232, 228, 214, 0.6) !important;
+  font-size: 0.85rem !important;
+  &:hover { color: var(--syf-red-light) !important; }
 }
 
 // --- Mobile: menus and sidebar work on touch; no blur so menu stays usable ---
@@ -266,85 +321,94 @@ hr {
   font-size: 0.9rem;
 }
 
-// gdql shortcode: code block + Try-it button
+// gdql code block: mac-window-style, dark, colored dots
 .gdql-block {
   margin: 1.5rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 3px solid #e63946;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   overflow: hidden;
-  background: #1a1815;
+  background: #16140f;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  // Mac-style window controls bar
+  .gdql-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.85rem;
+    background: linear-gradient(180deg, #2a2620 0%, #1f1c17 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .gdql-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.3);
+  }
+  .gdql-dot-red    { background: #ff5f57; }
+  .gdql-dot-yellow { background: #febc2e; }
+  .gdql-dot-green  { background: #28c840; }
 
   pre {
     margin: 0 !important;
-    padding: 1.1rem 1.25rem !important;
+    padding: 1.1rem 1.25rem 1.1rem 1.25rem !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
     overflow: visible !important;
-
-    code {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace !important;
-      font-size: 0.875rem !important;
-      line-height: 1.7 !important;
-      white-space: pre-wrap !important;
-      word-break: break-word !important;
-      overflow-wrap: anywhere !important;
-      background: transparent !important;
-      display: block;
-    }
+    text-indent: 0 !important;
   }
 
-  // Footer bar with the Try button — separate row, no overlap
+  pre code {
+    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace !important;
+    font-size: 0.875rem !important;
+    line-height: 1.7 !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    background: transparent !important;
+    display: block !important;
+    text-indent: 0 !important;
+    padding: 0 !important;
+    color: #e8e4d6 !important;
+  }
+
+  // Footer bar with the Try button
   .gdql-try-bar {
     display: flex;
     justify-content: flex-end;
-    padding: 0.35rem 0.6rem;
-    background: rgba(0, 0, 0, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.4rem 0.85rem;
+    background: rgba(0, 0, 0, 0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .gdql-try {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.2rem 0.65rem;
+    padding: 0.25rem 0.75rem;
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.4;
-    letter-spacing: 0.02em;
-    background: rgba(230, 57, 70, 0.12);
+    letter-spacing: 0.04em;
+    background: rgba(230, 57, 70, 0.15);
     color: #ff6b6b;
-    border: 1px solid rgba(230, 57, 70, 0.35);
+    border: 1px solid rgba(230, 57, 70, 0.4);
     border-radius: 999px;
-    text-decoration: none;
+    text-decoration: none !important;
     transition: all 0.15s ease;
     white-space: nowrap;
     text-transform: uppercase;
+    font-family: 'Inter', sans-serif !important;
 
     &:hover {
       background: #e63946;
-      color: #fff;
+      color: #fff !important;
       border-color: #e63946;
-      text-decoration: none;
-    }
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .gdql-block {
-    background: #f7f5f0;
-    border-color: rgba(0, 0, 0, 0.08);
-
-    .gdql-try-bar {
-      background: rgba(0, 0, 0, 0.04);
-      border-top-color: rgba(0, 0, 0, 0.06);
-    }
-
-    .gdql-try {
-      color: #c4332e;
-      background: rgba(196, 51, 46, 0.08);
-      border-color: rgba(196, 51, 46, 0.3);
+      text-decoration: none !important;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(230, 57, 70, 0.4);
     }
   }
 }
@@ -404,9 +468,6 @@ hr {
   margin: 0.75rem 0 1rem;
   letter-spacing: -0.01em;
 }
-@media (prefers-color-scheme: light) {
-  .gdql-hero-tagline { color: #2a2620; }
-}
 .gdql-hero-stats {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.85rem;
@@ -418,9 +479,6 @@ hr {
   justify-content: center;
   strong { color: var(--syf-gold); font-weight: 600; }
   .dot { color: var(--syf-red); }
-}
-@media (prefers-color-scheme: light) {
-  .gdql-hero-stats { color: #6b6557; strong { color: var(--syf-red-dark); } }
 }
 .gdql-hero-cta {
   display: flex;
@@ -461,13 +519,6 @@ hr {
     transform: translateY(-2px);
   }
 }
-@media (prefers-color-scheme: light) {
-  .gdql-btn-ghost {
-    border-color: rgba(0, 0, 0, 0.15);
-    color: #2a2620 !important;
-    &:hover { border-color: var(--syf-blue); color: var(--syf-blue) !important; }
-  }
-}
 .gdql-hero-code {
   display: inline-block;
   text-align: left;
@@ -486,13 +537,6 @@ hr {
     background: transparent !important;
     color: rgba(232, 228, 214, 0.95) !important;
     font-size: inherit !important;
-  }
-}
-@media (prefers-color-scheme: light) {
-  .gdql-hero-code {
-    background: rgba(255, 255, 255, 0.7) !important;
-    border-color: rgba(0, 0, 0, 0.1) !important;
-    code { color: #2a2620 !important; }
   }
 }
 

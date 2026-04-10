@@ -1,4 +1,12 @@
+{{- /*
+  Markdown render hook for ```gdql code blocks.
+
+  Wraps every gdql code fence in a .gdql-block with mac-style window dots,
+  syntax-highlighted code, and a Try-it sandbox link generated from the
+  query text via base64url encoding.
+*/ -}}
 {{- $raw := trim .Inner "\n " -}}
+{{- /* For the sandbox link, take the first complete query (terminated by ;) */ -}}
 {{- $first := index (split $raw ";") 0 -}}
 {{- $first = printf "%s;" (trim $first " \n") -}}
 {{- $b64 := $first | base64Encode -}}

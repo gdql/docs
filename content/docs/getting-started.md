@@ -4,7 +4,6 @@ description: "Install the GDQL CLI, get or create the database, and run your fir
 weight: 10
 ---
 
-# Getting started
 
 Install the CLI, create or download the database, and run a query.
 
