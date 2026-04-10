@@ -12,7 +12,7 @@ weight: 2
 ## Synopsis
 
 ```gdql
-SONGS [ WITH LYRICS("word1", "word2", ...) ]
+SONGS [ WITH condition [AND | OR | , condition ...] ]
       [ WRITTEN date_or_range ]
       [ ORDER BY sort_spec ]
       [ LIMIT n ]
@@ -25,7 +25,7 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 
 ## How it works
 
-`SONGS` returns one row per song with name, writers, and play counts. `WITH LYRICS(...)` requires that **every** word listed appears somewhere in the lyrics (it's an AND, not an OR). `WRITTEN` filters by the year the song was written, not the year it was first performed. `AS COUNT` collapses the result to a single number.
+`SONGS` returns one row per song with name, writers, and play counts. `WITH LYRICS(...)` requires that **every** word listed appears somewhere in the lyrics (it's an AND, not an OR). You can also combine multiple `WITH` conditions using `AND`, `OR`, or commas: `SONGS WITH LYRICS("sun") AND LYRICS("bus")`. `WRITTEN` filters by the year the song was written, not the year it was first performed. `AS COUNT` collapses the result to a single number.
 
 ---
 
@@ -67,6 +67,13 @@ SONGS WITH LYRICS("wheel");
 SONGS WITH LYRICS("train", "road");
 SONGS WITH LYRICS("sun", "shine");
 SONGS WITH LYRICS("river", "deep");
+```
+
+### Separate LYRICS conditions with AND
+
+```gdql
+SONGS WITH LYRICS("sun") AND LYRICS("bus");
+SONGS WITH LYRICS("train") AND LYRICS("mountain");
 ```
 
 ### Filter by when the song was written

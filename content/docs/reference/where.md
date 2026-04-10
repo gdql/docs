@@ -32,6 +32,25 @@ Segues are the heart of what makes a Grateful Dead show *that show*. GDQL has th
 
 The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence with direct segues.
 
+### Standalone segue-into
+
+You can also use segue operators without a preceding song to ask "was this song segued/teased into?"
+
+| Form | Meaning |
+|------|--------|
+| `>"Song"` | Song was directly segued into (previous song had `>` transition) |
+| `>>"Song"` | Song followed another song with a break |
+| `~>"Song"` | Song was teased into (previous song had a tease transition) |
+
+```gdql
+SHOWS WHERE ~>"Dark Star";
+SHOWS WHERE >"Fire on the Mountain";
+```
+
+### Arrow alias
+
+`->` is treated as `>` (segue), so `"Dark Star" -> "St. Stephen"` is the same as `"Dark Star" > "St. Stephen"`.
+
 ---
 
 ## Set position
@@ -47,6 +66,8 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `ENCORE = "U.S. Blues"` | Encore was this song (alias for `SET3`) |
 | `OPENER "Bertha"` | Opened the entire show — short for `SET1 OPENED` |
 | `CLOSER "Morning Dew"` | Closed the entire show — last song of the last set |
+| `OPENER ("A" > "B")` | Show opened with a segue chain (e.g., Help > Slip) |
+| `CLOSER ("A" > "B")` | Show closed with a segue chain |
 
 ---
 
@@ -109,6 +130,22 @@ SHOWS WHERE SET3 CLOSED "Brokedown Palace";
 SHOWS WHERE ENCORE = "U.S. Blues";
 SHOWS WHERE OPENER "Bertha";
 SHOWS WHERE CLOSER "Morning Dew";
+```
+
+### OPENER / CLOSER with segue chains
+
+```gdql
+SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!");
+SHOWS WHERE CLOSER ("Sugar Magnolia" > "Sunshine Daydream");
+SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
+```
+
+### Standalone segue-into
+
+```gdql
+SHOWS WHERE ~>"Dark Star";
+SHOWS WHERE >"Fire on the Mountain";
+SHOWS WHERE >>"Morning Dew";
 ```
 
 ### Played, not played, guest

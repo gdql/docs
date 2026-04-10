@@ -15,11 +15,21 @@ Connects two song names inside a `WHERE` clause.
 
 | Token | Alt | Meaning |
 |-------|-----|---------|
-| `>` | `INTO` | Direct segue (no break) |
+| `>` | `INTO`, `->` | Direct segue (no break) |
 | `>>` | `THEN` | Followed by (with a break or applause) |
 | `~>` | `TEASE` | Teased — partial quote, not a full performance |
 
 Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order with direct segues.
+
+### Standalone form
+
+Segue operators can appear without a preceding song to filter by transition type:
+
+| Form | Meaning |
+|------|---------|
+| `>"Song"` | Song was directly segued into |
+| `>>"Song"` | Song followed another song with a break |
+| `~>"Song"` | Song was teased into |
 
 ---
 
@@ -64,8 +74,8 @@ Used inside `WHERE` to filter by where a song appeared.
 | `ENCORE` | Alias for `SET3` |
 | `OPENED` | First song of the named set: `SET1 OPENED "..."` |
 | `CLOSED` | Last song of the named set: `SET2 CLOSED "..."` |
-| `OPENER` | First song of the show overall (shorthand for `SET1 OPENED`) |
-| `CLOSER` | Last song of the show overall |
+| `OPENER` | First song of the show overall (shorthand for `SET1 OPENED`). Accepts a segue chain: `OPENER ("A" > "B")` |
+| `CLOSER` | Last song of the show overall. Accepts a segue chain: `CLOSER ("A" > "B")` |
 | `=` | Equality form for `ENCORE`: `ENCORE = "..."` |
 
 ---
