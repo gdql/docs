@@ -173,10 +173,20 @@
     if (content.querySelector('.gdql-runall-bar')) return;
 
     var scripts = [];
+    // Skip blocks that aren't runnable queries: synopsis placeholders,
+    // pseudo-code fragments, or anything that doesn't start with a keyword.
+    var validStarts = /^(SHOWS|SONGS|PERFORMANCES|SETLIST|COUNT|FIRST|LAST|RANDOM)\b/i;
     blocks.forEach(function (el) {
       var t = el.textContent.trim();
-      // Skip synopsis/placeholder blocks (contain [ brackets)
-      if (!t || t.indexOf('[') !== -1) return;
+      if (!t) return;
+      // Skip synopsis/placeholder blocks
+      if (/[\[\]]/.test(t)) return;
+      // Skip pseudo-code (condition1, sort_spec, date_range, etc.)
+      if (/\b(condition|sort_spec|date_range|date_or|length_condition|date_spec|venue_or)\b/i.test(t)) return;
+      // Every line must start with a valid keyword or be a comment/blank
+      var lines = t.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l && !l.startsWith('--'); });
+      var allValid = lines.every(function (l) { return validStarts.test(l); });
+      if (!allValid) return;
       scripts.push(t.endsWith(';') ? t : t + ';');
     });
     if (!scripts.length) return;
