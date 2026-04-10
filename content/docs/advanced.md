@@ -145,7 +145,7 @@ SHOWS AFTER 1985 WHERE CLOSER "Morning Dew" ORDER BY DATE;
 
 ## COUNT with all the trimmings
 
-`COUNT` answers "how many?" for songs and shows alike. Combine it with date ranges and eras for instant trivia.
+`COUNT` answers "how many?" for songs and shows alike. Combine it with date ranges, eras, and now `WHERE` conditions for instant trivia.
 
 How many Dark Stars during the Brent era?
 
@@ -163,6 +163,18 @@ How many Scarlet Begonias performances after 1977?
 
 {{< gdql >}}
 COUNT "Scarlet Begonias" AFTER 1977;
+{{< /gdql >}}
+
+How many times did they play Help > Slip > Frank?
+
+{{< gdql >}}
+COUNT SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
+{{< /gdql >}}
+
+How many shows opened with Bertha?
+
+{{< gdql >}}
+COUNT SHOWS WHERE OPENER "Bertha";
 {{< /gdql >}}
 
 How many songs in the catalog mention both *sun* and *shine*?
@@ -311,6 +323,7 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew"
 | Opener + closer combo | `SHOWS WHERE OPENER ("A" > "B") AND CLOSER "C"` |
 | Separate LYRICS with AND | `SONGS WITH LYRICS("x") AND LYRICS("y")` |
 | Count over a date range | `COUNT "song" AFTER year` (or `BEFORE`/`FROM`) |
+| Count with WHERE | `COUNT SHOWS WHERE "A" > "B"` |
 | Songs as a count with filter | `SONGS WITH LYRICS("x", "y") AS COUNT` |
 | Random within an era | `RANDOM SHOW FROM era` |
 | Set-position filter | `SHOWS FROM year WHERE OPENER "X"` |
