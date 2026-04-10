@@ -1,7 +1,5 @@
 {{- $raw := trim .Inner "\n " -}}
-{{- $first := index (split $raw ";") 0 -}}
-{{- $first = printf "%s;" (trim $first " \n") -}}
-{{- $b64 := $first | base64Encode -}}
+{{- $b64 := $raw | base64Encode -}}
 {{- $b64url := replace (replace (replace $b64 "+" "-") "/" "_") "=" "" -}}
 {{- $url := printf "https://sandbox.gdql.dev?q=%s&run=1" $b64url -}}
 <div class="gdql-wrap">

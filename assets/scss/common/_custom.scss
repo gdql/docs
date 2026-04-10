@@ -291,6 +291,10 @@ pre:not(.gdql-block pre) {
     color: #e8e4d6 !important;
     height: 100% !important;
     max-height: 100dvh !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    // Override h-auto from theme — must be full height on mobile
+    &.h-auto { height: 100% !important; }
 
     .offcanvas-header {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -338,16 +342,21 @@ pre:not(.gdql-block pre) {
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
-  // Nav links in offcanvas: minimum touch target
+  // Nav links in offcanvas: minimum touch target, always clickable
   .offcanvas .nav-link,
   .offcanvas .dropdown-item,
   .offcanvas .page-links a,
-  #doks-docs-nav .nav-link {
+  #doks-docs-nav .nav-link,
+  .offcanvas a {
     min-height: 44px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 1;
   }
 }
 
