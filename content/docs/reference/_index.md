@@ -5,7 +5,7 @@ weight: 20
 ---
 
 
-This is the full GDQL language reference. Start with [Conventions]({{< relref "conventions" >}}) for the rules that apply everywhere, then drill into the query type or condition you need.
+This is the full GDQL (Grateful Dead Query Language) reference. Start with [Conventions]({{< relref "conventions" >}}) for the rules that apply everywhere, then drill into the query type or condition you need.
 
 ---
 

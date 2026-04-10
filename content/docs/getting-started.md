@@ -5,7 +5,7 @@ weight: 10
 ---
 
 
-This page gets you from zero to running queries. Pick the path that fits — pre-built binary or build from source — then point GDQL at a database and ask it something.
+GDQL — the **Grateful Dead Query Language** — is a CLI tool for querying Grateful Dead live performance history. This page gets you from zero to running queries. Pick the path that fits — pre-built binary or build from source — then point GDQL at a database and ask it something.
 
 ---
 

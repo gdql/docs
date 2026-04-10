@@ -102,7 +102,7 @@ SONGS WITH LYRICS("sun", "shine") AS COUNT;
 
 ## Tips
 
-- **Lyric search is substring-based**, so `"sun"` matches "sunshine", "sunlit", and "sunday". Use multiple words to narrow.
+- **Lyric search is whole-word**, so `"sun"` matches the word "sun" but not "sunshine" or "Sunday". Use shorter root words if you want broader matches.
 - **Not every song has lyrics in the database.** Instrumentals (Drums, Space) and rare songs may return zero matches even when you expect them.
 - **`AS COUNT` is great for quick "how many?" questions** — pair it with `WITH LYRICS` for instant lyric trivia.
 

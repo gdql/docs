@@ -79,6 +79,54 @@ SHOWS AT "Spectrum" WHERE "China Cat Sunflower" > "I Know You Rider";
 
 ---
 
+## Segue-into: "was this song segued into?"
+
+The standalone segue operators let you ask whether a song was *arrived at* via a specific transition — without specifying which song preceded it.
+
+Shows where Dark Star was teased into (any song tease → Dark Star):
+
+{{< gdql >}}
+SHOWS WHERE ~>"Dark Star";
+{{< /gdql >}}
+
+Shows where Fire on the Mountain was segued into directly:
+
+{{< gdql >}}
+SHOWS WHERE >"Fire on the Mountain";
+{{< /gdql >}}
+
+Combine with other conditions — shows where something segued into Dark Star and they also played Saint Stephen:
+
+{{< gdql >}}
+SHOWS WHERE ~>"Dark Star" AND PLAYED "Saint Stephen";
+{{< /gdql >}}
+
+---
+
+## OPENER / CLOSER with segue chains
+
+`OPENER` and `CLOSER` accept parenthesized segue chains, so you can ask about shows that opened or closed with a specific multi-song sequence.
+
+Shows that opened with Help > Slipknot!:
+
+{{< gdql >}}
+SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!");
+{{< /gdql >}}
+
+Shows that opened with Help > Slip and closed with Brokedown Palace:
+
+{{< gdql >}}
+SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
+{{< /gdql >}}
+
+Shows that closed with Sugar Magnolia > Sunshine Daydream:
+
+{{< gdql >}}
+SHOWS WHERE CLOSER ("Sugar Magnolia" > "Sunshine Daydream");
+{{< /gdql >}}
+
+---
+
 ## Set position with date filters
 
 Bertha openers in the early Brent era:
@@ -191,7 +239,7 @@ RANDOM SHOW FROM BRENT_ERA;
 
 ## Lyric search
 
-Find songs by what they say, not what they're called.
+Find songs by what they say, not what they're called. Lyrics are matched as whole words — `"sun"` finds songs with the word "sun" but won't match "Sunday" or "sunshine".
 
 Songs that mention both the sun and shine:
 
@@ -203,6 +251,12 @@ Songs about trains and roads:
 
 {{< gdql >}}
 SONGS WITH LYRICS("train", "road");
+{{< /gdql >}}
+
+Separate LYRICS conditions with AND — find songs that mention both "sun" and "train" anywhere in the lyrics:
+
+{{< gdql >}}
+SONGS WITH LYRICS("sun") AND LYRICS("train");
 {{< /gdql >}}
 
 Just the count for "rose":
@@ -252,6 +306,10 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew"
 | Venue + era + segue + condition | `SHOWS AT "X" FROM era WHERE "A" > "B" AND PLAYED "C"` |
 | Three-song chain + extra condition | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
 | Exclusion | `SHOWS WHERE PLAYED "X" AND NOT PLAYED "Y"` |
+| Segued into (standalone) | `SHOWS WHERE >"Song"`, `~>"Song"`, `>>"Song"` |
+| Opener segue chain | `SHOWS WHERE OPENER ("A" > "B")` |
+| Opener + closer combo | `SHOWS WHERE OPENER ("A" > "B") AND CLOSER "C"` |
+| Separate LYRICS with AND | `SONGS WITH LYRICS("x") AND LYRICS("y")` |
 | Count over a date range | `COUNT "song" AFTER year` (or `BEFORE`/`FROM`) |
 | Songs as a count with filter | `SONGS WITH LYRICS("x", "y") AS COUNT` |
 | Random within an era | `RANDOM SHOW FROM era` |

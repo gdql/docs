@@ -5,7 +5,7 @@ url: "/guide/"
 ---
 
 
-GDQL is a query language for the Grateful Dead. Ask it about shows, songs, segues, set positions, guests, and the strange in-between places only Deadheads care about — and get answers as tables, JSON, or CSV.
+GDQL (Grateful Dead Query Language) is a query language for the Grateful Dead. Ask it about shows, songs, segues, set positions, guests, and the strange in-between places only Deadheads care about — and get answers as tables, JSON, or CSV.
 
 ## Start here
 

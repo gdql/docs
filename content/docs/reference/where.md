@@ -64,8 +64,8 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `SET3 OPENED "U.S. Blues"` | Third set (the encore) opened with this song |
 | `SET3 CLOSED "Brokedown Palace"` | Third set closed with this song |
 | `ENCORE = "U.S. Blues"` | Encore was this song (alias for `SET3`) |
-| `OPENER "Bertha"` | Opened the entire show — short for `SET1 OPENED` |
-| `CLOSER "Morning Dew"` | Closed the entire show — last song of the last set |
+| `OPENER "Bertha"` | Opened the entire show — short for `SET1 OPENED`. `OPENED` also works. |
+| `CLOSER "Morning Dew"` | Closed the entire show — last song of the last set. `CLOSED` also works. |
 | `OPENER ("A" > "B")` | Show opened with a segue chain (e.g., Help > Slip) |
 | `CLOSER ("A" > "B")` | Show closed with a segue chain |
 

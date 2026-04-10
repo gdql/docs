@@ -77,6 +77,19 @@ SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
 
 -- Teased — partial quote, not a full performance
 SHOWS WHERE "Dark Star" ~> "Saint Stephen";
+
+-- Arrow alias: -> is the same as >
+SHOWS WHERE "Dark Star" -> "Saint Stephen";
+```
+
+Standalone segue-into — find shows where a song was *arrived at* via a transition:
+
+```gdql
+-- Shows where Dark Star was teased into
+SHOWS WHERE ~>"Dark Star";
+
+-- Shows where Fire on the Mountain was segued into directly
+SHOWS WHERE >"Fire on the Mountain";
 ```
 
 ---
@@ -177,7 +190,7 @@ SETLIST FOR 8/27/72;
 
 ## Song search by lyrics
 
-Search the lyric database. Multiple words are AND-ed together — every word must appear.
+Search the lyric database. Words are matched as whole words (not substrings), and multiple words are AND-ed together — every word must appear.
 
 ```gdql
 -- Songs with "sun" in the lyrics
@@ -246,6 +259,8 @@ gdql "SHOWS FROM 1977 AS JSON" | jq '.[].venue' | sort -u
 | Songs with lyrics | `SONGS WITH LYRICS("train", "road")` |
 | Long performances | `PERFORMANCES OF "Dark Star" WITH LENGTH > 20min` |
 | Opener / closer | `SHOWS WHERE OPENER "Jack Straw"` |
+| Opener segue chain | `SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!")` |
+| Segued into | `SHOWS WHERE >"Fire on the Mountain"` |
 | Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` |
 | Random show in an era | `RANDOM SHOW FROM EUROPE72` |
 | First / last performance | `FIRST "Help on the Way"`, `LAST "Saint Stephen"` |
