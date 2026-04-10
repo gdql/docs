@@ -44,6 +44,29 @@ body {
   background-attachment: fixed !important;
   color: #e8e4d6 !important;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.65 !important;
+  font-size: 15px !important;
+}
+
+// Blockquotes (used for notes)
+blockquote {
+  border-left: 3px solid var(--syf-red) !important;
+  background: rgba(230, 57, 70, 0.05) !important;
+  padding: 0.6rem 1rem !important;
+  margin: 0.75rem 0 !important;
+  border-radius: 0 6px 6px 0 !important;
+  font-size: 0.9rem !important;
+  color: rgba(232, 228, 214, 0.85) !important;
+  p { margin: 0 !important; }
+}
+
+// Lists
+.docs-content ul, .docs-content ol {
+  padding-left: 1.25rem !important;
+  li {
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+  }
 }
 
 // Headings
@@ -205,19 +228,38 @@ hr {
   display: none !important;
 }
 
-// Plain code blocks (non-gdql, e.g. shell snippets in getting-started)
-pre:not(.gdql-block pre) {
+// All code blocks: mac-window style with colored dots
+.docs-content pre:not(.gdql-block pre),
+.gdql-landing pre:not(.gdql-block pre) {
+  position: relative;
   background: #16140f !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 8px !important;
-  padding: 1rem 1.25rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  padding: 2.5rem 1.25rem 1rem !important;
   margin: 0.75rem 0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+
+  // Mac dots via pseudo-elements
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.7rem;
+    left: 0.85rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #ff5f57;
+    box-shadow:
+      20px 0 0 #febc2e,
+      40px 0 0 #28c840;
+  }
 
   code {
     background: transparent !important;
     color: #e8e4d6 !important;
-    font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace !important;
     font-size: 0.85rem !important;
+    line-height: 1.6 !important;
     border: 0 !important;
     padding: 0 !important;
   }
