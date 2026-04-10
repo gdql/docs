@@ -174,7 +174,9 @@
     var scripts = [];
     blocks.forEach(function (el) {
       var t = el.textContent.trim();
-      if (t) scripts.push(t.endsWith(';') ? t : t + ';');
+      // Skip synopsis/placeholder blocks (contain [ brackets)
+      if (!t || t.indexOf('[') !== -1) return;
+      scripts.push(t.endsWith(';') ? t : t + ';');
     });
     if (!scripts.length) return;
 
