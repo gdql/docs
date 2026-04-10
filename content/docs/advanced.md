@@ -49,6 +49,12 @@ Fillmore '69 shows that opened with Dark Star and brought back Saint Stephen:
 SHOWS AT "Fillmore" FROM 1969 WHERE OPENER "Dark Star" AND PLAYED "Saint Stephen";
 {{< /gdql >}}
 
+Shows that opened with either Jack Straw or Bertha — the two classic first-set openers:
+
+{{< gdql >}}
+SHOWS WHERE OPENER "Jack Straw" OR OPENER "Bertha" LIMIT 20;
+{{< /gdql >}}
+
 How many times they played Eyes of the World in 1974, the song's first full year:
 
 {{< gdql >}}

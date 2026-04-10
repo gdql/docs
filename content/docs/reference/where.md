@@ -135,7 +135,7 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain"
   AND PLAYED "Estimated Prophet";
 
 SHOWS WHERE SET1 OPENED "Jack Straw"
-  AND PLAYED "Deal";
+  OR SET1 OPENED "Bertha";
 
 SHOWS WHERE PLAYED "Dark Star"
   AND NOT PLAYED "Saint Stephen";
