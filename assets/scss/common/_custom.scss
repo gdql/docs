@@ -63,8 +63,8 @@ h1 {
 }
 h2, .docs-content h2 {
   font-size: 1.6rem !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.1rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.15rem !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   border-bottom: none !important;
@@ -181,13 +181,16 @@ thead th {
   border: 1px solid rgba(230, 57, 70, 0.2) !important;
 }
 
-// HR with accent — tight spacing, just a visual separator
+// HR — hide in docs content (h2 bolt provides separation); keep elsewhere
 hr {
   border: 0 !important;
   height: 1px !important;
   background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.2), transparent) !important;
   margin: 0.5rem 0 0 !important;
   opacity: 1 !important;
+}
+.docs-content hr {
+  display: none !important;
 }
 
 // Plain code blocks (non-gdql, e.g. shell snippets in getting-started)
