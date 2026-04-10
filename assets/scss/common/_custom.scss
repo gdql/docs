@@ -116,3 +116,47 @@
   margin-top: 0.25rem;
   font-size: 0.9rem;
 }
+
+// gdql shortcode: code block + Try-it button
+.gdql-block {
+  position: relative;
+  margin: 1.25rem 0;
+
+  pre {
+    margin: 0;
+    padding-right: 5rem; // make room for the Try button
+  }
+
+  .gdql-try {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    background: rgba(230, 57, 70, 0.15);
+    color: #e63946;
+    border: 1px solid rgba(230, 57, 70, 0.4);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+
+    &:hover {
+      background: #e63946;
+      color: #fff;
+      border-color: #e63946;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gdql-block .gdql-try {
+    background: rgba(255, 90, 71, 0.18);
+    color: #ff7a5c;
+    border-color: rgba(255, 90, 71, 0.5);
+  }
+}

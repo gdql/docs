@@ -17,8 +17,8 @@ These rules apply across all GDQL statements.
 You can write `SHOWS`, `shows`, or `Shows`. Song names and other string literals follow the casing you use in quotes.
 
 ```gdql
-SHOWS WHERE DATE = 5/8/77;
-shows where date = 5/8/77;
+SETLIST FOR 5/8/77;
+setlist for 5/8/77;
 Shows From 1977 Limit 5;
 ```
 
@@ -29,12 +29,12 @@ Shows From 1977 Limit 5;
 **Use double quotes for string literals** (song names, venue names, etc.).
 
 ```gdql
-SONGS WHERE TITLE = "Scarlet Begonias";
-SHOWS WHERE VENUE CONTAINS "Winterland";
 PERFORMANCES OF "Eyes of the World";
+SHOWS AT "Winterland";
+SHOWS WHERE PLAYED "Scarlet Begonias";
 ```
 
-Single quotes are not used for strings in GDQL. Song and venue names always use double quotes, e.g. `"Scarlet Begonias"`, `"Winterland"`.
+Single quotes are also accepted (handy when shell escaping is awkward), e.g. `'Scarlet Begonias'`.
 
 ---
 
@@ -43,10 +43,8 @@ Single quotes are not used for strings in GDQL. Song and venue names always use 
 **Line comments start with `--`.** Everything from `--` to the end of the line is ignored.
 
 ```gdql
--- List shows from May 1977
-SHOWS WHERE DATE IN 5/77
-ORDER BY DATE
-LIMIT 10;
+-- Cornell '77 setlist
+SETLIST FOR 5/8/77;
 ```
 
 ```gdql
@@ -63,7 +61,6 @@ There is no block comment syntax.
 **Statements can optionally end with a semicolon (`;`).** Multiple statements in one input are separated by semicolons.
 
 ```gdql
-SHOWS WHERE DATE = 5/8/77;
 SETLIST FOR 5/8/77
 ```
 

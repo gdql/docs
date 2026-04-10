@@ -1,215 +1,226 @@
 ---
 title: Advanced queries
-description: "Complex GDQL queries showing off the language: counts, first/last, random shows, multi-segue chains, combined filters."
-weight: 13
+description: "Complex multi-clause GDQL queries showing what the language can do."
+weight: 14
 ---
 
 # Advanced queries
 
-Real Deadhead questions, answered with GDQL. Click **Try it** to run any query in the [sandbox](https://sandbox.gdql.dev).
+These queries chain together multiple clauses, conditions, and operators. Each shows what GDQL can do when you combine its features. Click **▶ Try it** on any block to run it in the [sandbox](https://sandbox.gdql.dev).
 
 ---
 
-## How many?
+## Multi-clause filtering
 
-`COUNT` aggregates without listing rows.
+Combine venue, era, segue, and additional conditions in one query.
 
-```gdql
--- How many shows in 1977?
-COUNT SHOWS FROM 1977;
+{{< gdql >}}
+SHOWS AT "Winterland" FROM 1977-1978 WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet" ORDER BY DATE LIMIT 10;
+{{< /gdql >}}
 
--- How many times was Dark Star played?
-COUNT "Dark Star";
+Find shows at the Fillmore in '69 that opened with Dark Star and also played St. Stephen:
 
--- How many Dark Stars after the 1988 reunion?
-COUNT "Dark Star" AFTER 1988;
+{{< gdql >}}
+SHOWS AT "Fillmore" FROM 1969 WHERE OPENER "Dark Star" AND PLAYED "Saint Stephen";
+{{< /gdql >}}
 
--- How many songs mention "sun"?
-SONGS WITH LYRICS("sun") AS COUNT;
-```
+European tour shows that featured Eyes of the World, ordered by date:
 
-[Try: shows in '77](https://sandbox.gdql.dev?q=Q09VTlQgU0hPV1MgRlJPTSAxOTc3Ow&run=1) | [Try: Dark Star total](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciI7&run=1) | [Try: Dark Star after '88](https://sandbox.gdql.dev?q=Q09VTlQgIkRhcmsgU3RhciIgQUZURVIgMTk4ODs&run=1) | [Try: lyrics count](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInN1biIpIEFTIENPVU5UOw&run=1)
+{{< gdql >}}
+SHOWS FROM EUROPE72 WHERE PLAYED "Eyes of the World" ORDER BY DATE;
+{{< /gdql >}}
 
 ---
 
-## First and last performances
+## Three-song segues with extra conditions
 
-`FIRST` and `LAST` jump straight to a song's earliest and latest live show.
+Find the legendary Help > Slip > Frank, but only at shows that also featured Dark Star, in the 1976 tour, ordered by date:
 
-```gdql
--- The first time the band played Dark Star
-FIRST "Dark Star";
+{{< gdql >}}
+SHOWS FROM 1976 WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower" AND PLAYED "Dark Star" ORDER BY DATE;
+{{< /gdql >}}
 
--- And the last
+The classic primal trio at the Fillmore West:
+
+{{< gdql >}}
+SHOWS AT "Fillmore West" WHERE "Dark Star" > "Saint Stephen" > "The Eleven" ORDER BY DATE;
+{{< /gdql >}}
+
+China > Rider in Brent's first year, that also closed with US Blues:
+
+{{< gdql >}}
+SHOWS FROM 1979 WHERE "China Cat Sunflower" > "I Know You Rider" AND CLOSER "U.S. Blues";
+{{< /gdql >}}
+
+---
+
+## Set position with date filters
+
+Shows opened with Bertha during the early Brent era, in chronological order:
+
+{{< gdql >}}
+SHOWS FROM 1979-1981 WHERE OPENER "Bertha" ORDER BY DATE;
+{{< /gdql >}}
+
+Late-era Morning Dew closers (a rare and meaningful combo):
+
+{{< gdql >}}
+SHOWS AFTER 1985 WHERE CLOSER "Morning Dew" ORDER BY DATE;
+{{< /gdql >}}
+
+---
+
+## COUNT with all the trimmings
+
+How many times did they play Dark Star during the Brent era?
+
+{{< gdql >}}
+COUNT "Dark Star" FROM BRENT_ERA;
+{{< /gdql >}}
+
+How many shows in the band's first decade?
+
+{{< gdql >}}
+COUNT SHOWS BEFORE 1976;
+{{< /gdql >}}
+
+How many Scarlet Begonias performances after Fire on the Mountain debuted (March 1977)?
+
+{{< gdql >}}
+COUNT "Scarlet Begonias" AFTER 1977;
+{{< /gdql >}}
+
+How many songs in the catalog mention both "rose" and "garden"?
+
+{{< gdql >}}
+SONGS WITH LYRICS("rose", "garden") AS COUNT;
+{{< /gdql >}}
+
+---
+
+## FIRST and LAST
+
+The very first time Help on the Way was played:
+
+{{< gdql >}}
+FIRST "Help on the Way";
+{{< /gdql >}}
+
+The last time the band ever played Saint Stephen:
+
+{{< gdql >}}
+LAST "Saint Stephen";
+{{< /gdql >}}
+
+The last Dark Star (a famous bookend, March 30, 1994):
+
+{{< gdql >}}
 LAST "Dark Star";
-
--- Last time Saint Stephen was played
-LAST "Saint Stephen";
-```
-
-[Try: First Dark Star](https://sandbox.gdql.dev?q=RklSU1QgIkRhcmsgU3RhciI7&run=1) | [Try: Last Dark Star](https://sandbox.gdql.dev?q=TEFTVCAiRGFyayBTdGFyIjs&run=1) | [Try: Last St. Stephen](https://sandbox.gdql.dev?q=TEFTVCAiU2FpbnQgU3RlcGhlbiI7&run=1)
+{{< /gdql >}}
 
 ---
 
-## Random show
+## Comparing eras
 
-Pick a setlist at random — great for discovery, or settling arguments.
+How many shows in each era? Run these and compare:
 
-```gdql
--- Surprise me
-RANDOM SHOW;
+{{< gdql >}}
+COUNT SHOWS FROM PRIMAL;
+{{< /gdql >}}
 
--- Surprise me, but only from 1977
-RANDOM SHOW FROM 1977;
-```
+{{< gdql >}}
+COUNT SHOWS FROM EUROPE72;
+{{< /gdql >}}
 
-[Try: any show](https://sandbox.gdql.dev?q=UkFORE9NIFNIT1c7&run=1) | [Try: from '77](https://sandbox.gdql.dev?q=UkFORE9NIFNIT1cgRlJPTSAxOTc3Ow&run=1)
+{{< gdql >}}
+COUNT SHOWS FROM BRENT_ERA;
+{{< /gdql >}}
 
----
-
-## Open-ended date ranges
-
-`AFTER` and `BEFORE` work where you'd use `FROM` for a range.
-
-```gdql
--- Shows after the Brent era ended
-SHOWS AFTER 1990 LIMIT 10;
-
--- Pre-1970 Dark Star sightings
-SHOWS BEFORE 1970 WHERE PLAYED "Dark Star";
-
--- Count Dark Stars across the entire reunion era
-COUNT "Dark Star" AFTER 1988;
-```
-
-[Try: pre-1970 Dark Star](https://sandbox.gdql.dev?q=U0hPV1MgQkVGT1JFIDE5NzAgV0hFUkUgUExBWUVEICJEYXJrIFN0YXIiOw&run=1)
+{{< gdql >}}
+COUNT SHOWS FROM VINCE_ERA;
+{{< /gdql >}}
 
 ---
 
-## Three-song segue chains
+## Discovery: random show from a specific era
 
-Chain `>` operators to find specific song sequences.
+Surprise me with a show from each era:
 
-```gdql
--- The classic primal trio
-SHOWS WHERE "Dark Star" > "Saint Stephen" > "The Eleven";
+{{< gdql >}}
+RANDOM SHOW FROM PRIMAL;
+{{< /gdql >}}
 
--- Help > Slip > Frank
-SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
+{{< gdql >}}
+RANDOM SHOW FROM EUROPE72;
+{{< /gdql >}}
 
--- Help > Slip > Frank with Dark Star anywhere in the show
-SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower"
-  AND PLAYED "Dark Star";
-```
-
-[Try: Dark Star > St. Stephen > The Eleven](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkRhcmsgU3RhciIgPiAiU2FpbnQgU3RlcGhlbiIgPiAiVGhlIEVsZXZlbiI7&run=1) | [Try: Help > Slip > Frank](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkhlbHAgb24gdGhlIFdheSIgPiAiU2xpcGtub3QhIiA-ICJGcmFua2xpbidzIFRvd2VyIjs&run=1) | [Try: H>S>F + Dark Star](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgIkhlbHAgb24gdGhlIFdheSIgPiAiU2xpcGtub3QhIiA-ICJGcmFua2xpbidzIFRvd2VyIiBBTkQgUExBWUVEICJEYXJrIFN0YXIiOw&run=1)
+{{< gdql >}}
+RANDOM SHOW FROM BRENT_ERA;
+{{< /gdql >}}
 
 ---
 
-## Openers and closers
+## Lyric search across eras
 
-`OPENER` and `CLOSER` find any set opened/closed with a song (no need to specify SET1/SET2).
+Songs about water, written in the early years:
 
-```gdql
--- Every show that opened (any set) with Bertha
-SHOWS WHERE OPENER "Bertha";
+{{< gdql >}}
+SONGS WITH LYRICS("water") WRITTEN 1968-1972;
+{{< /gdql >}}
 
--- Every show that ended a set with Morning Dew
-SHOWS WHERE CLOSER "Morning Dew";
-```
+Songs that mention both trains and mountains:
 
-[Try: Bertha opener](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgT1BFTkVSICJCZXJ0aGEiOw&run=1) | [Try: Dew closer](https://sandbox.gdql.dev?q=U0hPV1MgV0hFUkUgQ0xPU0VSICJNb3JuaW5nIERldyI7&run=1)
+{{< gdql >}}
+SONGS WITH LYRICS("train", "mountain");
+{{< /gdql >}}
 
----
+Songs about the sun, just count them:
 
-## Filter by tour
-
-`TOUR` matches the tour name (partial match).
-
-```gdql
-SHOWS TOUR "Spring 1977";
-SHOWS TOUR "Europe 72";
-```
-
-[Try: Spring '77 tour](https://sandbox.gdql.dev?q=U0hPV1MgVE9VUiAiU3ByaW5nIDE5NzciOw&run=1) | [Try: Europe '72](https://sandbox.gdql.dev?q=U0hPV1MgVE9VUiAiRXVyb3BlIDcyIjs&run=1)
-
----
-
-## Combine venue, date, and segue
-
-GDQL clauses compose freely. The order is `AT → TOUR → FROM/BEFORE/AFTER → WHERE → ORDER BY → LIMIT → AS`.
-
-```gdql
--- Scarlet > Fire at Winterland (any year)
-SHOWS AT "Winterland" WHERE "Scarlet Begonias" > "Fire on the Mountain";
-
--- Dark Star at the Fillmore in 1969
-SHOWS AT "Fillmore" FROM 1969 WHERE PLAYED "Dark Star";
-
--- China > Rider at the Spectrum in Philly
-SHOWS AT "Spectrum" WHERE "China Cat Sunflower" INTO "I Know You Rider";
-
--- Eyes of the World during the Europe '72 tour
-SHOWS FROM EUROPE72 WHERE PLAYED "Eyes of the World";
-```
-
-[Try: Winterland Scarlet > Fire](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIldpbnRlcmxhbmQiIFdIRVJFICJTY2FybGV0IEJlZ29uaWFzIiA-ICJGaXJlIG9uIHRoZSBNb3VudGFpbiI7&run=1) | [Try: Fillmore '69 + Dark Star](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIkZpbGxtb3JlIiBGUk9NIDE5NjkgV0hFUkUgUExBWUVEICJEYXJrIFN0YXIiOw&run=1) | [Try: China > Rider Spectrum](https://sandbox.gdql.dev?q=U0hPV1MgQVQgIlNwZWN0cnVtIiBXSEVSRSAiQ2hpbmEgQ2F0IFN1bmZsb3dlciIgSU5UTyAiSSBLbm93IFlvdSBSaWRlciI7&run=1) | [Try: Eyes Europe '72](https://sandbox.gdql.dev?q=U0hPV1MgRlJPTSBFVVJPUEU3MiBXSEVSRSBQTEFZRUQgIkV5ZXMgb2YgdGhlIFdvcmxkIjs&run=1)
-
----
-
-## Lyrics search across the catalog
-
-`SONGS WITH LYRICS(...)` matches songs whose lyrics contain all listed words.
-
-```gdql
--- Songs about both the sun and shine
-SONGS WITH LYRICS("sun", "shine");
-
--- Songs that mention trains and roads
-SONGS WITH LYRICS("train", "road");
-
--- Just count them
+{{< gdql >}}
 SONGS WITH LYRICS("sun") AS COUNT;
-```
-
-[Try: sun + shine](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInN1biIsICJzaGluZSIpOw&run=1) | [Try: train + road](https://sandbox.gdql.dev?q=U09OR1MgV0lUSCBMWVJJQ1MoInRyYWluIiwgInJvYWQiKTs&run=1)
+{{< /gdql >}}
 
 ---
 
-## Fuzzy song matching
+## Output format showcase
 
-GDQL forgives spelling and punctuation differences. Type `Truckin` and you'll get `Truckin'`. Type `St Stephen` and you'll get `St. Stephen`.
+Get the same data in different shapes:
 
-```gdql
--- These all work
-COUNT "Truckin";
-COUNT "Truckin'";
-COUNT "TRUCKIN";
+{{< gdql >}}
+SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS JSON;
+{{< /gdql >}}
 
-LAST "St Stephen";
-LAST "Saint Stephen";
+{{< gdql >}}
+SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS CSV;
+{{< /gdql >}}
 
-FIRST "Franklins Tower";
-FIRST "Franklin's Tower";
-```
+---
 
-[Try: Truckin (fuzzy)](https://sandbox.gdql.dev?q=Q09VTlQgIlRydWNraW4iOw&run=1)
+## The Cornell '77 question
+
+Three different ways to ask about the most famous show:
+
+{{< gdql >}}
+SETLIST FOR 5/8/77;
+{{< /gdql >}}
+
+{{< gdql >}}
+SHOWS AT "Barton Hall";
+{{< /gdql >}}
+
+{{< gdql >}}
+SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew" ORDER BY DATE;
+{{< /gdql >}}
 
 ---
 
 ## Quick reference
 
-| What | Example |
-|------|---------|
-| Count shows | `COUNT SHOWS FROM 1977` |
-| Count song plays | `COUNT "Dark Star"` |
-| First / last performance | `FIRST "Dark Star"` / `LAST "Dark Star"` |
-| Random show | `RANDOM SHOW [FROM year]` |
-| Years from X onward | `SHOWS AFTER 1988` |
-| Years up to X | `SHOWS BEFORE 1970` |
-| Any-set opener | `SHOWS WHERE OPENER "Bertha"` |
-| Any-set closer | `SHOWS WHERE CLOSER "Morning Dew"` |
-| Tour filter | `SHOWS TOUR "Spring 1977"` |
-| Venue + segue | `SHOWS AT "Winterland" WHERE "A" > "B"` |
-| Bare song = PLAYED | `SHOWS WHERE "Bertha"` |
-| Songs as count | `SONGS WITH LYRICS("sun") AS COUNT` |
+| Pattern | Example |
+|---------|---------|
+| Venue + era + segue + condition | `SHOWS AT "X" FROM era WHERE "A" > "B" AND PLAYED "C"` |
+| Three-song chain + AND | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
+| Count over a date range | `COUNT "song" FROM start-end` (or `AFTER`/`BEFORE`) |
+| Songs as count with filter | `SONGS WITH LYRICS("x", "y") AS COUNT` |
+| Random within era | `RANDOM SHOW FROM era` |
+| Open-set position | `SHOWS WHERE OPENER "X" FROM year` |

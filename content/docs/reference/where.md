@@ -115,12 +115,12 @@ SHOWS WHERE LENGTH("Dark Star") > 20min;
 SHOWS WHERE LENGTH("Eyes of the World") > 15min;
 ```
 
-**Combining with AND / OR / NOT:**
+**Combining with AND / OR:**
 
 ```gdql
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet";
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
+SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 ```
 
 **{{< sandbox "scarlet-fire" "Scarlet→Fire" >}}** · **{{< sandbox "help-slip-frank" "Help→Slip→Franklin's" >}}** · **{{< sandbox "played-st-stephen" "PLAYED St. Stephen" >}}** · **{{< sandbox "st-stephen-eleven" "St. Stephen > The Eleven" >}}**

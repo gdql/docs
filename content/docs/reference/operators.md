@@ -74,7 +74,7 @@ SHOWS WHERE "Dark Star" ~> "Saint Stephen";
 ```gdql
 SHOWS WHERE PLAYED "Dark Star" AND PLAYED "Saint Stephen";
 SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-SHOWS WHERE PLAYED "Eyes" AND NOT PLAYED "Drums";
+SHOWS WHERE PLAYED "Dark Star" OR PLAYED "Saint Stephen";
 ```
 
 **Comparisons (e.g. in WITH LENGTH):**
@@ -90,7 +90,7 @@ PERFORMANCES OF "Eyes of the World" WITH LENGTH < 12min;
 ```gdql
 SHOWS FROM 1977;
 SHOWS FROM 77-80;
-SHOWS FROM 5/8/77;
+SETLIST FOR 5/8/77;
 SHOWS FROM PRIMAL;
 SONGS WRITTEN 1968-1970;
 ```

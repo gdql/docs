@@ -54,7 +54,7 @@ copyRight = "GDQL"
   # Drop /docs/ prefix so on docs.gdql.dev we get /getting-started/ not /docs/getting-started/
   docs = "/:sections[1:]/:slug/"
 
-# Sidebar: show all doc sections (Getting started, Examples, Language reference, Syntax highlighting)
+# Sidebar: show all doc sections
 [menus]
   [[menus.sidebar_docs]]
   pageRef = "/docs/getting-started"
@@ -62,6 +62,9 @@ copyRight = "GDQL"
   [[menus.sidebar_docs]]
   pageRef = "/docs/examples"
   weight = 12
+  [[menus.sidebar_docs]]
+  pageRef = "/docs/advanced"
+  weight = 14
   [[menus.sidebar_docs]]
   pageRef = "/docs/reference"
   weight = 20

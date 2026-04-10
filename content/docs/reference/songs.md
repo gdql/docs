@@ -43,7 +43,7 @@ SONGS [ WITH LYRICS("word1", "word2", ...) ] [ WRITTEN date_range ]
 ```gdql
 SONGS;
 SONGS LIMIT 50;
-SONGS ORDER BY TITLE LIMIT 30;
+SONGS ORDER BY NAME LIMIT 30;
 ```
 
 **Lyrics contain words (all must match):**
@@ -67,7 +67,7 @@ SONGS WRITTEN 1970;
 
 ```gdql
 SONGS WITH LYRICS("rose") WRITTEN 1970 LIMIT 20;
-SONGS WITH LYRICS("highway") WRITTEN 1969-1971 ORDER BY TITLE LIMIT 10;
+SONGS WITH LYRICS("highway") WRITTEN 1969-1971 ORDER BY NAME LIMIT 10;
 ```
 
 **Single word, no date filter:**
