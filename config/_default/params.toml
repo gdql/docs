@@ -3,6 +3,7 @@ description = "Documentation for GDQL (Grateful Dead Query Language). Install, r
 mainSections = ["docs"]
 
 [doks]
+  bootstrapJavascript = true
   colorMode = "auto"
   colorModeToggler = true
   navbarSticky = true

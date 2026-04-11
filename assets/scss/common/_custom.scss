@@ -348,7 +348,13 @@ hr {
       color: rgba(232, 228, 214, 0.6) !important;
     }
   }
-  // Larger tap targets for mobile menu buttons
+  // On docs pages (where section nav dots exist), hide the hamburger
+  // On landing page (no dots), hamburger is the only option
+  .docs-content ~ .offcanvas,
+  body:has(#offcanvasNavSection) button[data-bs-target="#offcanvasNavMain"] {
+    display: none !important;
+  }
+  // Larger tap target for section menu dots
   .navbar [data-bs-toggle="offcanvas"] {
     min-width: 48px;
     min-height: 48px;
@@ -559,6 +565,14 @@ hr {
   color: rgba(232, 228, 214, 0.9);
   margin: 0.75rem 0 1rem;
   letter-spacing: -0.01em;
+}
+.gdql-hero-subtitle {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(232, 228, 214, 0.5);
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
 }
 .gdql-hero-stats {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
