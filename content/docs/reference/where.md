@@ -31,6 +31,8 @@ Segues are the heart of what makes a Grateful Dead show *that show*. GDQL matche
 
 The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence.
 
+> **Note on segue data:** The `>` operator in queries matches positional adjacency (Song B immediately follows Song A in the setlist). The segue markers shown in `SETLIST` output reflect known musical segues from a curated list of classic pairs (Scarlet > Fire, China Cat > Rider, etc.) — not every actual segue is marked. If you spot missing or incorrect segue data, [open an issue](https://github.com/gdql/gdql/issues).
+
 > **Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
 
 

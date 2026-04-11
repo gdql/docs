@@ -7,6 +7,8 @@ weight: 12
 
 Every query on this page is verified against the live database. Click **▶ Try it in sandbox** to run any block. For the full grammar, see the [language reference]({{< relref "reference" >}}).
 
+> **Data note:** Show and song data is sourced from [Deadlists](http://www.setlists.net). Segue markers (`>` in setlist output) cover well-known pairs (Scarlet > Fire, China Cat > Rider, etc.) but not every musical segue. Guest, song length, and tease data are not currently available. Spot something wrong? [Open an issue](https://github.com/gdql/gdql/issues).
+
 ---
 
 ## What shows were played?
