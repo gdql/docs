@@ -320,23 +320,14 @@ hr {
     backdrop-filter: none !important;
     background: rgba(0, 0, 0, 0.4) !important;
   }
-  // Offcanvas panel: solid dark background, light text, on top of backdrop
+  // Offcanvas panel: dark background to match theme
   .offcanvas,
   .offcanvas-start,
   .offcanvas-end,
   #offcanvasNavSection,
   #offcanvasNavMain {
-    z-index: 1055;
-    touch-action: manipulation;
-    -webkit-overflow-scrolling: touch;
     background: #14120e !important;
     color: #e8e4d6 !important;
-    height: 100% !important;
-    max-height: 100dvh !important;
-    pointer-events: auto !important;
-    visibility: visible !important;
-    // Override h-auto from theme — must be full height on mobile
-    &.h-auto { height: 100% !important; }
 
     .offcanvas-header {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -357,48 +348,19 @@ hr {
       color: rgba(232, 228, 214, 0.6) !important;
     }
   }
-  // Larger tap target for hamburger and section menu (Doks uses btn + data-bs-toggle)
-  .navbar .btn[data-bs-toggle="offcanvas"],
-  .navbar [data-bs-toggle="offcanvas"],
-  .navbar-toggler,
-  .btn-sidebar,
-  button[aria-controls="offcanvasNavSection"],
-  button[aria-controls="offcanvasNavMain"] {
+  // Larger tap targets for mobile menu buttons
+  .navbar [data-bs-toggle="offcanvas"] {
     min-width: 48px;
     min-height: 48px;
-    padding: 0.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    touch-action: manipulation;
   }
-  // Navbar above backdrop
-  .navbar {
-    position: relative;
-    z-index: 1060;
-  }
-  // Offcanvas body scrollable
-  .offcanvas-body,
-  .doks-sidebar {
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-  // Nav links in offcanvas: minimum touch target, always clickable
+  // Nav links in offcanvas: minimum touch target
   .offcanvas .nav-link,
-  .offcanvas .dropdown-item,
-  .offcanvas .page-links a,
-  #doks-docs-nav .nav-link,
   .offcanvas a {
     min-height: 44px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
-    pointer-events: auto !important;
-    cursor: pointer !important;
-    position: relative;
-    z-index: 1;
   }
 }
 
