@@ -30,7 +30,7 @@ RANDOM SHOW FROM EUROPE72;
 ## Where to go next
 
 - **[Getting started]({{< relref "/docs/getting-started" >}})** — install the CLI in under a minute
-- **[Cookbook &mdash; recipes for every question a Deadhead might ask
+- **[Cookbook]({{< relref "/docs/cookbook" >}})** — recipes for every question a Deadhead might ask
 - **[Language reference]({{< relref "/docs/reference" >}})** — every keyword, clause, and operator
 - **[Sandbox](https://sandbox.gdql.dev)** — run queries in your browser, no install required
 
