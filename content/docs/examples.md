@@ -63,6 +63,18 @@ SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
 SHOWS WHERE "Dark Star" -> "Saint Stephen";
 {{< /gdql >}}
 
+### Negated adjacency
+
+Find shows where a song was played but did *not* segue into its usual partner.
+
+{{< gdql >}}
+-- Scarlet without the Fire segue
+SHOWS WHERE "Scarlet Begonias" NOT INTO "Fire on the Mountain" LIMIT 10;
+
+-- China Cat without the Rider segue
+SHOWS WHERE "China Cat Sunflower" NOT > "I Know You Rider" LIMIT 10;
+{{< /gdql >}}
+
 ---
 
 ## How many times was it played?
@@ -192,6 +204,7 @@ gdql "SHOWS FROM 1977 AS JSON" | jq '.[].venue' | sort -u
 
 {{< gdql >}}
 SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20;
+SONGS ORDER BY TIMES_PLAYED DESC LIMIT 10;  -- top 10
 {{< /gdql >}}
 
 ---
@@ -210,7 +223,8 @@ SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20;
 | Performances in a range | `PERFORMANCES OF "Dark Star" FROM 1972-1974` |
 | Opener / closer | `SHOWS WHERE OPENER "Jack Straw"` |
 | Opener segue chain | `SHOWS WHERE OPENER "Help on the Way" > "Slipknot!"` |
-| Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` |
+| Negated adjacency | `SHOWS WHERE "A" NOT INTO "B"` |
+| Encore | `SHOWS WHERE ENCORE = "U.S. Blues"` or `SHOWS WHERE ENCORE "U.S. Blues"` |
 | Random show in an era | `RANDOM SHOW FROM EUROPE72` |
 | First / last performance | `FIRST "Help on the Way"`, `LAST "Saint Stephen"` |
 

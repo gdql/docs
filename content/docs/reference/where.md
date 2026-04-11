@@ -34,6 +34,17 @@ The chain form is exact: it requires every transition in order. `Help > Slip > F
 > **Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
 
 
+### Negated adjacency
+
+Prefix a segue with `NOT` to find shows where Song A was played but Song B did **not** immediately follow.
+
+| Form | Meaning |
+|------|--------|
+| `"A" NOT > "B"` | A was played but B did not follow it |
+| `"A" NOT INTO "B"` | Same, using the `INTO` alias |
+
+This is different from `NOT PLAYED "B"` — negated adjacency still allows B to appear elsewhere in the show, just not right after A.
+
 ### Arrow alias
 
 `->` is treated as `>` (segue), so `"Dark Star" -> "St. Stephen"` is the same as `"Dark Star" > "St. Stephen"`.
@@ -51,8 +62,10 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `SET3 OPENED "U.S. Blues"` | Third set (the encore) opened with this song |
 | `SET3 CLOSED "Brokedown Palace"` | Third set closed with this song |
 | `ENCORE = "U.S. Blues"` | Encore was this song (alias for `SET3`) |
+| `ENCORE "U.S. Blues"` | Same — the `=` is optional |
 | `OPENER "Bertha"` | Opened the entire show — short for `SET1 OPENED`. `OPENED` also works. |
 | `CLOSER "Morning Dew"` | Closed the entire show — last song of the last set. `CLOSED` also works. |
+| `CLOSER("Morning Dew")` | Same — no space before the paren is fine |
 | `OPENER "A" > "B"` | Show opened with a segue chain (e.g., Help > Slip) |
 | `CLOSER "A" > "B"` | Show closed with a segue chain |
 
@@ -65,6 +78,9 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `PLAYED "Scarlet Begonias"` | The show included this song, anywhere in any set |
 | `NOT PLAYED "Fire on the Mountain"` | The show did **not** include this song |
 | `NOT "Drums"` | Short form of `NOT PLAYED` |
+| `NOT OPENER "Song"` | The show did **not** open with this song |
+| `NOT CLOSER "Song"` | The show did **not** close with this song |
+| `NOT ENCORE "Song"` | The encore was **not** this song |
 | `GUEST "name"` | A guest musician sat in (requires guest data import) |
 | `LENGTH("Song") > 20min` | Song length condition (requires length data import) |
 
@@ -108,6 +124,7 @@ SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
 SHOWS WHERE SET3 OPENED "U.S. Blues";  -- SET3 = encore
 SHOWS WHERE SET3 CLOSED "Brokedown Palace";
 SHOWS WHERE ENCORE = "U.S. Blues";  -- ENCORE alias for SET3
+SHOWS WHERE ENCORE "U.S. Blues";  -- = is optional
 SHOWS WHERE OPENER "Bertha";  -- shorthand for SET1 OPENED
 SHOWS WHERE CLOSER "Morning Dew";  -- last song of last set
 {{< /gdql >}}
@@ -118,6 +135,20 @@ SHOWS WHERE CLOSER "Morning Dew";  -- last song of last set
 SHOWS WHERE OPENER "Help on the Way" > "Slipknot!";
 SHOWS WHERE CLOSER "Throwin' Stones" > "Not Fade Away";
 SHOWS WHERE OPENER "Help on the Way" > "Slipknot!" AND CLOSER "Brokedown Palace";  -- both ends
+{{< /gdql >}}
+
+### Negated adjacency
+
+{{< gdql >}}
+SHOWS WHERE "Scarlet Begonias" NOT INTO "Fire on the Mountain" LIMIT 10;  -- Scarlet without the Fire segue
+SHOWS WHERE "China Cat Sunflower" NOT > "I Know You Rider" LIMIT 10;
+{{< /gdql >}}
+
+### Negated position
+
+{{< gdql >}}
+SHOWS WHERE PLAYED "And We Bid You Goodnight" AND NOT CLOSED "And We Bid You Goodnight" LIMIT 10;
+SHOWS WHERE NOT ENCORE "U.S. Blues" AND PLAYED "U.S. Blues" LIMIT 10;
 {{< /gdql >}}
 
 ### Played and not played

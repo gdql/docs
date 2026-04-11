@@ -17,6 +17,7 @@ Connects two song names inside a `WHERE` clause.
 |-------|-----|---------|
 | `>` | `INTO`, `->` | Adjacent in setlist (position-based) |
 | `>>` | `THEN` | Followed by (with a break or applause) |
+| `NOT >` | `NOT INTO` | A was played but B did **not** immediately follow |
 | `~>` | `TEASE` | Teased — partial quote, not a full performance (requires tease data import) |
 
 Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order, adjacent in the setlist.
@@ -63,8 +64,11 @@ Used inside `WHERE` to filter by where a song appeared.
 | `OPENED` | First song of the named set: `SET1 OPENED "..."` |
 | `CLOSED` | Last song of the named set: `SET2 CLOSED "..."` |
 | `OPENER` | First song of the show overall (shorthand for `SET1 OPENED`). Accepts a segue chain: `OPENER "A" > "B"` |
-| `CLOSER` | Last song of the show overall. Accepts a segue chain: `CLOSER ("A" > "B")` |
-| `=` | Equality form for `ENCORE`: `ENCORE = "..."` |
+| `CLOSER` | Last song of the show overall. Accepts a segue chain: `CLOSER ("A" > "B")`. No space before paren needed: `CLOSER("...")` also works. |
+| `=` | Equality form for `ENCORE`: `ENCORE = "..."` (optional — `ENCORE "..."` works too) |
+| `NOT OPENER` | Show did **not** open with this song |
+| `NOT CLOSER` | Show did **not** close with this song |
+| `NOT ENCORE` | Encore was **not** this song |
 
 ---
 
@@ -78,6 +82,7 @@ Used inside `WHERE` to filter by where a song appeared.
 | Two-digit range | `77-80` | Same as above |
 | Specific date | `5/8/77` | M/D/YY |
 | Specific date (full) | `5/8/1977` | Same |
+| ISO date | `1977-05-08` | YYYY-MM-DD format |
 | `BEFORE 1976` | — | Strictly before that year |
 | `AFTER 1985` | — | Strictly after |
 
@@ -135,6 +140,7 @@ SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";  -- NOT
 SHOWS FROM 1977;  -- single year
 SHOWS FROM 77-80;  -- year range
 SETLIST FOR 5/8/77;  -- specific date
+SETLIST 1977-05-08;  -- YYYY-MM-DD, FOR is optional
 SHOWS FROM PRIMAL;  -- named era
 SHOWS BEFORE 1976;
 SHOWS AFTER 1985;

@@ -33,6 +33,54 @@ SHOWS WHERE PLAYED "Truckin'" AND NOT "Drums" LIMIT 10;
 
 ---
 
+## Negated adjacency: NOT INTO / NOT >
+
+Sometimes you want shows where a song was played but *didn't* segue into its usual partner. `NOT INTO` (or `NOT >`) finds shows where Song A appeared but Song B did not immediately follow.
+
+Scarlet Begonias without the Fire on the Mountain segue:
+
+{{< gdql >}}
+SHOWS WHERE "Scarlet Begonias" NOT INTO "Fire on the Mountain" LIMIT 10;
+{{< /gdql >}}
+
+China Cat without the Rider segue:
+
+{{< gdql >}}
+SHOWS WHERE "China Cat Sunflower" NOT > "I Know You Rider" LIMIT 10;
+{{< /gdql >}}
+
+Note the difference from `NOT PLAYED`: negated adjacency still allows the second song to appear elsewhere in the show — it just wasn't right after the first one.
+
+---
+
+## Negated position: NOT OPENER / NOT CLOSER / NOT ENCORE
+
+Flip any position condition with `NOT` to find shows where a song was played but *not* in that slot.
+
+And We Bid You Goodnight was played but not as the closer:
+
+{{< gdql >}}
+SHOWS WHERE PLAYED "And We Bid You Goodnight" AND NOT CLOSED "And We Bid You Goodnight" LIMIT 10;
+{{< /gdql >}}
+
+U.S. Blues appeared but wasn't the encore:
+
+{{< gdql >}}
+SHOWS WHERE PLAYED "U.S. Blues" AND NOT ENCORE "U.S. Blues" LIMIT 10;
+{{< /gdql >}}
+
+---
+
+## Most played songs
+
+`SONGS ORDER BY TIMES_PLAYED DESC` ranks the catalog by number of performances — the Dead's greatest hits by sheer repetition.
+
+{{< gdql >}}
+SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20;
+{{< /gdql >}}
+
+---
+
 ## Multi-clause filtering
 
 Stack venue, era, segue, and additional conditions to ask very specific questions.
@@ -276,6 +324,9 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew"
 | Venue + era + segue + condition | `SHOWS AT "X" FROM era WHERE "A" > "B" AND PLAYED "C"` |
 | Three-song chain + extra condition | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
 | Exclusion | `SHOWS WHERE PLAYED "X" AND NOT PLAYED "Y"` |
+| Negated adjacency | `SHOWS WHERE "A" NOT INTO "B"` |
+| Negated position | `SHOWS WHERE PLAYED "X" AND NOT CLOSER "X"` |
+| Most played songs | `SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20` |
 | Opener segue chain | `SHOWS WHERE OPENER "A" > "B"` |
 | Opener + closer combo | `SHOWS WHERE OPENER "A" > "B" AND CLOSER "C"` |
 | Separate LYRICS with AND | `SONGS WITH LYRICS("x") AND LYRICS("y")` |

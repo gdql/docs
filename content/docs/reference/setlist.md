@@ -15,7 +15,7 @@ weight: 4
 SETLIST FOR date_spec;
 {{< /gdql >}}
 
-`date_spec` is a specific date (`5/8/77`), a year (`1977`), or a named show (`"Cornell 1977"`).
+`date_spec` is a specific date (`5/8/77` or `1977-05-08`), a year (`1977`), or a named show (`"Cornell 1977"`). The `FOR` keyword is optional — `SETLIST 1977-05-08;` works too.
 
 ---
 
@@ -31,6 +31,7 @@ SETLIST FOR date_spec;
 |------|---------|-------|
 | Specific date | `5/8/77` | M/D/YY — the most common form |
 | Specific date (4-digit year) | `5/8/1977` | Same show, longer year |
+| ISO date | `1977-05-08` | YYYY-MM-DD format |
 | Named show | `"Cornell 1977"` | Works for shows with well-known names |
 | Year | `1977` | Picks a representative show for the year |
 
@@ -45,6 +46,7 @@ SETLIST FOR 5/8/77;  -- Cornell
 SETLIST FOR 8/27/72;  -- Veneta
 SETLIST FOR 3/29/90;  -- Nassau
 SETLIST FOR 12/31/78;  -- Winterland NYE
+SETLIST 1974-10-19;  -- YYYY-MM-DD, no FOR needed
 {{< /gdql >}}
 
 ### Compare two consecutive nights

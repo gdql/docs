@@ -36,6 +36,7 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 | `WRITTEN 1968` | Written in that year (requires songwriting date data). |
 | `WRITTEN 1968-1970` | Written in that range (requires songwriting date data). |
 | `ORDER BY NAME` | Sort by song name. Add `DESC` to reverse. |
+| `ORDER BY TIMES_PLAYED` | Sort by number of performances. Add `DESC` for most-played first. |
 | `LIMIT 20` | Cap the number of results. |
 | `AS COUNT` | Return just a count, not the rows. |
 
@@ -49,6 +50,7 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 SONGS;
 SONGS LIMIT 50;
 SONGS ORDER BY NAME LIMIT 30;
+SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20;  -- most-played songs
 {{< /gdql >}}
 
 ### Lyric search (single word)

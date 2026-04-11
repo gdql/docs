@@ -69,6 +69,15 @@ Trailing comments work too:
 SHOWS FROM 1977;             -- Europe '77 + Cornell year SONGS WITH LYRICS("rose");   -- the rose songs
 {{< /gdql >}}
 
+Comments work in multi-statement blocks too — handy for labeling each query in a batch:
+
+{{< gdql >}}
+-- Cornell '77 and the next two nights
+SETLIST FOR 5/7/77;
+SETLIST FOR 5/8/77;  -- the famous one
+SETLIST FOR 5/9/77;
+{{< /gdql >}}
+
 There is no block comment syntax. If you need to comment out several lines, prefix each one with `--`.
 
 ---
