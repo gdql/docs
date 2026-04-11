@@ -30,8 +30,7 @@ RANDOM SHOW FROM EUROPE72;
 ## Where to go next
 
 - **[Getting started]({{< relref "/docs/getting-started" >}})** — install the CLI in under a minute
-- **[Example queries]({{< relref "/docs/examples" >}})** — copy-paste recipes for common questions
-- **[Advanced queries]({{< relref "/docs/advanced" >}})** — multi-clause chained queries showing what GDQL can do
+- **[Cookbook &mdash; recipes for every question a Deadhead might ask
 - **[Language reference]({{< relref "/docs/reference" >}})** — every keyword, clause, and operator
 - **[Sandbox](https://sandbox.gdql.dev)** — run queries in your browser, no install required
 

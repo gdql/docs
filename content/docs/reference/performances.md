@@ -72,7 +72,7 @@ PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 PERFORMANCES OF "Help on the Way" ORDER BY DATE LIMIT 1;
 {{< /gdql >}}
 
-(For oldest/newest there's also the simpler [`FIRST` and `LAST`]({{< relref "../advanced#first-and-last" >}}) shortcuts.)
+(For oldest/newest there's also the simpler [`FIRST` and `LAST`]({{< relref "../cookbook#first-and-last" >}}) shortcuts.)
 
 ---
 

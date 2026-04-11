@@ -60,11 +60,8 @@ copyRight = "GDQL"
   pageRef = "/docs/getting-started"
   weight = 10
   [[menus.sidebar_docs]]
-  pageRef = "/docs/examples"
+  pageRef = "/docs/cookbook"
   weight = 12
-  [[menus.sidebar_docs]]
-  pageRef = "/docs/advanced"
-  weight = 14
   [[menus.sidebar_docs]]
   pageRef = "/docs/reference"
   weight = 20
