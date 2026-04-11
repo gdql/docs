@@ -348,10 +348,8 @@ hr {
       color: rgba(232, 228, 214, 0.6) !important;
     }
   }
-  // On docs pages (where section nav dots exist), hide the hamburger
-  // On landing page (no dots), hamburger is the only option
-  .docs-content ~ .offcanvas,
-  body:has(#offcanvasNavSection) button[data-bs-target="#offcanvasNavMain"] {
+  // Hide the hamburger entirely on mobile — section nav dots is the only menu
+  button[data-bs-target="#offcanvasNavMain"] {
     display: none !important;
   }
   // Larger tap target for section menu dots
@@ -685,8 +683,8 @@ hr {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin: 0 0 0.5rem;
-  padding: 0.65rem 1rem;
+  margin: 0.75rem 0 1rem;
+  padding: 0.75rem 1.25rem;
   background: linear-gradient(135deg, rgba(230, 57, 70, 0.08), rgba(0, 119, 182, 0.08));
   border: 1px solid rgba(230, 57, 70, 0.18);
   border-radius: 10px;
