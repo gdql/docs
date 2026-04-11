@@ -22,6 +22,8 @@ Connects two song names inside a `WHERE` clause.
 
 Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order, adjacent in the setlist.
 
+> **Note:** The `>` operator in queries matches positional adjacency. Segue markers in `SETLIST` output are from a curated list of known pairs — not every musical segue is marked. [Report missing data](https://github.com/gdql/gdql/issues).
+
 ---
 
 ## Logical
