@@ -52,6 +52,11 @@ SETLIST FOR 12/30/78;
 SETLIST FOR 12/31/78;
 {{< /gdql >}}
 
+{{< gdql >}}
+-- Expand every Scarlet > Fire show into full setlists
+SHOWS FROM 77-78 WHERE "Scarlet Begonias" > "Fire on the Mountain" AS SETLIST;
+{{< /gdql >}}
+
 ---
 
 ## Did they segue?
@@ -74,7 +79,10 @@ SHOWS WHERE "Dark Star" -> "Saint Stephen";
 SHOWS WHERE "Scarlet Begonias" NOT INTO "Fire on the Mountain" LIMIT 10;
 
 -- China Cat without Rider
-SHOWS WHERE "China Cat Sunflower" NOT > "I Know You Rider" LIMIT 10;
+SHOWS WHERE "China Cat Sunflower" !> "I Know You Rider" LIMIT 10;
+
+-- Help > Slip happened but Franklin's Tower did NOT follow
+SHOWS WHERE "Help on the Way" > "Slipknot!" !> "Franklin's Tower" LIMIT 10;
 {{< /gdql >}}
 
 ---
