@@ -47,27 +47,15 @@ PERFORMANCES OF "Song Name" [ FROM date_or_range ] [ WITH LENGTH length_conditio
 
 {{< gdql >}}
 PERFORMANCES OF "Dark Star";
-{{< /gdql >}}
-
-{{< gdql >}}
 PERFORMANCES OF "Scarlet Begonias";
-{{< /gdql >}}
-
-{{< gdql >}}
 PERFORMANCES OF "Eyes of the World";
 {{< /gdql >}}
 
 ### Constrain to a date range
 
 {{< gdql >}}
-PERFORMANCES OF "Dark Star" FROM 1972;
-{{< /gdql >}}
-
-{{< gdql >}}
-PERFORMANCES OF "Dark Star" FROM 1972-1974;
-{{< /gdql >}}
-
-{{< gdql >}}
+PERFORMANCES OF "Dark Star" FROM 1972;  -- single year
+PERFORMANCES OF "Dark Star" FROM 1972-1974;  -- year range
 PERFORMANCES OF "Eyes of the World" FROM 1974-1977;
 {{< /gdql >}}
 
@@ -75,9 +63,6 @@ PERFORMANCES OF "Eyes of the World" FROM 1974-1977;
 
 {{< gdql >}}
 PERFORMANCES OF "Dark Star" ORDER BY DATE LIMIT 10;
-{{< /gdql >}}
-
-{{< gdql >}}
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 {{< /gdql >}}
 

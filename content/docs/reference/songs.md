@@ -47,13 +47,7 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 
 {{< gdql >}}
 SONGS;
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS LIMIT 50;
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS ORDER BY NAME LIMIT 30;
 {{< /gdql >}}
 
@@ -61,17 +55,8 @@ SONGS ORDER BY NAME LIMIT 30;
 
 {{< gdql >}}
 SONGS WITH LYRICS("train");
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS WITH LYRICS("rose") LIMIT 20;
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS WITH LYRICS("water");
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS WITH LYRICS("wheel");
 {{< /gdql >}}
 
@@ -79,13 +64,7 @@ SONGS WITH LYRICS("wheel");
 
 {{< gdql >}}
 SONGS WITH LYRICS("train", "road");
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS WITH LYRICS("sun", "shine");
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS WITH LYRICS("river", "deep");
 {{< /gdql >}}
 
@@ -93,9 +72,6 @@ SONGS WITH LYRICS("river", "deep");
 
 {{< gdql >}}
 SONGS WITH LYRICS("sun") AND LYRICS("shine");
-{{< /gdql >}}
-
-{{< gdql >}}
 SONGS WITH LYRICS("train") AND LYRICS("road");
 {{< /gdql >}}
 
@@ -103,10 +79,7 @@ SONGS WITH LYRICS("train") AND LYRICS("road");
 
 {{< gdql >}}
 SONGS WITH LYRICS("sun") AS COUNT;
-{{< /gdql >}}
-
-{{< gdql >}}
-SONGS WITH LYRICS("sun", "shine") AS COUNT;
+SONGS WITH LYRICS("sun", "shine") AS COUNT;  -- multiple words
 {{< /gdql >}}
 
 ---

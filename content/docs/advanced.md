@@ -197,17 +197,8 @@ How many shows in each era? Run them side-by-side and see how the band's intensi
 
 {{< gdql >}}
 COUNT SHOWS FROM PRIMAL;
-{{< /gdql >}}
-
-{{< gdql >}}
 COUNT SHOWS FROM EUROPE72;
-{{< /gdql >}}
-
-{{< gdql >}}
 COUNT SHOWS FROM BRENT_ERA;
-{{< /gdql >}}
-
-{{< gdql >}}
 COUNT SHOWS FROM VINCE_ERA;
 {{< /gdql >}}
 
@@ -219,13 +210,7 @@ COUNT SHOWS FROM VINCE_ERA;
 
 {{< gdql >}}
 RANDOM SHOW FROM PRIMAL;
-{{< /gdql >}}
-
-{{< gdql >}}
 RANDOM SHOW FROM EUROPE72;
-{{< /gdql >}}
-
-{{< gdql >}}
 RANDOM SHOW FROM BRENT_ERA;
 {{< /gdql >}}
 
@@ -267,9 +252,6 @@ Same data, different shapes. Pipe JSON into `jq` for ad-hoc analysis, or grab CS
 
 {{< gdql >}}
 SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS JSON;
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS CSV;
 {{< /gdql >}}
 
@@ -280,15 +262,9 @@ SHOWS AT "Winterland" FROM 1977 LIMIT 5 AS CSV;
 Three different ways to ask about the most famous show in the band's history:
 
 {{< gdql >}}
-SETLIST FOR 5/8/77;
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS AT "Barton Hall";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew" ORDER BY DATE;
+SETLIST FOR 5/8/77;  -- by date
+SHOWS AT "Barton Hall";  -- by venue
+SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew" ORDER BY DATE;  -- by setlist
 {{< /gdql >}}
 
 ---

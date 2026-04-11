@@ -41,46 +41,17 @@ SETLIST FOR date_spec;
 ### Specific dates
 
 {{< gdql >}}
-SETLIST FOR 5/8/77;
-{{< /gdql >}}
-
-{{< gdql >}}
-SETLIST FOR 8/27/72;
-{{< /gdql >}}
-
-{{< gdql >}}
-SETLIST FOR 3/29/90;
-{{< /gdql >}}
-
-{{< gdql >}}
-SETLIST FOR 12/31/78;
-{{< /gdql >}}
-
-### Famous shows by date
-
-{{< gdql >}}
-SETLIST FOR 5/8/77;
-{{< /gdql >}}
-
-{{< gdql >}}
-SETLIST FOR 12/31/78;
-{{< /gdql >}}
-
-{{< gdql >}}
-SETLIST FOR 8/27/72;
+SETLIST FOR 5/8/77;  -- Cornell
+SETLIST FOR 8/27/72;  -- Veneta
+SETLIST FOR 3/29/90;  -- Nassau
+SETLIST FOR 12/31/78;  -- Winterland NYE
 {{< /gdql >}}
 
 ### Compare two consecutive nights
 
 {{< gdql >}}
 SETLIST FOR 5/7/77;
-{{< /gdql >}}
-
-{{< gdql >}}
 SETLIST FOR 5/8/77;
-{{< /gdql >}}
-
-{{< gdql >}}
 SETLIST FOR 5/9/77;
 {{< /gdql >}}
 
@@ -90,9 +61,6 @@ The CLI runs each statement in order and prints the results back-to-back — per
 
 {{< gdql >}}
 SETLIST FOR 5/8/77 AS JSON;
-{{< /gdql >}}
-
-{{< gdql >}}
 SETLIST FOR 5/8/77 AS CSV;
 {{< /gdql >}}
 

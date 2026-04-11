@@ -46,9 +46,6 @@ Every clause is optional — `SHOWS;` on its own returns every show in the datab
 
 {{< gdql >}}
 SHOWS;
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS LIMIT 20;
 {{< /gdql >}}
 
@@ -56,29 +53,14 @@ SHOWS LIMIT 20;
 
 {{< gdql >}}
 SHOWS FROM 1977;
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS FROM 77;
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS FROM 1977-1980;
-{{< /gdql >}}
-
-{{< gdql >}}
+SHOWS FROM 77;  -- two-digit shorthand
+SHOWS FROM 1977-1980;  -- year range
 SHOWS FROM 77-80 LIMIT 10;
 {{< /gdql >}}
 
 {{< gdql >}}
-SHOWS FROM PRIMAL;
-{{< /gdql >}}
-
-{{< gdql >}}
+SHOWS FROM PRIMAL;  -- named era
 SHOWS FROM EUROPE72;
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS FROM BRENT_ERA;
 {{< /gdql >}}
 
@@ -86,17 +68,8 @@ SHOWS FROM BRENT_ERA;
 
 {{< gdql >}}
 SHOWS AT "Fillmore West";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS AT "Winterland" FROM 1977;
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS AT "New York" LIMIT 10;
-{{< /gdql >}}
-
-{{< gdql >}}
+SHOWS AT "Winterland" FROM 1977;  -- combine with FROM
+SHOWS AT "New York" LIMIT 10;  -- matches all NYC venues
 SHOWS AT "Madison Square Garden";
 {{< /gdql >}}
 
@@ -105,55 +78,28 @@ SHOWS AT "Madison Square Garden";
 Filter by segue, set position, played songs, or guests. See [WHERE]({{< relref "where" >}}) for the full vocabulary.
 
 {{< gdql >}}
-SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE SET1 OPENED "Jack Straw";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS FROM 1990 WHERE PLAYED "Eyes of the World";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
+SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain";  -- segue
+SHOWS WHERE SET1 OPENED "Jack Straw";  -- set position
+SHOWS FROM 1990 WHERE PLAYED "Eyes of the World";  -- played
+SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";  -- three-song chain
 {{< /gdql >}}
 
 ### Order and limit
 
 {{< gdql >}}
 SHOWS FROM 1977 ORDER BY DATE;
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS FROM 1977 ORDER BY DATE DESC;
-{{< /gdql >}}
-
-{{< gdql >}}
+SHOWS FROM 1977 ORDER BY DATE DESC;  -- newest first
 SHOWS FROM 77-80 LIMIT 10;
 {{< /gdql >}}
 
 ### Output formats
 
 {{< gdql >}}
-SHOWS FROM 1977 LIMIT 3;
-{{< /gdql >}}
-
-{{< gdql >}}
+SHOWS FROM 1977 LIMIT 3;  -- default format
 SHOWS FROM 1977 LIMIT 3 AS TABLE;
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS JSON;
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS FROM 1977 LIMIT 3 AS CSV;
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS FROM 1977 LIMIT 3 AS SETLIST;
+SHOWS FROM 1977 LIMIT 3 AS SETLIST;  -- inline setlists
 {{< /gdql >}}
 
 `AS SETLIST` expands each show inline with its full setlist — handy for quick browsing without a follow-up `SETLIST FOR` call.

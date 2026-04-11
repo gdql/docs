@@ -88,100 +88,52 @@ NOT "Song"
 
 {{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";
+SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower";  -- three-song chain
+SHOWS WHERE "China Cat Sunflower" INTO "I Know You Rider";  -- INTO alias
 {{< /gdql >}}
 
 ### Followed by (with break)
 
 {{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" >> "Fire on the Mountain";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";
+SHOWS WHERE "Estimated Prophet" THEN "Eyes of the World";  -- THEN alias
 {{< /gdql >}}
 
 ### Set position
 
 {{< gdql >}}
 SHOWS WHERE SET1 OPENED "Jack Straw";
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS WHERE SET1 OPENED "Bertha";
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS WHERE SET2 CLOSED "Sugar Magnolia";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE SET3 OPENED "U.S. Blues";
-{{< /gdql >}}
-
-{{< gdql >}}
+SHOWS WHERE SET3 OPENED "U.S. Blues";  -- SET3 = encore
 SHOWS WHERE SET3 CLOSED "Brokedown Palace";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE ENCORE = "U.S. Blues";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE OPENER "Bertha";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE CLOSER "Morning Dew";
+SHOWS WHERE ENCORE = "U.S. Blues";  -- ENCORE alias for SET3
+SHOWS WHERE OPENER "Bertha";  -- shorthand for SET1 OPENED
+SHOWS WHERE CLOSER "Morning Dew";  -- last song of last set
 {{< /gdql >}}
 
 ### OPENER / CLOSER with segue chains
 
 {{< gdql >}}
 SHOWS WHERE OPENER "Help on the Way" > "Slipknot!";
-{{< /gdql >}}
-
-{{< gdql >}}
 SHOWS WHERE CLOSER "Throwin' Stones" > "Not Fade Away";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE OPENER "Help on the Way" > "Slipknot!" AND CLOSER "Brokedown Palace";
+SHOWS WHERE OPENER "Help on the Way" > "Slipknot!" AND CLOSER "Brokedown Palace";  -- both ends
 {{< /gdql >}}
 
 ### Played and not played
 
 {{< gdql >}}
 SHOWS WHERE PLAYED "Dark Star";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE PLAYED "Scarlet Begonias" AND PLAYED "Fire on the Mountain";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
+SHOWS WHERE PLAYED "Scarlet Begonias" AND PLAYED "Fire on the Mountain";  -- both required
+SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";  -- exclusion
 {{< /gdql >}}
 
 ### Combining with AND, OR, NOT
 
 {{< gdql >}}
 SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Estimated Prophet";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";
-{{< /gdql >}}
-
-{{< gdql >}}
-SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";
+SHOWS WHERE SET1 OPENED "Jack Straw" OR SET1 OPENED "Bertha";  -- OR example
+SHOWS WHERE PLAYED "Dark Star" AND NOT PLAYED "Saint Stephen";  -- NOT example
 {{< /gdql >}}
 
 ---
