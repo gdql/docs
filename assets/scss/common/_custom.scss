@@ -348,8 +348,9 @@ hr {
       color: rgba(232, 228, 214, 0.6) !important;
     }
   }
-  // Hide the hamburger entirely on mobile — section nav dots is the only menu
-  button[data-bs-target="#offcanvasNavMain"] {
+  // Hide the hamburger when the dots menu exists (docs pages)
+  // Keep it on the landing page where dots don't exist
+  body:has(#offcanvasNavSection) button[data-bs-target="#offcanvasNavMain"] {
     display: none !important;
   }
   // Larger tap target for section menu dots
