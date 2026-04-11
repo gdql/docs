@@ -23,18 +23,18 @@ Add Prism core, a theme, and the GDQL language file to your page:
 
 Then write GDQL inside `gdql` code fences:
 
-````markdown
-{{< gdql >}}
+````text
+```gdql
 SHOWS FROM 1977 WHERE "Scarlet Begonias" > "Fire on the Mountain";
-{{< /gdql >}}
+```
 
-{{< gdql >}}
+```gdql
 SONGS WITH LYRICS("train", "road");
-{{< /gdql >}}
+```
 
-{{< gdql >}}
+```gdql
 COUNT "Dark Star" AFTER 1988;
-{{< /gdql >}}
+```
 ````
 
 If your site loads content dynamically, call `Prism.highlightAll()` after the DOM is ready.
