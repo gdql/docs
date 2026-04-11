@@ -15,14 +15,14 @@ Connects two song names inside a `WHERE` clause.
 
 | Token | Alt | Meaning |
 |-------|-----|---------|
-| `>` | `INTO`, `->` | Adjacent in setlist (position-based) |
+| `>` | `INTO`, `->` | Next song in the setlist (not necessarily a musical segue) |
 | `>>` | `THEN` | Followed by (with a break or applause) |
-| `NOT >` | `NOT INTO` | A was played but B did **not** immediately follow |
+| `NOT >` | `NOT INTO` | A was played but B was not the next song |
 | `~>` | `TEASE` | Teased — partial quote, not a full performance (requires tease data import) |
 
 Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order, adjacent in the setlist.
 
-> **Note:** The `>` operator in queries matches positional adjacency. Segue markers in `SETLIST` output are from a curated list of known pairs — not every musical segue is marked. [Report missing data](https://github.com/gdql/gdql/issues).
+> **Not a real segue.** The `>` operator means "next song in the setlist", not "segued into musically." Real segue data is hard to source at scale. The `SETLIST` display marks a few well-known transitions, but query matching is purely positional. [Help us improve the data](https://github.com/gdql/gdql/issues).
 
 ---
 

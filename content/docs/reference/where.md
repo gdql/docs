@@ -21,17 +21,17 @@ Combine any number of conditions with `AND`, `OR`, and `NOT`. Parentheses are no
 
 ## Segues
 
-Segues are the heart of what makes a Grateful Dead show *that show*. GDQL matches segue chains by position adjacency in the setlist.
+The `>` operator matches songs that appear next to each other in the setlist — it means "the next song", not necessarily a musical segue. Real segue data (where one song flows into the next without a break) is hard to extract at scale, so GDQL uses setlist position as a proxy. It gets you the right answer for famous pairs like Scarlet > Fire and China Cat > Rider.
 
 | Form | Alt syntax | Meaning |
 |------|------------|--------|
-| `"A" > "B"` | `"A" INTO "B"` | A is followed by B (adjacent in setlist) |
+| `"A" > "B"` | `"A" INTO "B"` | B was the next song after A in the setlist |
 | `"A" >> "B"` | `"A" THEN "B"` | A is followed by B, with a pause or applause break between |
 | Chains | — | Any number: `"Help on the Way" > "Slipknot!" > "Franklin's Tower"` |
 
 The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence.
 
-> **Note on segue data:** The `>` operator in queries matches positional adjacency (Song B immediately follows Song A in the setlist). The segue markers shown in `SETLIST` output reflect known musical segues from a curated list of classic pairs (Scarlet > Fire, China Cat > Rider, etc.) — not every actual segue is marked. If you spot missing or incorrect segue data, [open an issue](https://github.com/gdql/gdql/issues).
+> **Why not real segues?** Extracting which transitions were actual musical segues (no break between songs) vs. just "played next" requires curated data that doesn't exist at scale. The `SETLIST` display marks a few well-known pairs, but the `>` query operator is purely positional. [Help us improve the data](https://github.com/gdql/gdql/issues).
 
 > **Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
 
