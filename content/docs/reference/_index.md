@@ -20,7 +20,7 @@ Every GDQL statement starts with one of these four keywords. They define what ki
 | [`PERFORMANCES`]({{< relref "performances" >}}) | One row per time a song was played. Filter by date and length. | [PERFORMANCES]({{< relref "performances" >}}) |
 | [`SETLIST`]({{< relref "setlist" >}}) | The full setlist for a single show. | [SETLIST]({{< relref "setlist" >}}) |
 
-There's also `COUNT` (for `COUNT "Song"` or `COUNT SHOWS`), `FIRST`, `LAST`, and `RANDOM SHOW` — see [Advanced queries]({{< relref "../advanced" >}}) for those.
+There's also `COUNT` (for `COUNT "Song"` or `COUNT SHOWS`), `FIRST`, `LAST`, and `RANDOM SHOW` — see [Cookbook]({{< relref "../advanced" >}}) for those.
 
 ---
 
@@ -44,7 +44,7 @@ SHOWS AT "Winterland" FROM 1977-1978 WHERE "Scarlet Begonias" > "Fire on the Mou
 
 That single statement asks: *"Give me the first 10 Winterland shows from 1977 or 1978 where Scarlet went into Fire and they also played Estimated Prophet, oldest first, as JSON."*
 
-For more queries like this, see [Advanced queries]({{< relref "../advanced" >}}).
+For more queries like this, see [Cookbook]({{< relref "../advanced" >}}).
 
 ---
 

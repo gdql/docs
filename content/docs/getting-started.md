@@ -73,7 +73,7 @@ SHOWS FROM 1977 LIMIT 5 AS JSON;
 
 ## Where to next
 
-- **[Example queries]({{< relref "examples" >}})** — Copy-paste recipes for common questions.
-- **[Advanced queries]({{< relref "advanced" >}})** — Multi-clause queries that show off the language.
+- **[Cookbook]({{< relref "cookbook" >}})** — Copy-paste recipes for common questions.
+- **[Cookbook]({{< relref "cookbook" >}})** — Multi-clause queries that show off the language.
 - **[Language reference]({{< relref "reference" >}})** — Every query type and clause documented.
 - **[Sandbox](https://sandbox.gdql.dev)** — Run GDQL in the browser; share queries via URL.
