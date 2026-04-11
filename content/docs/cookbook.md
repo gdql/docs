@@ -251,7 +251,7 @@ SHOWS FROM 1977 LIMIT 3 AS CSV;
 Pipe JSON into `jq` on the CLI:
 
 ```bash
-gdql "SHOWS FROM 1977 AS JSON" | jq '.[].venue' | sort -u
+gdql "SHOWS FROM 1977 AS JSON" | jq '.shows[].venue' | sort -u
 ```
 
 ---

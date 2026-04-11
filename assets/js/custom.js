@@ -9,7 +9,8 @@
     'WITH','LYRICS','WRITTEN','LENGTH','PLAYED','GUEST','TOUR','VENUE','CITY','STATE',
     'SET1','SET2','SET3','ENCORE','OPENED','CLOSED','OPENER','CLOSER',
     'ORDER','LIMIT','COUNT','FIRST','LAST','RANDOM','BEFORE','AFTER','BETWEEN',
-    'INTO','THEN','TEASE','FOR','AT','DESC','ASC','TABLE','JSON','CSV','MARKDOWN'
+    'INTO','THEN','TEASE','FOR','AT','DESC','ASC','TABLE','JSON','CSV','MARKDOWN',
+    'TIMES_PLAYED'
   ];
   // Sort longest-first so SHOWS doesn't shadow SHOW
   KEYWORDS.sort(function (a, b) { return b.length - a.length; });
