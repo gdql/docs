@@ -62,7 +62,7 @@ Used inside `WHERE` to filter by where a song appeared.
 | `ENCORE` | Alias for `SET3` |
 | `OPENED` | First song of the named set: `SET1 OPENED "..."` |
 | `CLOSED` | Last song of the named set: `SET2 CLOSED "..."` |
-| `OPENER` | First song of the show overall (shorthand for `SET1 OPENED`). Accepts a segue chain: `OPENER ("A" > "B")` |
+| `OPENER` | First song of the show overall (shorthand for `SET1 OPENED`). Accepts a segue chain: `OPENER "A" > "B"` |
 | `CLOSER` | Last song of the show overall. Accepts a segue chain: `CLOSER ("A" > "B")` |
 | `=` | Equality form for `ENCORE`: `ENCORE = "..."` |
 

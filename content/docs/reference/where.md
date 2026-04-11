@@ -53,8 +53,8 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `ENCORE = "U.S. Blues"` | Encore was this song (alias for `SET3`) |
 | `OPENER "Bertha"` | Opened the entire show — short for `SET1 OPENED`. `OPENED` also works. |
 | `CLOSER "Morning Dew"` | Closed the entire show — last song of the last set. `CLOSED` also works. |
-| `OPENER ("A" > "B")` | Show opened with a segue chain (e.g., Help > Slip) |
-| `CLOSER ("A" > "B")` | Show closed with a segue chain |
+| `OPENER "A" > "B"` | Show opened with a segue chain (e.g., Help > Slip) |
+| `CLOSER "A" > "B"` | Show closed with a segue chain |
 
 ---
 
@@ -145,15 +145,15 @@ SHOWS WHERE CLOSER "Morning Dew";
 ### OPENER / CLOSER with segue chains
 
 {{< gdql >}}
-SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!");
+SHOWS WHERE OPENER "Help on the Way" > "Slipknot!";
 {{< /gdql >}}
 
 {{< gdql >}}
-SHOWS WHERE CLOSER ("Throwin' Stones" > "Not Fade Away");
+SHOWS WHERE CLOSER "Throwin' Stones" > "Not Fade Away";
 {{< /gdql >}}
 
 {{< gdql >}}
-SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
+SHOWS WHERE OPENER "Help on the Way" > "Slipknot!" AND CLOSER "Brokedown Palace";
 {{< /gdql >}}
 
 ### Played and not played

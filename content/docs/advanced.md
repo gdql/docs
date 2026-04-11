@@ -87,24 +87,24 @@ SHOWS AT "Spectrum" WHERE "China Cat Sunflower" > "I Know You Rider";
 
 ## OPENER / CLOSER with segue chains
 
-`OPENER` and `CLOSER` accept parenthesized segue chains, so you can ask about shows that opened or closed with a specific multi-song sequence.
+`OPENER` and `CLOSER` accept segue chains, so you can ask about shows that opened or closed with a specific multi-song sequence.
 
 Shows that opened with Help > Slipknot!:
 
 {{< gdql >}}
-SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!");
+SHOWS WHERE OPENER "Help on the Way" > "Slipknot!";
 {{< /gdql >}}
 
 Shows that opened with Help > Slip and closed with Brokedown Palace:
 
 {{< gdql >}}
-SHOWS WHERE OPENER ("Help on the Way" > "Slipknot!") AND CLOSER "Brokedown Palace";
+SHOWS WHERE OPENER "Help on the Way" > "Slipknot!" AND CLOSER "Brokedown Palace";
 {{< /gdql >}}
 
 Shows that closed with Throwin' Stones > Not Fade Away:
 
 {{< gdql >}}
-SHOWS WHERE CLOSER ("Throwin' Stones" > "Not Fade Away");
+SHOWS WHERE CLOSER "Throwin' Stones" > "Not Fade Away";
 {{< /gdql >}}
 
 ---
@@ -300,8 +300,8 @@ SHOWS WHERE "Scarlet Begonias" > "Fire on the Mountain" AND PLAYED "Morning Dew"
 | Venue + era + segue + condition | `SHOWS AT "X" FROM era WHERE "A" > "B" AND PLAYED "C"` |
 | Three-song chain + extra condition | `SHOWS WHERE "A" > "B" > "C" AND PLAYED "D"` |
 | Exclusion | `SHOWS WHERE PLAYED "X" AND NOT PLAYED "Y"` |
-| Opener segue chain | `SHOWS WHERE OPENER ("A" > "B")` |
-| Opener + closer combo | `SHOWS WHERE OPENER ("A" > "B") AND CLOSER "C"` |
+| Opener segue chain | `SHOWS WHERE OPENER "A" > "B"` |
+| Opener + closer combo | `SHOWS WHERE OPENER "A" > "B" AND CLOSER "C"` |
 | Separate LYRICS with AND | `SONGS WITH LYRICS("x") AND LYRICS("y")` |
 | Count over a date range | `COUNT "song" AFTER year` (or `BEFORE`/`FROM`) |
 | Count with WHERE | `COUNT SHOWS WHERE "A" > "B"` |
