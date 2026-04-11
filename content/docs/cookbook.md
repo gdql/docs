@@ -7,7 +7,7 @@ weight: 12
 
 Every query on this page is verified against the live database. Click **▶ Try it in sandbox** to run any block. For the full grammar, see the [language reference]({{< relref "reference" >}}).
 
-> **Data note:** Show data sourced from [Deadlists](http://www.setlists.net). The `>` operator in queries means "next song in the setlist" — not necessarily a musical segue. Real segue data is hard to extract at scale, so GDQL uses position as a proxy. Guest, song length, and tease data are not currently available. Spot something wrong? [Open an issue](https://github.com/gdql/gdql/issues).
+> **Data note:** Show data sourced from [Deadlists](http://www.setlists.net). The `>` operator in queries means "next song in the setlist" — not necessarily a musical segue. Real segue data is hard to extract at scale, so GDQL uses position as a proxy. Guest, song length, and tease data are not currently available. Spot something wrong? [Open an issue](https://github.com/gdql/gdql/discussions).
 
 ---
 

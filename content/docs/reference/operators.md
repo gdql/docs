@@ -23,7 +23,7 @@ Connects two song names inside a `WHERE` clause.
 
 Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order, adjacent in the setlist.
 
-> **Not a real segue.** The `>` operator means "next song in the setlist", not "segued into musically." Real segue data is hard to source at scale. The `SETLIST` display marks a few well-known transitions, but query matching is purely positional. [Help us improve the data](https://github.com/gdql/gdql/issues).
+> **Not a real segue.** The `>` operator means "next song in the setlist", not "segued into musically." Real segue data is hard to source at scale. The `SETLIST` display marks a few well-known transitions, but query matching is purely positional. [Help us improve the data](https://github.com/gdql/gdql/discussions).
 
 ---
 

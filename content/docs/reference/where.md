@@ -31,7 +31,7 @@ The `>` operator matches songs that appear next to each other in the setlist —
 
 The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence.
 
-> **Why not real segues?** Extracting which transitions were actual musical segues (no break between songs) vs. just "played next" requires curated data that doesn't exist at scale. The `SETLIST` display marks a few well-known pairs, but the `>` query operator is purely positional. [Help us improve the data](https://github.com/gdql/gdql/issues).
+> **Why not real segues?** Extracting which transitions were actual musical segues (no break between songs) vs. just "played next" requires curated data that doesn't exist at scale. The `SETLIST` display marks a few well-known pairs, but the `>` query operator is purely positional. [Help us improve the data](https://github.com/gdql/gdql/discussions).
 
 > **Note:** The `~>` (tease) operator is part of the GDQL syntax but requires tease data to be imported before it will return results.
 
