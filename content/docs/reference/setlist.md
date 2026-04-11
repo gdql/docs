@@ -1,6 +1,6 @@
 ---
 title: SETLIST
-description: "GDQL SETLIST: pull the full setlist for a single show by date or name."
+description: "Use GDQL SETLIST to pull the full setlist for any Grateful Dead show by date — including Cornell 77 (5/8/77), Veneta, and all 2,014 concerts from 1965 to 1995."
 weight: 4
 ---
 

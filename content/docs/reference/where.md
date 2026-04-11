@@ -1,6 +1,6 @@
 ---
 title: WHERE conditions
-description: "GDQL WHERE: build filters from segues, set positions, played, guests, length, and AND/OR/NOT."
+description: "Filter Grateful Dead shows with GDQL WHERE — match segues like Scarlet > Fire, set openers and closers, played/not-played songs, and AND/OR/NOT logic."
 weight: 10
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Documentation
-description: "GDQL docs: getting started, language reference, conventions, operators, and example queries."
+description: "Complete GDQL documentation — install the CLI, learn the query language, and search 2,014 Grateful Dead shows by setlist, segue, song, venue, and era."
 url: "/guide/"
 ---
 

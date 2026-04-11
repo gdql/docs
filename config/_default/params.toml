@@ -1,5 +1,5 @@
-title = "GDQL Documentation"
-description = "Documentation for GDQL (Grateful Dead Query Language). Install, run queries, and use the language reference."
+title = "GDQL Docs"
+description = "GDQL (Grateful Dead Query Language) lets you search Grateful Dead setlists, shows, songs, and segues from 2,014 concerts spanning 1965-1995. Query the full Dead database from your terminal or browser."
 mainSections = ["docs"]
 
 [doks]
@@ -52,11 +52,11 @@ mainSections = ["docs"]
 
 [seo.title]
   separator = "|"
-  suffix = ""
+  suffix = "GDQL Docs"
 [seo.favicons]
   icon = "favicon.png"
   svgIcon = "favicon.svg"
 [seo.schemas]
   type = "Organization"
   name = "GDQL"
-  sameAs = ["https://github.com/gdql/docs"]
+  sameAs = ["https://github.com/gdql/gdql", "https://github.com/gdql/docs", "https://sandbox.gdql.dev"]

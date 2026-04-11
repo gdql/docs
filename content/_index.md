@@ -1,13 +1,15 @@
 ---
-title: GDQL Documentation
-description: "GDQL is a query language for the Grateful Dead discography. Find segues, setlists, lyrics, and 30 years of live history with one CLI."
+title: "GDQL: The Grateful Dead Query Language"
+description: "Search every Grateful Dead setlist, show, and song from 1965-1995. GDQL is a query language for 2,014 concerts — find segues, lyrics, and live history."
+seo:
+  title: "GDQL — Search Grateful Dead Setlists, Shows & Songs"
 ---
 
-## What is it
+## What is GDQL?
 
-**GDQL** is a SQL-flavored query language for the Grateful Dead discography. Ask questions like *"every show where Scarlet went into Fire,"* *"the last time they played St. Stephen,"* or *"random show from the Brent era"* — get answers in milliseconds.
+**GDQL** (Grateful Dead Query Language) is a query language for searching Grateful Dead setlists, shows, songs, and segues across the band's entire 30-year touring history. Ask questions like *"every show where Scarlet went into Fire,"* *"the last time they played St. Stephen,"* or *"random show from the Brent era"* — get answers in milliseconds.
 
-It ships as a single binary with the dataset baked in. Run it from the terminal, embed it in your app, or use it in the browser.
+It ships as a single binary with the full show database baked in: **2,014 concerts**, **536 songs**, and **37,180 performances** from 1965 to 1995. Run it from the terminal, embed it in your app, or [try it in the browser](https://sandbox.gdql.dev).
 
 ---
 

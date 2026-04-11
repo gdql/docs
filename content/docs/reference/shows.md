@@ -1,6 +1,6 @@
 ---
 title: SHOWS
-description: "GDQL SHOWS: list shows by venue, era, segue, and condition with ORDER BY, LIMIT, and AS format."
+description: "Use GDQL SHOWS to search Grateful Dead concerts by venue, year, era, setlist segues, openers, closers, and songs played — with sorting and export."
 weight: 1
 ---
 

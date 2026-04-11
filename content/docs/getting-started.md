@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: "Install the GDQL CLI and run your first query in under a minute."
+description: "Install the GDQL CLI in under a minute and start searching Grateful Dead setlists, shows, and songs. Download a single binary — no database setup required."
 weight: 10
 ---
 
@@ -73,7 +73,6 @@ SHOWS FROM 1977 LIMIT 5 AS JSON;
 
 ## Where to next
 
-- **[Cookbook]({{< relref "cookbook" >}})** — Copy-paste recipes for common questions.
-- **[Cookbook]({{< relref "cookbook" >}})** — Multi-clause queries that show off the language.
+- **[Cookbook]({{< relref "cookbook" >}})** — Copy-paste recipes for common Grateful Dead setlist queries.
 - **[Language reference]({{< relref "reference" >}})** — Every query type and clause documented.
 - **[Sandbox](https://sandbox.gdql.dev)** — Run GDQL in the browser; share queries via URL.

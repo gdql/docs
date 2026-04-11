@@ -1,6 +1,6 @@
 ---
 title: Conventions
-description: "GDQL conventions: case rules, strings, comments, statement termination, and whitespace."
+description: "GDQL syntax conventions — case-insensitive keywords, double-quoted song names, line comments, semicolons between statements, and flexible whitespace rules."
 weight: 0
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Syntax highlighting
-description: "Add GDQL syntax highlighting to your docs site, blog, or editor with the published Prism.js definition."
+description: "Add GDQL syntax highlighting to your website, blog, or code editor. Drop-in Prism.js language definition for the Grateful Dead Query Language."
 weight: 15
 ---
 

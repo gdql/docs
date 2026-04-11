@@ -1,6 +1,6 @@
 ---
 title: Cookbook
-description: "GDQL recipes for every question a Deadhead might ask — shows, songs, segues, setlists, and the weird ones."
+description: "Copy-paste GDQL query recipes for Grateful Dead setlists, segues, song counts, openers, closers, Cornell 77, and every question a Deadhead might ask."
 weight: 12
 ---
 

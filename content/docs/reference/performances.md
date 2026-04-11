@@ -1,6 +1,6 @@
 ---
 title: PERFORMANCES
-description: "GDQL PERFORMANCES: list every time a song was played, with date, length, and order filters."
+description: "Use GDQL PERFORMANCES to list every time the Grateful Dead played a song — filter by date range, sort by date, and find first or last appearances."
 weight: 3
 ---
 

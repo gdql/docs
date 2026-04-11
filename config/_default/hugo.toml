@@ -1,4 +1,4 @@
-title = "GDQL Documentation"
+title = "GDQL Docs"
 baseURL = "https://docs.gdql.dev/"
 disableAliases = true
 disableHugoGeneratorInject = true

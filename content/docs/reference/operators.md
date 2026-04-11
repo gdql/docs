@@ -1,6 +1,6 @@
 ---
 title: Operators
-description: "GDQL operators: segue tokens, logical operators, comparisons, dates, eras, and output formats."
+description: "Complete reference for GDQL operators — segue tokens (>, >>), logical AND/OR/NOT, date ranges, era aliases like BRENT_ERA, and JSON/CSV output formats."
 weight: 11
 ---
 

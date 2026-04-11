@@ -1,6 +1,6 @@
 ---
 title: Language reference
-description: "Full GDQL language reference: query types, conventions, WHERE conditions, and operators."
+description: "Full GDQL language reference covering every query type, clause, and operator for searching Grateful Dead shows, setlists, songs, and performances."
 weight: 20
 ---
 

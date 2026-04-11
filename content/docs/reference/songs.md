@@ -1,6 +1,6 @@
 ---
 title: SONGS
-description: "GDQL SONGS: list songs in the catalog and filter by lyrics, written date, ORDER BY, and LIMIT."
+description: "Use GDQL SONGS to browse the full Grateful Dead song catalog — search by lyrics, sort by times played, and count matches across 536 songs."
 weight: 2
 ---
 
