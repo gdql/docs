@@ -353,11 +353,13 @@ hr {
   button[data-bs-target="#offcanvasNavMain"] {
     display: none !important;
   }
-  // Show the navbar "Get started" button on mobile (normally desktop-only)
+  // Show the navbar "Get started" button on mobile — push to right side
   .navbar .btn-primary.rounded-pill.d-none.d-lg-block {
     display: inline-block !important;
     font-size: 0.8rem;
     padding: 0.35rem 0.9rem !important;
+    margin-left: auto !important;
+    order: 99 !important;
   }
   // Larger tap target for section menu dots
   .navbar [data-bs-toggle="offcanvas"] {
