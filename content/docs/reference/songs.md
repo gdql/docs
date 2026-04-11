@@ -35,7 +35,7 @@ Every clause is optional — `SONGS;` lists every song the database knows about.
 | `WITH LYRICS("word", ...)` | Lyrics must contain **all** listed words. Single word? `WITH LYRICS("rose")`. |
 | `WRITTEN 1968` | Written in that year (requires songwriting date data). |
 | `WRITTEN 1968-1970` | Written in that range (requires songwriting date data). |
-| `ORDER BY NAME` | Sort by song name. Add `DESC` to reverse. |
+| `ORDER BY NAME` | Sort by song name. Add `DESC` to reverse, or `ASC` for explicit ascending. |
 | `ORDER BY TIMES_PLAYED` | Sort by number of performances. Add `DESC` for most-played first. |
 | `LIMIT 20` | Cap the number of results. |
 | `AS COUNT` | Return just a count, not the rows. |
@@ -83,6 +83,20 @@ SONGS WITH LYRICS("train") AND LYRICS("road");
 SONGS WITH LYRICS("sun") AS COUNT;
 SONGS WITH LYRICS("sun", "shine") AS COUNT;  -- multiple words
 {{< /gdql >}}
+
+---
+
+## Filtering by performance date
+
+`SONGS` can also be filtered by when songs were performed. These three forms are equivalent:
+
+{{< gdql >}}
+SONGS PLAYED FROM 1977;
+SONGS PLAYED IN 1977;
+SONGS FROM 1977;
+{{< /gdql >}}
+
+Each returns songs that were played during the given year (or range/era). `IN` is an alias for `FROM`, and `PLAYED` is optional when the intent is clear.
 
 ---
 

@@ -20,7 +20,11 @@ Every GDQL statement starts with one of these four keywords. They define what ki
 | [`PERFORMANCES`]({{< relref "performances" >}}) | One row per time a song was played. Filter by date and length. | [PERFORMANCES]({{< relref "performances" >}}) |
 | [`SETLIST`]({{< relref "setlist" >}}) | The full setlist for a single show. | [SETLIST]({{< relref "setlist" >}}) |
 
-There's also `COUNT` (for `COUNT "Song"` or `COUNT SHOWS`), `FIRST`, `LAST`, and `RANDOM SHOW` — see [Cookbook]({{< relref "../cookbook" >}}) for those.
+There are also a few shortcut query forms — see [Cookbook]({{< relref "../cookbook" >}}) for full examples:
+
+- **`COUNT "Song"` / `COUNT SHOWS`** — count performances or shows, with optional `FROM`/`WHERE` filters.
+- **`FIRST "Song"` / `LAST "Song"`** — the first or last time a song was played.
+- **`RANDOM SHOW [FROM era]`** — pick a random show, optionally from a specific era or date range.
 
 ---
 

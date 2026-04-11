@@ -37,6 +37,8 @@ PERFORMANCES OF "Song Name" [ FROM date_or_range ] [ WITH LENGTH length_conditio
 | `FROM 1972-1974` | Inclusive year range. |
 | `WITH LENGTH > 20min` | Filter by duration (requires length data). Supports `>`, `<`, `>=`, `<=`, `=`. |
 | `ORDER BY DATE DESC` | Sort by `DATE`, ascending or descending. |
+| `ORDER BY POSITION` | Sort by position within the setlist. |
+| `ORDER BY LENGTH` | Sort by performance duration (requires length data). |
 | `LIMIT 5` | Cap results — handy when sorting by length. |
 
 ---

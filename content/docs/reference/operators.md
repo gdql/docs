@@ -88,6 +88,7 @@ Used inside `WHERE` to filter by where a song appeared.
 | ISO date | `1977-05-08` | YYYY-MM-DD format |
 | `BEFORE 1976` | — | Strictly before that year |
 | `AFTER 1985` | — | Strictly after |
+| `IN 1977` | — | Alias for `FROM` (`SHOWS IN 1977` = `SHOWS FROM 1977`) |
 
 ---
 
@@ -98,11 +99,11 @@ Named eras the Dead community uses. Spelled exactly as shown (case-insensitive).
 | Era | Years | What it covers |
 |-----|-------|----------------|
 | `PRIMAL` | 1965–1969 | Pigpen-era, Dark Star, Saint Stephen, the Eleven |
-| `EUROPE72` | 1972 | The legendary spring '72 Europe tour |
+| `EUROPE72` (or `EUROPE`) | 1972 | The legendary spring '72 Europe tour |
 | `WALLOFSOUND` | 1973–1974 | The Wall of Sound PA era |
 | `HIATUS` | 1975 | The year off (very few shows) |
-| `BRENT_ERA` | 1979–1990 | Brent Mydland on keys |
-| `VINCE_ERA` | 1990–1995 | Vince Welnick on keys, ending with Jerry's death |
+| `BRENT_ERA` (or `BRENT`) | 1979–1990 | Brent Mydland on keys |
+| `VINCE_ERA` (or `VINCE`) | 1990–1995 | Vince Welnick on keys, ending with Jerry's death |
 
 ---
 

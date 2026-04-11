@@ -131,5 +131,10 @@ SHOWS AT "Winterland" FROM 1977-1978 WHERE "Scarlet Begonias" > "Fire on the Mou
 | Comments | `--` to end of line; no block comments |
 | Statement end | Optional `;`; required between multiple statements |
 | Whitespace | Required between tokens; indentation is free |
+| `IN` alias | `IN` works as an alias for `FROM` everywhere (e.g. `SHOWS IN 1977`) |
+| Singular forms | `SHOW` (singular) works the same as `SHOWS` |
+| LIMIT cap | `LIMIT` is silently capped at 1000 |
+| Smart quotes | Curly quotes (\u201c \u201d) are accepted — useful for copy-paste from Word or PowerShell |
+| `ASC` | Explicit ascending order (default when `ORDER BY` is used without `DESC`) |
 
 Next up: read [WHERE conditions]({{< relref "where" >}}) for filtering, or [Operators]({{< relref "operators" >}}) for the full token list.
