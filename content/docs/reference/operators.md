@@ -17,7 +17,8 @@ Connects two song names inside a `WHERE` clause.
 |-------|-----|---------|
 | `>` | `INTO`, `->` | Next song in the setlist (not necessarily a musical segue) |
 | `>>` | `THEN` | Followed by (with a break or applause) |
-| `NOT >` | `NOT INTO` | A was played but B was not the next song |
+| `NOT >` | `NOT INTO`, `!>` | A was played but B was not the next song |
+| `!>>` | — | A was played but B did not follow (even with a break) |
 | `~>` | `TEASE` | Teased — partial quote, not a full performance (requires tease data import) |
 
 Chains are exact: `"A" > "B" > "C"` only matches shows where all three appear in that order, adjacent in the setlist.
