@@ -54,4 +54,4 @@ For more queries like this, see [Cookbook]({{< relref "../cookbook" >}}).
 
 ---
 
-New to GDQL? Start at [Getting started]({{< relref "/docs/getting-started" >}}) to install the CLI, or jump straight into the **{{< sandbox "" "Sandbox" >}}** to try queries in the browser.
+New to GDQL? Start at [Getting Started]({{< relref "/docs/getting-started" >}}) to install the CLI, or jump straight into the **{{< sandbox "" "Sandbox" >}}** to try queries in the browser.

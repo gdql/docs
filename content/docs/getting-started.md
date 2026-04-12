@@ -1,5 +1,5 @@
 ---
-title: Getting started
+title: Getting Started
 description: "Install the GDQL CLI in under a minute and start searching Grateful Dead setlists, shows, and songs. Download a single binary — no database setup required."
 weight: 10
 ---

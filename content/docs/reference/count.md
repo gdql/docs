@@ -1,7 +1,7 @@
 ---
 title: COUNT
-description: "GDQL COUNT: count song performances or shows with optional date ranges, eras, and WHERE conditions."
-weight: 5
+description: "GDQL COUNT — count Grateful Dead song performances or shows over a date range, era, or WHERE filter without listing every match. Fast tallies, no scrolling."
+weight: 7
 ---
 
 

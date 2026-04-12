@@ -1,6 +1,6 @@
 ---
 title: Cheat Sheet
-description: "GDQL cheat sheet — every query pattern on one page. Bookmark this."
+description: "GDQL cheat sheet — every Grateful Dead query pattern on one page: shows, songs, segues, openers, closers, eras, lyrics, and output formats. Bookmark this."
 weight: 13
 ---
 

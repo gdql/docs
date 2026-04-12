@@ -1,7 +1,7 @@
 ---
 title: WHERE conditions
 description: "Filter Grateful Dead shows with GDQL WHERE — match segues like Scarlet > Fire, set openers and closers, played/not-played songs, and AND/OR/NOT logic."
-weight: 10
+weight: 5
 ---
 
 
@@ -26,7 +26,7 @@ The `>` operator matches songs that appear next to each other in the setlist —
 | Form | Alt syntax | Meaning |
 |------|------------|--------|
 | `"A" > "B"` | `"A" INTO "B"` | B was the next song after A in the setlist |
-| `"A" >> "B"` | `"A" THEN "B"` | A is followed by B, with a pause or applause break between |
+| `"A" >> "B"` | `"A" THEN "B"` | A and B both played in the same show, A before B, with at least one other song between them |
 | Chains | — | Any number: `"Help on the Way" > "Slipknot!" > "Franklin's Tower"` |
 
 The chain form is exact: it requires every transition in order. `Help > Slip > Franklin's` will only match shows where all three appear in that sequence.

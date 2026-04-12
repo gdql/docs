@@ -1,7 +1,7 @@
 ---
 title: FIRST / LAST
-description: "GDQL FIRST and LAST: find the very first or very last time the Grateful Dead played a song."
-weight: 6
+description: "GDQL FIRST and LAST — find the debut and farewell performance of any Grateful Dead song across 2,014 shows from 1965 to 1995, with date and venue."
+weight: 8
 ---
 
 

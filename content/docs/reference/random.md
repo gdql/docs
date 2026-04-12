@@ -1,7 +1,7 @@
 ---
 title: RANDOM SHOW
-description: "GDQL RANDOM SHOW: pick a random Grateful Dead show to listen to, optionally filtered by era or date range."
-weight: 7
+description: "GDQL RANDOM SHOW — pick a random Grateful Dead concert to listen to tonight, optionally filtered by era (PRIMAL, EUROPE72, BRENT_ERA), year, or venue."
+weight: 9
 ---
 
 
