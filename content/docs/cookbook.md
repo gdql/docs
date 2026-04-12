@@ -188,7 +188,7 @@ SHOWS AT "Winterland" WHERE "Scarlet Begonias" > "Fire on the Mountain";
 ## Multi-song chains with extra conditions
 
 {{< gdql >}}
--- Help > Slip > Frank that ALSO had Dark Star (happened once: 9/10/91 MSG)
+-- Help > Slip > Frank that ALSO had Dark Star (4 shows: 6/14/91 RFK, 9/10/91 MSG, 10/31/91 Oakland, 9/22/93 MSG)
 SHOWS WHERE "Help on the Way" > "Slipknot!" > "Franklin's Tower" AND PLAYED "Dark Star";
 
 -- The primal trio at Fillmore West

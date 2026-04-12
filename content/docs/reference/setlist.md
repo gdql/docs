@@ -11,9 +11,9 @@ weight: 4
 
 ## Synopsis
 
-{{< gdql >}}
+```gdql
 SETLIST FOR date_spec;
-{{< /gdql >}}
+```
 
 `date_spec` is a specific date (`5/8/77` or `1977-05-08`), a year (`1977`), or a named show (`"Cornell 1977"`). The `FOR` keyword is optional — `SETLIST 1977-05-08;` works too.
 

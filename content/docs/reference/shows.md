@@ -76,9 +76,11 @@ SHOWS AT "Madison Square Garden";
 
 ### By tour
 
-{{< gdql >}}
+```gdql
 SHOWS TOUR "Europe" FROM 1972;
-{{< /gdql >}}
+```
+
+> **Heads-up:** the `TOUR` keyword is part of the language but tour data is not yet imported into the embedded database — these queries currently return zero rows. Use `FROM EUROPE72` or an explicit date range as a workaround.
 
 ### With WHERE conditions
 

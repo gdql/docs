@@ -29,7 +29,7 @@
       pattern: /\b\d+(?:\/\d+\/\d+)?(?:min|sec|minutes?|seconds?)?\b/
     },
     'class-name': {
-      pattern: /\b(?:JSON|CSV|TABLE|SETLIST|CALENDAR|PRIMAL|EUROPE72|BRENT_ERA|VINCE_ERA|WALLOFSOUND|HIATUS)\b/i
+      pattern: /\b(?:JSON|CSV|TSV|TABLE|SETLIST|CALENDAR|PRIMAL|EUROPE72|BRENT_ERA|VINCE_ERA|WALLOFSOUND|HIATUS)\b/i
     },
     punctuation: {
       pattern: /[(),;]/
