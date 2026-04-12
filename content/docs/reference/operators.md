@@ -99,11 +99,37 @@ Named eras the Dead community uses. Spelled exactly as shown (case-insensitive).
 | Era | Years | What it covers |
 |-----|-------|----------------|
 | `PRIMAL` | 1965–1969 | Pigpen-era, Dark Star, Saint Stephen, the Eleven |
-| `EUROPE72` (or `EUROPE`) | 1972 | The legendary spring '72 Europe tour |
-| `WALLOFSOUND` | 1973–1974 | The Wall of Sound PA era |
+| `EUROPE72` (or `EUROPE`) | March–May 1972 | The legendary spring '72 European tour — date-bounded, not the whole calendar year |
+| `WALLOFSOUND` | 1974 | The Wall of Sound PA era |
 | `HIATUS` | 1975 | The year off (very few shows) |
 | `BRENT_ERA` (or `BRENT`) | 1979–1990 | Brent Mydland on keys |
 | `VINCE_ERA` (or `VINCE`) | 1990–1995 | Vince Welnick on keys, ending with Jerry's death |
+
+> **Mind the gap.** There is no built-in alias for the Keith Godchaux years (1971–1979). To query that stretch — including Cornell '77 and the rest of the late-'70s run — use an explicit year range: `SHOWS FROM 1976-1978` or `SHOWS FROM 1971-1978`.
+
+---
+
+## Sorting and limiting
+
+`ORDER BY` and `LIMIT` work on most query types. Sort fields are a fixed whitelist — case-insensitive, never quoted.
+
+| Field | Valid on | Meaning |
+|-------|----------|---------|
+| `DATE` | `SHOWS`, `PERFORMANCES` | Show date |
+| `LENGTH` | `PERFORMANCES`, `SONGS` | Performance duration (durations cover ~48% of performances) |
+| `NAME` | `SONGS` | Song name, alphabetical |
+| `TIMES_PLAYED` | `SONGS` | Number of times performed across the catalog |
+| `POSITION` | `PERFORMANCES` | Position within the setlist |
+
+Add `ASC` (default) or `DESC` after the field. `LIMIT n` caps the row count and is **silently capped at 1000** — asking for `LIMIT 5000` returns 1000 rows. There is no offset or pagination.
+
+```gdql
+SHOWS FROM 1977 ORDER BY DATE DESC LIMIT 10;
+SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20;
+PERFORMANCES OF "Dark Star" ORDER BY LENGTH DESC LIMIT 5;
+```
+
+`ORDER BY VENUE`, `ORDER BY CITY`, and other ad-hoc fields are **not** supported — the parser rejects anything outside the whitelist above.
 
 ---
 

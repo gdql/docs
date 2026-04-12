@@ -29,8 +29,8 @@ weight: 13
 | **Songs** | |
 | Most played songs | `SONGS ORDER BY TIMES_PLAYED DESC LIMIT 20` |
 | Most played in a year | `SONGS FROM 1977 ORDER BY TIMES_PLAYED DESC` |
-| Songs with lyrics | `SONGS WITH LYRICS("train", "road")` |
-| Separate lyrics conditions | `SONGS WITH LYRICS("sun") AND LYRICS("train")` |
+| Songs with lyrics (all words required) | `SONGS WITH LYRICS("train", "road")` |
+| Same thing, written long-hand | `SONGS WITH LYRICS("sun") AND LYRICS("train")` |
 | Song count | `SONGS WITH LYRICS("rose") AS COUNT` |
 | **Performances** | |
 | Every time a song was played | `PERFORMANCES OF "Dark Star"` |

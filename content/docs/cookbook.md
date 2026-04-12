@@ -22,7 +22,7 @@ SHOWS FROM 1977;                              -- all '77 shows
 SHOWS FROM 1977-1980 ORDER BY DATE;           -- year range
 SHOWS FROM PRIMAL;                            -- 1965-1969
 SHOWS FROM EUROPE72;                          -- spring '72 tour
-SHOWS FROM WALLOFSOUND;                       -- 1973-1974
+SHOWS FROM WALLOFSOUND;                       -- 1974 (the Wall of Sound year)
 SHOWS FROM BRENT_ERA;                         -- 1979-1990
 SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;   -- most recent first
 {{< /gdql >}}
@@ -219,6 +219,13 @@ SONGS WITH LYRICS("rose") AS COUNT;
 FIRST "Help on the Way";
 LAST "Saint Stephen";
 LAST "Dark Star";    -- a famous bookend: March 30, 1994
+{{< /gdql >}}
+
+`FIRST` and `LAST` are song-specific. To find the very first or very last *show* (e.g. Jerry's farewell at Soldier Field on 7/9/95), sort `SHOWS` by date:
+
+{{< gdql >}}
+SHOWS ORDER BY DATE LIMIT 1;        -- the first show in the database
+SHOWS ORDER BY DATE DESC LIMIT 1;   -- the last show — Jerry's final
 {{< /gdql >}}
 
 ---

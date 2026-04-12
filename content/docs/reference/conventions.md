@@ -51,7 +51,15 @@ Single quotes work too. They're handy when shell escaping gets ugly:
 gdql 'SHOWS WHERE PLAYED "Scarlet Begonias"'
 ```
 
-GDQL is forgiving about punctuation and exact spelling — `"Help on the Way!"` and `"Help on the Way"` resolve to the same song, and apostrophes in titles like `"Franklin's Tower"` work as written.
+GDQL is forgiving about punctuation and exact spelling — `"Help on the Way!"` and `"Help on the Way"` resolve to the same song, and apostrophes in titles like `"Franklin's Tower"` work as written. Specifically, song lookup will:
+
+- Strip apostrophes — `"Truckin"` finds `"Truckin'"`
+- Strip periods — `"St Stephen"` finds `"St. Stephen"`
+- Normalize spacing — `"Wharfrat"` finds `"Wharf Rat"`
+- Expand `Saint` to `St.` — `"Saint Stephen"` finds `"St. Stephen"`
+- Tolerate trailing exclamation marks and other punctuation
+
+When you can't remember a title, run `SONGS ORDER BY NAME` or `SONGS WITH LYRICS("...")` to find the canonical form.
 
 ---
 
