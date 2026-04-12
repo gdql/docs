@@ -23,7 +23,7 @@ PERFORMANCES OF "Song Name" [ FROM date_or_range ] [ WITH LENGTH length_conditio
 
 `PERFORMANCES` joins the song catalog with the performance log to return one row per time the song was played. Each row carries the date, venue, set number, and position.
 
-> **Note:** `WITH LENGTH` filtering requires length data to be imported. Without it, length-based queries will return empty results.
+> **Duration data** is sourced from archive.org recordings via Relisten. About 48% of performances have duration — coverage is best for 1970s shows.
 
 
 ---
@@ -35,10 +35,10 @@ PERFORMANCES OF "Song Name" [ FROM date_or_range ] [ WITH LENGTH length_conditio
 | `OF "Song Name"` | Required. The song to look up. Lookup is case-insensitive and tolerant of punctuation. |
 | `FROM 1972` | Single year. |
 | `FROM 1972-1974` | Inclusive year range. |
-| `WITH LENGTH > 20min` | Filter by duration (requires length data). Supports `>`, `<`, `>=`, `<=`, `=`. |
+| `WITH LENGTH > 20min` | Filter by duration. Supports `>`, `<`, `>=`, `<=`, `=`. |
 | `ORDER BY DATE DESC` | Sort by `DATE`, ascending or descending. |
 | `ORDER BY POSITION` | Sort by position within the setlist. |
-| `ORDER BY LENGTH` | Sort by performance duration (requires length data). |
+| `ORDER BY LENGTH` | Sort by performance duration. |
 | `LIMIT 5` | Cap results — handy when sorting by length. |
 
 ---
@@ -68,6 +68,19 @@ PERFORMANCES OF "Dark Star" ORDER BY DATE LIMIT 10;
 PERFORMANCES OF "Scarlet Begonias" FROM 77-79 ORDER BY DATE DESC LIMIT 20;
 {{< /gdql >}}
 
+### Longest performances
+
+{{< gdql >}}
+-- The longest Dark Stars
+PERFORMANCES OF "Dark Star" ORDER BY LENGTH DESC LIMIT 10;
+
+-- Playing in the Band jams over 15 minutes
+PERFORMANCES OF "Playing in the Band" WITH LENGTH > 15min;
+
+-- Short Morning Dews (under 8 minutes)
+PERFORMANCES OF "Morning Dew" WITH LENGTH < 8min ORDER BY LENGTH LIMIT 10;
+{{< /gdql >}}
+
 ### Find the oldest
 
 {{< gdql >}}
@@ -80,7 +93,7 @@ PERFORMANCES OF "Help on the Way" ORDER BY DATE LIMIT 1;
 
 ## Tips
 
-- **Length data is not currently available.** `WITH LENGTH` queries will return empty results until length data is imported.
+- **Duration coverage is ~48%.** Not every performance has length data — it depends on what's available on archive.org. Results with `ORDER BY LENGTH` will only include performances that have durations.
 - **Use `LIMIT` aggressively** when browsing — the top 10 or 20 is almost always what you want.
 - **Looking for shows that played a song, not the performances themselves?** Use `SHOWS WHERE PLAYED "Song"` instead.
 

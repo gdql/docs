@@ -43,7 +43,7 @@ Combine conditions inside a `WHERE` clause.
 
 ## Comparisons
 
-Used in `WITH LENGTH` and `LENGTH(...)` conditions. These require length data to be imported.
+Used in `WITH LENGTH` and `LENGTH(...)` conditions. Duration data is sourced from archive.org recordings (~48% coverage).
 
 | Token | Meaning |
 |-------|---------|

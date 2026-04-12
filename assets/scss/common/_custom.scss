@@ -186,6 +186,22 @@ a {
   }
 }
 
+// Table hover
+.docs-content table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+// Focus state for Try in Sandbox links (accessibility)
+.gdql-try-link:focus-visible {
+  outline: 2px solid var(--syf-red);
+  outline-offset: 2px;
+}
+
+// Spacing between consecutive code blocks
+.gdql-wrap + .gdql-wrap {
+  margin-top: 0.25rem;
+}
+
 // Sidebar nav
 .docs-links .nav-link.active {
   color: var(--syf-red) !important;
@@ -240,7 +256,7 @@ hr {
   border-radius: 10px !important;
   padding: 2.5rem 1.25rem 1rem !important;
   margin: 0.75rem 0 !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 40px -10px rgba(230, 57, 70, 0.08);
   overflow: hidden;
 
   // Mac dots via pseudo-elements
@@ -476,7 +492,7 @@ hr {
   border-radius: 10px;
   overflow: hidden;
   background: #16140f;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 40px -10px rgba(230, 57, 70, 0.08);
 
   // Mac-style window controls bar
   .gdql-bar {

@@ -84,7 +84,7 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | `NOT CLOSER "Song"` | The show did **not** close with this song |
 | `NOT ENCORE "Song"` | The encore was **not** this song |
 | `GUEST "name"` | A guest musician sat in (requires guest data import) |
-| `LENGTH("Song") > 20min` | Song length condition (requires length data import) |
+| `LENGTH("Song") > 20min` | Song length condition (duration from archive.org, ~48% coverage) |
 
 ---
 

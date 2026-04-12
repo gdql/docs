@@ -7,7 +7,7 @@ weight: 12
 
 Every query on this page is verified against the live database. Click **▶ Try it in sandbox** to run any block. For the full grammar, see the [language reference]({{< relref "reference" >}}).
 
-> **Data note:** Show data sourced from [Deadlists](http://www.setlists.net). The `>` operator in queries means "next song in the setlist" — not necessarily a musical segue. Real segue data is hard to extract at scale, so GDQL uses position as a proxy. Guest, song length, and tease data are not currently available. Spot something wrong? [Open an issue](https://github.com/gdql/gdql/discussions).
+> **Data note:** Setlists from [Deadlists](http://www.setlists.net). Track durations from [archive.org](https://archive.org/details/GratefulDead) via [Relisten](https://relisten.net). The `>` operator means "next song" — not necessarily a musical segue. Spot something wrong? [Open an issue](https://github.com/gdql/gdql/discussions).
 
 ---
 
@@ -225,6 +225,26 @@ COUNT SHOWS FROM PRIMAL;
 COUNT SHOWS FROM EUROPE72;
 COUNT SHOWS FROM BRENT_ERA;
 COUNT SHOWS FROM VINCE_ERA;
+{{< /gdql >}}
+
+---
+
+## How long did they jam?
+
+Track durations are sourced from archive.org recordings (~48% coverage). Use `ORDER BY LENGTH` to find the marathon versions and `WITH LENGTH` to filter.
+
+{{< gdql >}}
+-- The longest Dark Stars ever played
+PERFORMANCES OF "Dark Star" ORDER BY LENGTH DESC LIMIT 10;
+
+-- Playing in the Band jams over 20 minutes
+PERFORMANCES OF "Playing in the Band" WITH LENGTH > 20min;
+
+-- Quick Sugareees (under 6 minutes)
+PERFORMANCES OF "Sugaree" WITH LENGTH < 6min ORDER BY LENGTH LIMIT 5;
+
+-- Longest Eyes of the World from 1974
+PERFORMANCES OF "Eyes of the World" FROM 1974 ORDER BY LENGTH DESC LIMIT 5;
 {{< /gdql >}}
 
 ---
