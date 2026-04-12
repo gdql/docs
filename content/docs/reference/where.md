@@ -78,6 +78,7 @@ Most Dead shows have **two sets and an encore**, but some have three sets, and t
 | Form | Meaning |
 |------|--------|
 | `PLAYED "Scarlet Begonias"` | The show included this song, anywhere in any set |
+| `"Scarlet Begonias"` | Same — `PLAYED` is optional (bare song name = implicit PLAYED) |
 | `NOT PLAYED "Fire on the Mountain"` | The show did **not** include this song |
 | `NOT "Drums"` | Short form of `NOT PLAYED` |
 | `NOT OPENER "Song"` | The show did **not** open with this song |

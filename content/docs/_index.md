@@ -11,6 +11,7 @@ GDQL (Grateful Dead Query Language) is a query language for the Grateful Dead. A
 
 - **[Getting started]({{< relref "getting-started" >}})** — Install the CLI, grab the database, and run your first query in under a minute.
 - **[Cookbook]({{< relref "cookbook" >}})** — Recipes for every question a Deadhead might ask.
+- **[Cheat Sheet]({{< relref "cheat-sheet" >}})** — Every query pattern on one page. Bookmark this.
 
 ## Reference
 

@@ -7,7 +7,11 @@ weight: 12
 
 Every query on this page is verified against the live database. Click **▶ Try it in sandbox** to run any block. For the full grammar, see the [language reference]({{< relref "reference" >}}).
 
-> **Data note:** Setlists from [Deadlists](http://www.setlists.net). Track durations from [archive.org](https://archive.org/details/GratefulDead) via [Relisten](https://relisten.net). The `>` operator means "next song" — not necessarily a musical segue. Spot something wrong? [Open an issue](https://github.com/gdql/gdql/discussions).
+> - Setlists from [Deadlists](http://www.setlists.net), lyrics via [Relisten](https://relisten.net)
+> - The `>` operator means "next song" — not necessarily a musical segue
+> - Spot something wrong? [Start a discussion](https://github.com/gdql/gdql/discussions)
+
+For every query pattern at a glance, see the **[Cheat Sheet]({{< relref "cheat-sheet" >}})**.
 
 ---
 
@@ -18,6 +22,7 @@ SHOWS FROM 1977;                              -- all '77 shows
 SHOWS FROM 1977-1980 ORDER BY DATE;           -- year range
 SHOWS FROM PRIMAL;                            -- 1965-1969
 SHOWS FROM EUROPE72;                          -- spring '72 tour
+SHOWS FROM WALLOFSOUND;                       -- 1973-1974
 SHOWS FROM BRENT_ERA;                         -- 1979-1990
 SHOWS FROM 1972 ORDER BY DATE DESC LIMIT 5;   -- most recent first
 {{< /gdql >}}
