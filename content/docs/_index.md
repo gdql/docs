@@ -19,6 +19,7 @@ GDQL (Grateful Dead Query Language) is a query language for the Grateful Dead. A
 - **[Conventions]({{< relref "reference/conventions" >}})** — Case rules, strings, comments, and how to chain statements.
 - **[WHERE conditions]({{< relref "reference/where" >}})** — Build filters from segues, set positions, played/guest checks, and `AND`/`OR`/`NOT`.
 - **[Operators & formats]({{< relref "reference/operators" >}})** — Segue tokens, comparisons, eras, and output formats.
+- **[Data pipelines]({{< relref "data-pipelines" >}})** — How the embedded DB stays current: song relations, lyrics scrape, venue geocoding, historical weather, CI enrichment workflow, and downstream dispatch.
 
 ## Tools
 
