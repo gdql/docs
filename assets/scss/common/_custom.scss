@@ -248,9 +248,12 @@ hr {
   display: none !important;
 }
 
-// All code blocks: mac-window style with colored dots
-.docs-content pre:not(.gdql-block pre),
-.gdql-landing pre:not(.gdql-block pre) {
+// All code blocks: mac-window style with colored dots.
+// Skip any pre that's already wrapped by an expressive-code frame (Doks'
+// terminal theme gives those their own header + dots — applying ours on top
+// stacks two bars).
+.docs-content pre:not(.gdql-block pre):not(.expressive-code pre),
+.gdql-landing pre:not(.gdql-block pre):not(.expressive-code pre) {
   position: relative;
   background: #16140f !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -283,6 +286,13 @@ hr {
     border: 0 !important;
     padding: 0 !important;
   }
+}
+
+// Expressive-code's own frame already provides a dark header bar with
+// three faded dots; don't paint a second set on top of the inner <pre>.
+.expressive-code pre {
+  padding-top: 0.9rem !important;
+  &::before { display: none !important; }
 }
 
 // Expressive-code (Doks terminal blocks): merge header+code, no gap
